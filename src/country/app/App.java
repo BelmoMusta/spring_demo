@@ -19,6 +19,7 @@ public class App {
 		while (isRunning) {
 			System.out.println("*********************************************");
 			System.out.println("*** Pour ajouter un nouveau pays tapper 1 ***");
+			System.out.println("*** Pour lister les informations d'un pays tapper 2 ***");
 			System.out.println("*** Pour sortir de l'application tapper 0 ***");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String numberEntred = inputFromConsole.next();
@@ -27,6 +28,12 @@ public class App {
 				System.out.println("** Veillez saisir les information du pays Ex : FR,france,EURO,Bonjour **");
 				String countryInfos = inputFromConsole.next();
 				serviceWorker.addCountry(countryInfos);
+				break;
+				
+			case "2":
+				System.out.println("** Veillez saisir le code du pays **");
+				String countryCode = inputFromConsole.next();
+				serviceWorker.dealWithCountryByCode(countryCode);
 				break;
 				
 			case "0":
