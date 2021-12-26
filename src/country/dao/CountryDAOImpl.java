@@ -82,4 +82,24 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		return numRowAffected == 1 ? true : false;
 	}
+
+	@Override
+	public boolean updateCountry(String countryCode, Country newCountryInfos) {
+		String UPDATE_SQL = "UPDATE country SET code = ?, name = ?, devise = ?, greetings = ? WHERE code = ?;";
+		int numRowAffected = 0;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL);
+			preparedStatement.setString(1, newCountryInfos.getCode());
+			preparedStatement.setString(2, newCountryInfos.getName());
+			preparedStatement.setString(3, newCountryInfos.getDevise());
+			preparedStatement.setString(4, newCountryInfos.getGreetings());
+			preparedStatement.setString(5, countryCode);
+			numRowAffected = preparedStatement.executeUpdate();
+			
+		}catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return numRowAffected == 1 ? true : false;
+	}
 }

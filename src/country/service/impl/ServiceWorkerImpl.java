@@ -27,16 +27,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 	@Override
 	public void addCountry(String countryInfos) {
-		String[] arrCountryInfos = new String[4];
-		String[] availableCountryInfos = countryInfos.split(",");
-		for(int i=0;i<availableCountryInfos.length;i++) {
-			arrCountryInfos[i] = availableCountryInfos[i];
-		}
-		Country country = new Country();
-		country.setCode(arrCountryInfos[0]);
-		country.setName(arrCountryInfos[1]);
-		country.setDevise(arrCountryInfos[2]);
-		country.setGreetings(arrCountryInfos[3]);
+		Country country = stringToCountry(countryInfos);
 		if(countryDAO.addCountry(country)) {
 			System.out.println("Country added");
 		}else {
@@ -44,6 +35,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		}
 		
 	}
+
 
 	@Override
 	public void deleteCountry(String countryCode) {
@@ -55,4 +47,30 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		}
 		
 	}
+
+	@Override
+	public void updateCountry(String countryCode, String newCountryInfos) {
+		Country country = stringToCountry(newCountryInfos);
+		boolean isUpdated = countryDAO.updateCountry(countryCode, country);
+		if(isUpdated) {
+			System.out.println("Country Updated");
+		}else {
+			System.out.println("Some problem happened");
+		}
+	}
+	
+	private Country stringToCountry(String countryInfos) {
+		String[] arrCountryInfos = new String[4];
+		String[] availableCountryInfos = countryInfos.split(",");
+		for(int i=0;i<availableCountryInfos.length;i++) {
+			arrCountryInfos[i] = availableCountryInfos[i];
+		}
+		Country country = new Country();
+		country.setCode(arrCountryInfos[0]);
+		country.setName(arrCountryInfos[1]);
+		country.setDevise(arrCountryInfos[2]);
+		country.setGreetings(arrCountryInfos[3]);
+		return country;
+	}
+	
 }
