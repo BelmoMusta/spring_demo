@@ -3,4 +3,5 @@ package country.service;
 public interface IServiceWorker {
 	void dealWithCountryByCode(String language);
 	void addCountry(String countryInfos);
+	void deleteCountry(String countryCode);
 }

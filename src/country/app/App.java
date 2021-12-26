@@ -16,10 +16,12 @@ public class App {
 		org.h2.tools.Server.createWebServer().start();
 		System.out.println(App.class.getClassLoader().getResource("logging.properties"));
 		boolean isRunning = true;
+		String countryCode = null;
 		while (isRunning) {
 			System.out.println("*********************************************");
 			System.out.println("*** Pour ajouter un nouveau pays tapper 1 ***");
 			System.out.println("*** Pour lister les informations d'un pays tapper 2 ***");
+			System.out.println("*** Pour supprimer un pays tapper 3 ***");
 			System.out.println("*** Pour sortir de l'application tapper 0 ***");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String numberEntred = inputFromConsole.next();
@@ -32,10 +34,15 @@ public class App {
 				
 			case "2":
 				System.out.println("** Veillez saisir le code du pays **");
-				String countryCode = inputFromConsole.next();
+				countryCode = inputFromConsole.next();
 				serviceWorker.dealWithCountryByCode(countryCode);
 				break;
 				
+			case "3":
+				System.out.println("** Veillez saisir le code du pays **");
+				countryCode = inputFromConsole.next();
+				serviceWorker.deleteCountry(countryCode);
+				break;
 			case "0":
 				isRunning = false;
 				break;

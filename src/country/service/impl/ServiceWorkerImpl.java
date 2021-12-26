@@ -40,7 +40,18 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		if(countryDAO.addCountry(country)) {
 			System.out.println("Country added");
 		}else {
-		    System.err.println("Some problem happned");
+		    System.err.println("Some problem happened");
+		}
+		
+	}
+
+	@Override
+	public void deleteCountry(String countryCode) {
+		boolean isDeleted =  countryDAO.deleteCountry(countryCode);
+		if(isDeleted) {
+			System.out.println("Country deleted");
+		}else {
+			System.err.println("Some problem happened");
 		}
 		
 	}

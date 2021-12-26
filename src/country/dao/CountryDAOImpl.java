@@ -66,4 +66,20 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		return numRowAffected == 1 ? true : false;
 	}
+
+	@Override
+	public boolean deleteCountry(String countryCode) {
+		String DELETE_SQL = "DELETE FROM country WHERE code = ?;";
+		int numRowAffected = 0;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL);
+			preparedStatement.setString(1, countryCode);
+			numRowAffected = preparedStatement.executeUpdate();
+			
+		}catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return numRowAffected == 1 ? true : false;
+	}
 }
