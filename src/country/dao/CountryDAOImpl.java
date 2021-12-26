@@ -47,4 +47,23 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		return country;
 	}
+
+	@Override
+	public boolean addCountry(Country country) {
+		String INSERT_SQL = "INSERT INTO country(code, name, devise, greetings) VALUES(?, ?, ?, ?);";
+		int numRowAffected = 0;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL);
+			preparedStatement.setString(1, country.getCode());
+			preparedStatement.setString(2, country.getName());
+			preparedStatement.setString(3, country.getDevise());
+			preparedStatement.setString(4, country.getGreetings());
+			numRowAffected = preparedStatement.executeUpdate();
+			
+		}catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return numRowAffected == 1 ? true : false;
+	}
 }
