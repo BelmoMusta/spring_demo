@@ -15,34 +15,42 @@ public class App {
 		ApplicationContext applicationContext =
 				new ClassPathXmlApplicationContext("beans/*.xml");
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
-		
-		System.out.println(
+		Server.createWebServer().start();
+		while(true) {
+			System.out.println(
 				"# Pour ajouter un nouveau pays, tapper 1 :\n"
 				+ "# Pour lister les informations d'un pays, tapper 2 :\n"
 				+ "# Pour supprimer un pays, tapper 3 :\n"
 				+ "# Pour modifier des infos d'un pays, tapper 4 :\n"
 				+ "# Pour lister tous les pays d'un continent, tapper 5 :\n"
 				+ "# Pour sortir de l'application tapper 0 :");
-		Scanner It = new Scanner(System.in);
-		Server.createWebServer().start();
-		if(It.nextInt() == 1) {
-			while (true) {
-				System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings\" :");
-				Scanner Ss = new Scanner(System.in);
-				String infos = Ss.next();
-				serviceWorker.dealWithSaveCountry(infos);
+			Scanner It = new Scanner(System.in);
+			switch(It.nextInt()) {
+				case 1:
+					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings\" :");
+					Scanner Ss = new Scanner(System.in);
+					String infos = Ss.next();
+					serviceWorker.dealWithSaveCountry(infos);
+					break;
+				case 2:				
+					System.out.print("Choisir une langue : ");
+					Scanner inputFromConsole = new Scanner(System.in);
+					String language = inputFromConsole.next();
+					serviceWorker.dealWithCountryByCode(language);
+					break;
+				case 3:
+					System.out.println("choisir une langue : ");
+					Scanner inputOfDelete = new Scanner(System.in);
+					String lang = inputOfDelete.next();
+					serviceWorker.dealWithDeleteCountry(lang);
+					break;
+				case 0:
+					System.out.println("exit de programme");
+					System.exit(0);
+					break;
 			}
-		}else if (It.nextInt() == 2) {
-			while (true) {
-				System.out.print("Choisir une langue : ");
-				Scanner inputFromConsole = new Scanner(System.in);
-				String language = inputFromConsole.next();
-				serviceWorker.dealWithCountryByCode(language);
-				
-			}
-		}else if(It.nextInt() == 0) {
-			System.exit(0);
 		}
+						
 	}
 	
 }

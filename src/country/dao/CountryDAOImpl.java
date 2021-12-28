@@ -71,5 +71,19 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		return c;
 	}
+
+	@Override
+	public void deleteCountry(String code) {
+		try {
+			
+		Connection connection = dataSource.getConnection();
+		PreparedStatement pS = connection.prepareStatement("DELETE FROM country WHERE code=?");
+		pS.setString(1, code);
+		pS.executeUpdate();
+		pS.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

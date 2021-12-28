@@ -33,5 +33,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
 	}
+
+	@Override
+	public void dealWithDeleteCountry(String language) {
+		countryDAO.deleteCountry(language);		
+		System.out.println("the country "+language+" is deleted!");
+	}
 	
 }
