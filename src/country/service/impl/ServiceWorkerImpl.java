@@ -39,5 +39,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.deleteCountry(language);		
 		System.out.println("the country "+language+" is deleted!");
 	}
+
+	@Override
+	public void dealWithUpdateCountry(String infos, String language) {
+		String[] splitInfos = infos.split(",");
+		Country country2 = countryDAO.updateCountry(new Country(splitInfos[0],splitInfos[1],splitInfos[2],splitInfos[3]), language);
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, country2);
+		System.out.println("WELCOME : " + countryService.welcome());
+		System.out.println("Devise is :" + countryService.devise());
+	}
 	
 }

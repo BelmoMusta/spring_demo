@@ -85,5 +85,23 @@ public class CountryDAOImpl implements CountryDAO {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public Country updateCountry(Country c, String code) {
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pS = connection.prepareStatement("UPDATE country SET name=?, code=?, devise=?, greetings=? WHERE code=?");
+			pS.setString(1, c.getName());
+			pS.setString(2, c.getCode());
+			pS.setString(3, c.getDevise());
+			pS.setString(4, c.getGreetings());
+			pS.setString(5, code);
+			pS.executeUpdate();
+			pS.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
 	
 }

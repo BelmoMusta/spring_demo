@@ -44,6 +44,15 @@ public class App {
 					String lang = inputOfDelete.next();
 					serviceWorker.dealWithDeleteCountry(lang);
 					break;
+				case 4:
+					System.out.println("choisir une langue : ");
+					Scanner codeOfCountry = new Scanner(System.in);
+					String code = codeOfCountry.next();
+					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings\" :");
+					Scanner sNewInfos = new Scanner(System.in);
+					String newInfos = sNewInfos.next();
+					serviceWorker.dealWithUpdateCountry(newInfos, code);
+					break;
 				case 0:
 					System.out.println("exit de programme");
 					System.exit(0);
