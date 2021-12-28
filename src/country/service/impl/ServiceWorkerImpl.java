@@ -4,6 +4,9 @@ import country.dao.CountryDAO;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -21,14 +24,16 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		// car c'est prototype
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 		
+		System.out.println("COUNTRY : "+ pays.getName());
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
+		
 	}
 
 	@Override
 	public void dealWithSaveCountry(String infos) {
 		String[] strs = infos.split(",");
-		Country country = countryDAO.saveCountry(new Country(strs[0],strs[1],strs[2],strs[3]));
+		Country country = countryDAO.saveCountry(new Country(strs[0],strs[1],strs[2],strs[3],strs[4]));
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
@@ -43,10 +48,20 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void dealWithUpdateCountry(String infos, String language) {
 		String[] splitInfos = infos.split(",");
-		Country country2 = countryDAO.updateCountry(new Country(splitInfos[0],splitInfos[1],splitInfos[2],splitInfos[3]), language);
+		Country country2 = countryDAO.updateCountry(new Country(splitInfos[0],splitInfos[1],splitInfos[2],splitInfos[3],splitInfos[4]), language);
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, country2);
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
+	}
+
+	@Override
+	public void dealWithContinents(String codeOfContinent) {
+		List<Country> lists = countryDAO.continentCountries(codeOfContinent);
+		for(Country c: lists) {
+			System.out.print(c.getName()+", ");
+			System.out.println();
+		}
+		
 	}
 	
 }

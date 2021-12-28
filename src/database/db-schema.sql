@@ -7,5 +7,13 @@ CREATE TABLE country
     name   VARCHAR(250) NOT NULL,
     code   VARCHAR(250) NOT NULL,
     devise VARCHAR(250) DEFAULT NULL,
-    greetings VARCHAR(250) DEFAULT NULL
+    greetings VARCHAR(250) DEFAULT NULL,
+    code_continent VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE continent
+(
+    id     INT AUTO_INCREMENT PRIMARY KEY,
+    code   VARCHAR(200) NOT NULL,
+    name   VARCHAR(250) NOT NULL        
 );

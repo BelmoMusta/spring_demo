@@ -27,7 +27,7 @@ public class App {
 			Scanner It = new Scanner(System.in);
 			switch(It.nextInt()) {
 				case 1:
-					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings\" :");
+					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings,code-continent\" :");
 					Scanner Ss = new Scanner(System.in);
 					String infos = Ss.next();
 					serviceWorker.dealWithSaveCountry(infos);
@@ -48,10 +48,16 @@ public class App {
 					System.out.println("choisir une langue : ");
 					Scanner codeOfCountry = new Scanner(System.in);
 					String code = codeOfCountry.next();
-					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings\" :");
+					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings,code-continent\" :");
 					Scanner sNewInfos = new Scanner(System.in);
 					String newInfos = sNewInfos.next();
 					serviceWorker.dealWithUpdateCountry(newInfos, code);
+					break;
+				case 5:
+					System.out.println("choisir un continent :");
+					Scanner sContinent = new Scanner(System.in);
+					String codeContinent = sContinent.next();
+					serviceWorker.dealWithContinents(codeContinent);
 					break;
 				case 0:
 					System.out.println("exit de programme");

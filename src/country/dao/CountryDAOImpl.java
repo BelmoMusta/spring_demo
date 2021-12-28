@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,13 +36,14 @@ public class CountryDAOImpl implements CountryDAO {
 				String code = resultSet.getString(3);
 				String devise = resultSet.getString(4);
 				String greetings = resultSet.getString(5);
+				String codeContinent = resultSet.getString(6);
 				
 				country.setId(id);
 				country.setName(name);
 				country.setCode(code);
 				country.setDevise(devise);
 				country.setGreetings(greetings);
-				
+				country.setCodeContinent(codeContinent);
 			}
 		} catch (SQLException exception) {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
@@ -53,11 +56,12 @@ public class CountryDAOImpl implements CountryDAO {
 			
 		try {
 			Connection connection = dataSource.getConnection();
-			PreparedStatement pS = connection.prepareStatement("INSERT INTO country(name, code, devise, greetings) VALUES(?,?,?,?);");
+			PreparedStatement pS = connection.prepareStatement("INSERT INTO country(name, code, devise, greetings, code_continent) VALUES(?,?,?,?,?);");
 			pS.setString(1, c.getName());
 			pS.setString(2, c.getCode());
 			pS.setString(3, c.getDevise());
 			pS.setString(4, c.getGreetings());
+			pS.setString(5, c.getCodeContinent());
 			pS.executeUpdate();
 			pS.close();
 			PreparedStatement pS2 = connection.prepareStatement("SELECT MAX(id) AS MAX_ID FROM country");
@@ -90,18 +94,45 @@ public class CountryDAOImpl implements CountryDAO {
 	public Country updateCountry(Country c, String code) {
 		try {
 			Connection connection = dataSource.getConnection();
-			PreparedStatement pS = connection.prepareStatement("UPDATE country SET name=?, code=?, devise=?, greetings=? WHERE code=?");
+			PreparedStatement pS = connection.prepareStatement("UPDATE country SET name=?, code=?, devise=?, greetings=?, code_continent=? WHERE code=?");
 			pS.setString(1, c.getName());
 			pS.setString(2, c.getCode());
 			pS.setString(3, c.getDevise());
 			pS.setString(4, c.getGreetings());
-			pS.setString(5, code);
+			pS.setString(5, c.getCodeContinent());
+			pS.setString(6, code);
 			pS.executeUpdate();
 			pS.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return c;
+	}
+
+	@Override
+	public List<Country> continentCountries(String code) {
+		List<Country> l = new ArrayList<>();
+		Country cl=null;
+		try {			
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pS = connection.prepareStatement("SELECT * FROM country WHERE code_continent LIKE ?");
+			pS.setString(1, code);
+			ResultSet rs = pS.executeQuery();
+			while(rs.next()) {
+				cl = new Country();
+				cl.setId(rs.getInt(1));
+				cl.setName(rs.getString(2));
+				cl.setCode(rs.getString(3));
+				cl.setDevise(rs.getString(4));
+				cl.setGreetings(rs.getString(5));
+				cl.setCodeContinent(rs.getString(6));
+				l.add(cl);
+			}
+			pS.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		return l;
 	}
 	
 }

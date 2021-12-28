@@ -20,5 +20,6 @@
 
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:database/populate-database.sql"/>
+        <jdbc:script location="classpath:database/continent.sql"/>
     </jdbc:initialize-database>
 </beans:beans>

@@ -6,19 +6,19 @@ public class Country {
 	private String code;
 	private String devise;
 	private String greetings;
-	
+	private String codeContinent;
 	
 	public Country() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Country(String name, String code, String devise, String greetings) {
+	public Country(String name, String code, String devise, String greetings, String codeContinent) {
 		super();
 		this.name = name;
 		this.code = code;
 		this.devise = devise;
 		this.greetings = greetings;
+		this.codeContinent = codeContinent;
 	}
 
 	public Integer getId() {
@@ -59,5 +59,11 @@ public class Country {
 	
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
+	}
+	public String getCodeContinent() {
+		return codeContinent;
+	}
+	public void setCodeContinent(String codeContinent) {
+		this.codeContinent = codeContinent;
 	}
 }

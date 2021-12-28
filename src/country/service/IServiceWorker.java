@@ -5,4 +5,5 @@ public interface IServiceWorker {
 	void dealWithSaveCountry(String infos);
 	void dealWithDeleteCountry(String language);
 	void dealWithUpdateCountry(String infos, String language);
+	void dealWithContinents(String codeOfContinent);
 }
