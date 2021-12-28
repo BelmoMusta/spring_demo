@@ -24,4 +24,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
 	}
+
+	@Override
+	public void dealWithSaveCountry(String infos) {
+		String[] strs = infos.split(",");
+		Country country = countryDAO.saveCountry(new Country(strs[0],strs[1],strs[2],strs[3]));
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
+		System.out.println("WELCOME : " + countryService.welcome());
+		System.out.println("Devise is :" + countryService.devise());
+	}
+	
 }

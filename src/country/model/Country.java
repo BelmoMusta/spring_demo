@@ -7,6 +7,20 @@ public class Country {
 	private String devise;
 	private String greetings;
 	
+	
+	public Country() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Country(String name, String code, String devise, String greetings) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.devise = devise;
+		this.greetings = greetings;
+	}
+
 	public Integer getId() {
 		return id;
 	}

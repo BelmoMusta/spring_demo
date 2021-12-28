@@ -47,4 +47,29 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		return country;
 	}
+
+	@Override
+	public Country saveCountry(Country c) {
+			
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pS = connection.prepareStatement("INSERT INTO country(name, code, devise, greetings) VALUES(?,?,?,?);");
+			pS.setString(1, c.getName());
+			pS.setString(2, c.getCode());
+			pS.setString(3, c.getDevise());
+			pS.setString(4, c.getGreetings());
+			pS.executeUpdate();
+			pS.close();
+			PreparedStatement pS2 = connection.prepareStatement("SELECT MAX(id) AS MAX_ID FROM country");
+			ResultSet rs = pS2.executeQuery();
+			if(rs.next()) {
+				c.setId(rs.getInt("MAX_ID"));
+			}
+			pS2.close();
+		} catch( SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+	
 }
