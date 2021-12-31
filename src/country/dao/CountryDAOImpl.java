@@ -1,8 +1,13 @@
 package country.dao;
 
 import country.model.Country;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,9 +20,30 @@ import java.util.logging.Logger;
 @Repository
 public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
+	/*
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	public CountryDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	
+	protected final Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
+	@Override
+	public Country getByCode(String code) {
+
+		Query query = this.getCurrentSession().createQuery("from country where code = ?");
+		query.setString("code", code);
+		return (Country) query.uniqueResult();
+
+	}*/
+
 	@Autowired
 	private DataSource dataSource;
-	
 	@Override
 	public Country getByCode(String countryCode) {
 		Country country = null;
@@ -47,4 +73,11 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		return country;
 	}
+	
+	@Override
+	public void addCountry(Country country) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
