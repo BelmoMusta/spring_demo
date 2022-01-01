@@ -15,5 +15,18 @@
 	<classpathentry kind="lib" path="libs2/h2-1.4.197.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-jdbc-4.3.10.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-tx-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/antlr4-runtime-4.9.1.jar"/>
+	<classpathentry kind="lib" path="libs2/antlr-complete-3.5.2.jar"/>
+	<classpathentry kind="lib" path="libs2/byte-buddy-1.12.4.jar"/>
+	<classpathentry kind="lib" path="libs2/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="libs2/hibernate-commons-annotations-5.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="libs2/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="libs2/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="libs2/jboss-logging-3.4.1.Final.jar"/>
+	<classpathentry kind="lib" path="libs2/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="libs2/lombok-1.18.12.jar"/>
+	<classpathentry kind="lib" path="libs2/slf4j-api-2.0.0-alpha3.jar"/>
+	<classpathentry kind="lib" path="libs2/hibernate-core-5.5.2.Final.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-orm-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -62,6 +62,7 @@ public class App {
 				case 0:
 					System.out.println("exit de programme");
 					System.exit(0);
+					
 					break;
 				default:
 					System.out.println("veuillez entrer un numéro s'il vous plaît! :");
