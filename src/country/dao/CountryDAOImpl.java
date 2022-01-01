@@ -1,8 +1,11 @@
 package country.dao;
 
+import config.PersistentConfig;
 import country.model.Country;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -17,6 +20,10 @@ public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	@Autowired
 	private DataSource dataSource;
+
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	
 	@Override
 	public Country getByCode(String countryCode) {
@@ -46,5 +53,9 @@ public class CountryDAOImpl implements CountryDAO {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
 		return country;
+	}
+
+	public void save(Country country) {
+		sessionFactory.getCurrentSession().save(country);
 	}
 }
