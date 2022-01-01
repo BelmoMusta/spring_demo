@@ -6,8 +6,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -20,7 +21,8 @@ import java.util.logging.Logger;
 @Repository
 public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
-	/*
+	
+	
 	private SessionFactory sessionFactory;
 
 	@Autowired
@@ -40,9 +42,9 @@ public class CountryDAOImpl implements CountryDAO {
 		query.setString("code", code);
 		return (Country) query.uniqueResult();
 
-	}*/
+	}
 
-	@Autowired
+	/*@Autowired
 	private DataSource dataSource;
 	@Override
 	public Country getByCode(String countryCode) {
@@ -72,7 +74,7 @@ public class CountryDAOImpl implements CountryDAO {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
 		return country;
-	}
+	}*/
 	
 	@Override
 	public void addCountry(Country country) {
