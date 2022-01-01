@@ -138,7 +138,7 @@ public class CountryDAOImpl implements CountryDAO {
 		try (Connection connection = dataSource.getConnection();) {
 
 			try (PreparedStatement preparedStatement = connection
-					.prepareStatement("UPDATE  country SET name = ? , devise = ? greetings = ?  where code = ?;");) {
+					.prepareStatement("UPDATE  country SET name = ? , devise = ?, greetings = ?  where code = ?;");) {
 				preparedStatement.setString(1, country.getName());
 				preparedStatement.setString(2, country.getDevise());
 				preparedStatement.setString(3, country.getGreetings());

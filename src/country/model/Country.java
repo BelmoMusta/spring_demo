@@ -46,4 +46,11 @@ public class Country {
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
 	}
+
+	@Override
+	public String toString() {
+		return "name= " + name + ", code= " + code + ", devise= " + devise + ", greetings= " + greetings ;
+	}
+	
+	
 }
