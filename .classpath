@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_311"/>
+	<classpathentry kind="lib" path="libs2/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-aop-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-beans-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-context-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-core-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-expression-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/hibernate-core-5.6.3.Final.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

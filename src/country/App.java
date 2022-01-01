@@ -1,10 +1,10 @@
 package country;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.util.Scanner;
 // I changed this for pull request purpose
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SuppressWarnings("all")
 public class App {
