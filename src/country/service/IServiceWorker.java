@@ -2,5 +2,5 @@ package country.service;
 
 public interface IServiceWorker {
 	void dealWithCountryByCode(String language);
-	//void Country
+	void addCountry(String informations);
 }
