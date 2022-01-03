@@ -34,11 +34,15 @@ public class App {
 		//Help user
 		System.out.println("Pour Ajouter des informations sur un pays clicker sur 1");
 		System.out.println("Pour Voir des informations sur un pays clicker sur 2");
+		System.out.println("Pour sortir de l'application clicker sur 0");
 		
 		System.out.println("Enter numero :");
 		chose = inputFromConsole.nextInt();
 		
 		switch(chose) {
+			case 0 :
+				System.exit(0);
+				break;
 			case 1 : 
 				System.out.print("Entrer les informations sous forme : code,name,devise,greetings");
 				String informations = inputFromConsole.next();
