@@ -20,11 +20,8 @@ public class App {
 			System.out.print("Choisir une langue : ");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String language = inputFromConsole.next();
-			Country country = new Country();
-			country.setName("maroc");
-			country.setCode("ma");
-			country.setName("test");
-			serviceWorker.saveCountry(country);
+			serviceWorker.dealWithCountryByCode(language);
+
 		}
 	}
 	
