@@ -25,4 +25,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("Devise is :" + countryService.devise());
 	}
 
+
+	public void addCountry(Country country){
+		countryDAO.save(country);
+	}
+
+	public void getAllCountries(){
+		countryDAO.getALl().forEach(c -> System.out.println(c.toString()));
+	}
 }

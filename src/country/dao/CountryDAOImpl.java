@@ -45,4 +45,5 @@ public class CountryDAOImpl implements CountryDAO {
 	public List<Country> getALl(){
 		return (List<Country>) sessionFactory.getCurrentSession().createQuery("from Country").list();
 	}
+
 }
