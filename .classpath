@@ -28,5 +28,7 @@
 	<classpathentry kind="lib" path="libs2/slf4j-api-2.0.0-alpha3.jar"/>
 	<classpathentry kind="lib" path="libs2/hibernate-core-5.5.2.Final.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-orm-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-test-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
