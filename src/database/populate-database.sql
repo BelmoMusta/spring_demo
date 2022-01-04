@@ -4,4 +4,9 @@ INSERT INTO country(name, code, devise, greetings) VALUES('England', 'en', 'GBP'
 INSERT INTO country(name, code, devise, greetings) VALUES('Germany', 'de', 'EURO','Halo');
 
 
+INSERT INTO Continent(name, code) VALUES ('Europe','eur');
+INSERT INTO Continent(name, code) VALUES ('Australia','aus');
+INSERT INTO Continent(name, code) VALUES ('Africa','afr');
+INSERT INTO Continent(name, code) VALUES ('Asia','asia');
+INSERT INTO Continent(name, code) VALUES ('America','ame');
 
