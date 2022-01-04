@@ -45,5 +45,14 @@ public class Continent {
     public void setCountries(Collection<Country> countries) {
         this.countries = countries;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                '}';
+    }
 }
 

@@ -31,7 +31,7 @@ public class App {
 
 			switch (code){
 				case "0":
-
+					serviceWorker.getContientByName("Europe");
 					break;
 				case "1":
 					//ajout d'un nouveau pays
@@ -43,6 +43,7 @@ public class App {
 					serviceWorker.getAllCountries();
 					break;
 				case "3":
+					serviceWorker.getContientByName("Europe");
 					break;
 				case "4":
 					break;

@@ -22,21 +22,16 @@ import java.util.logging.Logger;
 @Transactional
 public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
-	@Autowired
-	private DataSource dataSource;
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	
-	@Override
 	public Country getByCode(String countryCode) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Country c where c.code = :code");
 		query.setString("code",countryCode);
 		return (Country) query.list().get(0);
 	}
-
 
 	public void save(Country country) {
 		sessionFactory.getCurrentSession().save(country);

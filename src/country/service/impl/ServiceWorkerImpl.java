@@ -1,6 +1,8 @@
 package country.service.impl;
 
+import country.dao.ContinentDAO;
 import country.dao.CountryDAO;
+import country.model.Continent;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
 	private CountryDAO countryDAO;
+	@Autowired
+	private ContinentDAO continentDAO;
 	@Autowired
 	private ApplicationContext applicationContext;
 	
@@ -32,15 +36,23 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		String name = countryParts[1];
 		String device = countryParts[2];
 		String greeting = countryParts[3];
+		Continent continent = continentDAO.getContientByName(countryParts[4]);
+
 		Country c = new Country();
 		c.setCode(code);
 		c.setDevise(device);
 		c.setName(name);
 		c.setGreetings(greeting);
+		c.setContinent(continent);
 		countryDAO.save(c);
 	}
 
 	public void getAllCountries(){
 		countryDAO.getALl().forEach(c -> System.out.println(c.toString()));
+	}
+
+	@Override
+	public void getContientByName(String name) {
+		System.out.println(continentDAO.getContientByName(name).toString());;
 	}
 }
