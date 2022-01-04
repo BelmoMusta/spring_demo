@@ -32,8 +32,9 @@ public class App {
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		
 		//Help user
-		System.out.println("Pour Ajouter des informations sur un pays clicker sur 1");
-		System.out.println("Pour Voir des informations sur un pays clicker sur 2");
+		System.out.println("Pour Ajouter des informations sur un pays, clicker sur 1");
+		System.out.println("Pour Voir des informations sur un pays, clicker sur 2");
+		System.out.println("Pour supprimer un pays, clicker sur 3");
 		System.out.println("Pour sortir de l'application clicker sur 0");
 		
 		System.out.println("Enter numero :");
@@ -43,16 +44,25 @@ public class App {
 			case 0 :
 				System.exit(0);
 				break;
+				
 			case 1 : 
 				System.out.print("Entrer les informations sous forme : code,name,devise,greetings");
 				String informations = inputFromConsole.next();
 				serviceWorker.addCountry(informations);
 				break;
-			case 2 : {
-					System.out.print("Choisir une langue : ");
-					String language = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(language);
-			}
+				
+			case 2 : 
+				System.out.print("Choisir une langue : ");
+				String language = inputFromConsole.next();
+				serviceWorker.dealWithCountryByCode(language);
+				break;
+				
+			case 3 :
+				System.out.print("Choisir une langue : ");
+				String code = inputFromConsole.next();
+				serviceWorker.deleteCountry(code);
+				break;
+				
 			default :
 				break;
 		}

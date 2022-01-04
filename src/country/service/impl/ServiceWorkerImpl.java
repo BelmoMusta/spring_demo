@@ -36,6 +36,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setDevise(infos[3]);
 		countryDAO.addCountry(country);
 	}
+
+
+	@Override
+	public void deleteCountry(String code) {
+		countryDAO.deleteCountry(code);
+	}
 	
 	//add Country
 }
