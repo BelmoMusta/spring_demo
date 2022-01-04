@@ -14,11 +14,7 @@
   http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
     <context:component-scan base-package="country"/>
 
-    <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="classpath:database/db-schema.sql"/>
-    </jdbc:embedded-database>
-
-    <jdbc:initialize-database data-source="dataSource">
+    <jdbc:initialize-database  data-source="dataSource">
         <jdbc:script location="classpath:database/populate-database.sql"/>
     </jdbc:initialize-database>
 </beans:beans>

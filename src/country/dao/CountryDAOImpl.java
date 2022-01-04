@@ -2,17 +2,18 @@ package country.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import country.model.Country;
@@ -22,39 +23,17 @@ public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	@Autowired
 	private DataSource dataSource;
+	@Autowired
+	private SessionFactory sessionFactory;
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
 	@Override
 	public Country getByCode(String countryCode) {
-		Country country = null;
-		try (Connection connection = dataSource.getConnection();) {
-
-			try (PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT * FROM country where code = ?;");) {
-				preparedStatement.setString(1, countryCode);
-				try (ResultSet resultSet = preparedStatement.executeQuery();) {
-					if (resultSet.next()) {
-						country = new Country();
-						Integer id = resultSet.getInt(1);
-						String name = resultSet.getString(2);
-						String code = resultSet.getString(3);
-						String devise = resultSet.getString(4);
-						String greetings = resultSet.getString(5);
-
-						country.setId(id);
-						country.setName(name);
-						country.setCode(code);
-						country.setDevise(devise);
-						country.setGreetings(greetings);
-
-					}
-				}
-
-			}
-
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return country;
+		String hql = "from Country C where C.code = ?1";
+		Query<?> query = this.getSessionFactory().createQuery(hql);
+		query.setParameter(1, countryCode);
+		return (Country) query.uniqueResult();
 	}
 
 	@Override
@@ -62,12 +41,14 @@ public class CountryDAOImpl implements CountryDAO {
 		try (Connection connection = dataSource.getConnection();) {
 
 			try (PreparedStatement preparedStatement = connection
-					.prepareStatement("INSERT INTO country (name,code,devise,greetings) VALEUS (?,?,?,?);");) {
-				preparedStatement.setString(1, country.getName());
-				preparedStatement.setString(2, country.getCode());
+					.prepareStatement("INSERT INTO  country(code,name,devise,greetings) VALUES(?,?,?,?);");) {
+				preparedStatement.setString(1, country.getCode());
+				preparedStatement.setString(2, country.getName());
 				preparedStatement.setString(3, country.getDevise());
 				preparedStatement.setString(4, country.getGreetings());
+
 				preparedStatement.executeUpdate();
+
 			}
 
 		} catch (SQLException exception) {
@@ -84,73 +65,26 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Override
 	public List<Country> getCountries() {
-		List<Country> countries = new ArrayList<>();
-		try (Connection connection = dataSource.getConnection();) {
-
-			try (Statement statement = connection.createStatement();) {
-
-				try (ResultSet resultSet = statement.executeQuery("SELECT * FROM country ;");) {
-					while (resultSet.next()) {
-						Country country = new Country();
-						Integer id = resultSet.getInt(1);
-						String name = resultSet.getString(2);
-						String code = resultSet.getString(3);
-						String devise = resultSet.getString(4);
-						String greetings = resultSet.getString(5);
-
-						country.setId(id);
-						country.setName(name);
-						country.setCode(code);
-						country.setDevise(devise);
-						country.setGreetings(greetings);
-
-						countries.add(country);
-
-					}
-				}
-
-			}
-
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return countries;
+		return hibernateTemplate.loadAll(Country.class);
 	}
 
 	@Override
 	public void deleteCountry(String code) {
-		try (Connection connection = dataSource.getConnection();) {
-
-			try (PreparedStatement preparedStatement = connection
-					.prepareStatement("DELETE FROM country where code = ?;");) {
-				preparedStatement.setString(1, code);
-				preparedStatement.executeUpdate();
-			}
-
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
+		String hql = "DELETE FROM Country where code = ?1";
+		Query<?> query = this.getSessionFactory().createQuery(hql);
+		query.setParameter(1, code);
+		query.executeUpdate();
 	}
 
 	@Override
-	public Country updateCountry(Country country , String countryCode) {
-		
-		try (Connection connection = dataSource.getConnection();) {
-
-			try (PreparedStatement preparedStatement = connection
-					.prepareStatement("UPDATE  country SET name = ? , devise = ?, greetings = ?  where code = ?;");) {
-				preparedStatement.setString(1, country.getName());
-				preparedStatement.setString(2, country.getDevise());
-				preparedStatement.setString(3, country.getGreetings());
-				preparedStatement.setString(4, countryCode);
-				
-				preparedStatement.executeUpdate();
-
-			}
-
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
+	public Country updateCountry(Country country, String countryCode) {
+		String hql = "UPDATE  Country SET name = ?1 , devise = ?2, greetings = ?3  where code = ?4";
+		Query<?> query = this.getSessionFactory().createQuery(hql);
+		query.setParameter(1, country.getName());
+		query.setParameter(2, country.getDevise());
+		query.setParameter(3, country.getGreetings());
+		query.setParameter(4, countryCode);	
+		query.executeUpdate();
 		return country;
 	}
 
@@ -158,5 +92,9 @@ public class CountryDAOImpl implements CountryDAO {
 	public List<Country> getCountriesByContinent(String continent) {
 		
 		return null;
+	}
+
+	private final Session getSessionFactory() {
+		return sessionFactory.getCurrentSession();
 	}
 }

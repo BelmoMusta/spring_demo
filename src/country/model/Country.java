@@ -1,56 +1,30 @@
 package country.model;
 
-public class Country {
-	private Integer id;
-	private String name;
-	private String code;
-	private String devise;
-	private String greetings;
-	
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getCode() {
-		return code;
-	}
-	
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
-	public String getDevise() {
-		return devise;
-	}
-	
-	public void setDevise(String devise) {
-		this.devise = devise;
-	}
-	
-	public String getGreetings() {
-		return greetings;
-	}
-	
-	public void setGreetings(String greetings) {
-		this.greetings = greetings;
-	}
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-	@Override
-	public String toString() {
-		return "name= " + name + ", code= " + code + ", devise= " + devise + ", greetings= " + greetings ;
-	}
-	
-	
+import continent.model.Continent;
+import lombok.Data;
+
+@Entity
+@Data
+public class Country {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column( unique = true, nullable = false, length = 40)
+	private String name;
+	@Column( unique = true, nullable = false, length = 20)
+	private String code;
+	@Column( unique = false, nullable = false, length = 20)
+	private String devise;
+	@Column( unique = false, nullable = false, length = 20)
+	private String greetings;
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private Continent continent;
 }
