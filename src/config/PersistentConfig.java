@@ -1,5 +1,6 @@
 package config;
 
+import country.model.Country;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,9 +28,10 @@ public class PersistentConfig {
 
         return dataSource;*/
         return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("classpath:database/db-schema.sql")
-                .addScript("classpath:database/populate-database.sql").build();
+                .setType(EmbeddedDatabaseType.H2).build();
+
+                 /*       .addScript("classpath:database/db-schema.sql")
+                .addScript("classpath:database/populate-database.sql")*/
     }
 
     @Bean
@@ -38,9 +40,10 @@ public class PersistentConfig {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(new String[]  {"country.model" });
         sessionFactory.setHibernateProperties(hibernateProperties());
-
+        sessionFactory.setAnnotatedClasses(Country.class);
         return sessionFactory;
     }
+
 
     @Bean
     public PlatformTransactionManager hibernateTransactionManager() {
@@ -51,9 +54,10 @@ public class PersistentConfig {
 
     private final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-
+        hibernateProperties.setProperty("hibernate.show_sql","false");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.import_files", "database/populate-database.sql");
         return hibernateProperties;
     }
 }
