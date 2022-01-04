@@ -26,8 +26,18 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 
-	public void addCountry(Country country){
-		countryDAO.save(country);
+	public void addCountry(String country){
+		String[] countryParts = country.split(",");
+		String code = countryParts[0];
+		String name = countryParts[1];
+		String device = countryParts[2];
+		String greeting = countryParts[3];
+		Country c = new Country();
+		c.setCode(code);
+		c.setDevise(device);
+		c.setName(name);
+		c.setGreetings(greeting);
+		countryDAO.save(c);
 	}
 
 	public void getAllCountries(){

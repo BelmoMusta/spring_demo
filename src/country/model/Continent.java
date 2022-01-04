@@ -1,9 +1,7 @@
 package country.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Continent {
@@ -12,6 +10,9 @@ public class Continent {
     private Integer id;
     private String name;
     private String code;
+
+    @OneToMany(mappedBy = "continent",cascade = CascadeType.ALL)
+    private Collection<Country> countries;
 
     public Integer getId() {
         return id;
@@ -35,6 +36,14 @@ public class Continent {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Collection<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Collection<Country> countries) {
+        this.countries = countries;
     }
 }
 
