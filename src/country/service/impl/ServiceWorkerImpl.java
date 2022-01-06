@@ -4,11 +4,16 @@ import country.dao.CountryDAO;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
 	private CountryDAO countryDAO;
@@ -16,9 +21,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private ApplicationContext applicationContext;
 	
 	@Override
-	public void dealWithCountryByCode(String language) {
+	public void getCountry(String language) {
 		Country pays = countryDAO.getByCode(language);
-		// car c'est prototype
+		if(pays == null) {System.out.println("Ce pays n'existe pas"); return;}
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 		
 		System.out.println("WELCOME : " + countryService.welcome());
@@ -56,6 +61,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("Country Updated");
 		}else {
 			System.out.println("Some problem happened");
+		}
+	}
+	
+	@Override
+	public void getCountriesOfContinent(String ContinentCode) {
+		List<Country> countriesOfContinent = countryDAO.getCountriesOfContinent(ContinentCode);
+		for(Country country : countriesOfContinent) {
+			System.out.println(country.getName());
 		}
 	}
 	

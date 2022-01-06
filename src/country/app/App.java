@@ -6,12 +6,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.SQLException;
 import java.util.Scanner;
-
 @SuppressWarnings("all")
 public class App {
 	public static void main(String[] args) throws SQLException {
 		ApplicationContext applicationContext =
-				new ClassPathXmlApplicationContext("beans/*.xml");
+				new ClassPathXmlApplicationContext("beans/*");
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		org.h2.tools.Server.createWebServer().start();
 		System.out.println(App.class.getClassLoader().getResource("logging.properties"));
@@ -23,6 +22,7 @@ public class App {
 			System.out.println("*** Pour lister les informations d'un pays tapper 2 ***");
 			System.out.println("*** Pour supprimer un pays tapper 3 ***");
 			System.out.println("*** Pour modifier un pays tapper 4 ***");
+			System.out.println("*** Pour lister les pays d'un continent tapper 5 ***");
 			System.out.println("*** Pour sortir de l'application tapper 0 ***");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String numberEntred = inputFromConsole.next();
@@ -36,7 +36,7 @@ public class App {
 			case "2":
 				System.out.println("** Veillez saisir le code du pays **");
 				countryCode = inputFromConsole.next();
-				serviceWorker.dealWithCountryByCode(countryCode);
+				serviceWorker.getCountry(countryCode);
 				break;
 				
 			case "3":
@@ -53,9 +53,16 @@ public class App {
 				serviceWorker.updateCountry(countryCode, newcountryInfos);
 				break;
 				
+			case "5":
+				System.out.println("** Veillez saisir le code du continent **");
+				String continentCode = inputFromConsole.next();
+				serviceWorker.getCountriesOfContinent(continentCode);
+				break;
+				
 			case "0":
 				isRunning = false;
 				break;
+				
 			default:
 				break;
 			}
