@@ -1,7 +1,7 @@
-package country.service.impl;
+package app.service.impl;
 
-import country.model.Country;
-import country.service.ICountryService;
+import app.entity.Country;
+import app.service.ICountryService;
 
 
 public abstract class AbstractCountryService implements ICountryService {

@@ -1,12 +1,12 @@
-package country.controller;
+package app.controller;
 
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import country.model.Country;
-import country.service.IServiceWorker;
+import app.entity.Country;
+import app.service.IServiceWorker;
 
 @Component
 public class CountryController {

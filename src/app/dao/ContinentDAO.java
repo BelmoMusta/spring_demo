@@ -1,10 +1,10 @@
-package continent.dao;
+package app.dao;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import continent.model.Continent;
+import app.entity.Continent;
 
 @Transactional
 public interface ContinentDAO {

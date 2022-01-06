@@ -1,8 +1,8 @@
-package country.service;
+package app.service;
 
 import java.util.List;
 
-import country.model.Country;
+import app.entity.Country;
 
 public interface IServiceWorker {
 	void dealWithCountryByCode(String language);

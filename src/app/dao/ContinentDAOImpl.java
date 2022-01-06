@@ -1,4 +1,4 @@
-package continent.dao;
+package app.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import continent.model.Continent;
+import app.entity.Continent;
 @Repository
 public class ContinentDAOImpl implements ContinentDAO {
 	private static final Logger LOGGER = Logger.getLogger(ContinentDAOImpl.class.getName());

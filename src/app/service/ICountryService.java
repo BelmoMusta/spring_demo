@@ -1,4 +1,4 @@
-package country.service;
+package app.service;
 
 public interface ICountryService {
 	String welcome();

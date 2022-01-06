@@ -1,15 +1,15 @@
-package country.service.impl;
-
-import country.dao.CountryDAO;
-import country.model.Country;
-import country.service.ICountryService;
-import country.service.IServiceWorker;
+package app.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import app.dao.CountryDAO;
+import app.entity.Country;
+import app.service.ICountryService;
+import app.service.IServiceWorker;
 
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {

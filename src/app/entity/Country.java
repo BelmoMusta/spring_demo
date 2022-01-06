@@ -1,18 +1,21 @@
-package country.model;
+package app.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import continent.model.Continent;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name="country")
 public class Country {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +28,7 @@ public class Country {
 	private String devise;
 	@Column( unique = false, nullable = false, length = 20)
 	private String greetings;
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.REFRESH , fetch = FetchType.EAGER)
+	@JoinColumn(name = "continent_id")
 	private Continent continent;
 }

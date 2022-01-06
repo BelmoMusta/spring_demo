@@ -1,10 +1,10 @@
-package country.dao;
+package app.dao;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import country.model.Country;
+import app.entity.Country;
 @Transactional
 public interface CountryDAO {
 	Country getByCode(String code);

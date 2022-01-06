@@ -1,4 +1,4 @@
-package country.dao;
+package app.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import country.model.Country;
+import app.entity.Country;
 
 @Repository
 public class CountryDAOImpl implements CountryDAO {
@@ -46,7 +46,7 @@ public class CountryDAOImpl implements CountryDAO {
 				preparedStatement.setString(2, country.getName());
 				preparedStatement.setString(3, country.getDevise());
 				preparedStatement.setString(4, country.getGreetings());
-
+				
 				preparedStatement.executeUpdate();
 
 			}
@@ -65,6 +65,7 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Override
 	public List<Country> getCountries() {
+		
 		return hibernateTemplate.loadAll(Country.class);
 	}
 

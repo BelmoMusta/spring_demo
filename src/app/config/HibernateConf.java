@@ -1,4 +1,4 @@
-package country.config;
+package app.config;
 
 import java.util.Properties;
 
@@ -21,7 +21,7 @@ public class HibernateConf {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("country.model");
+		sessionFactory.setPackagesToScan("app");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;
