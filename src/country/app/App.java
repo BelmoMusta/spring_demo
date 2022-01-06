@@ -39,7 +39,7 @@ public class App {
 				case "3":
 					System.out.print("entrer le code du pays:");
 					code = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(code);
+					serviceWorker.removeCountry(code);
 					break;
 				case "4":
 					System.out.print("entrer le code du pays:");
