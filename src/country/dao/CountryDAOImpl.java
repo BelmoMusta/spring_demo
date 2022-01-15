@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@ImportResource(locations = {"/beans/country-context.xml","/beans/database-config.xml","/beans/hibernate-config.xml"})
+//@ImportResource(locations = {"/beans/country-context.xml","/beans/database-config.xml","/beans/hibernate-config.xml"})
+@ComponentScan(basePackages = "country")
 @Repository
 @Transactional
 public class CountryDAOImpl implements CountryDAO {
@@ -46,8 +48,6 @@ public class CountryDAOImpl implements CountryDAO {
 		} catch (HibernateException exception) {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
-		System.out.println(countryCode);
-		System.out.println(country);
 		return country;
 	}
 

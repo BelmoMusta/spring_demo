@@ -1,5 +1,6 @@
 package country.app;
 
+import country.config.Config;
 import country.service.IServiceWorker;
 
 import org.h2.tools.Server;
@@ -13,9 +14,9 @@ import java.util.Scanner;
 @SuppressWarnings("all")
 public class App {
 	public static void main(String[] args) throws SQLException {
-		ApplicationContext applicationContext =
-				new ClassPathXmlApplicationContext("beans/*.xml");
-//				new AnnotationConfigApplicationContext("country");				
+		ApplicationContext applicationContext =				
+				new AnnotationConfigApplicationContext(Config.class);	
+//		new ClassPathXmlApplicationContext("beans/*.xml");
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		Server.createWebServer().start();
 		while(true) {

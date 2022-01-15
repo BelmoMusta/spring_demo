@@ -7,14 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs2/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-beans-4.2.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-context-4.2.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-core-4.2.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-expression-4.2.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-aop-5.0.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/h2-1.4.197.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-jdbc-4.3.10.RELEASE.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-tx-4.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/antlr4-runtime-4.9.1.jar"/>
 	<classpathentry kind="lib" path="libs2/antlr-complete-3.5.2.jar"/>
 	<classpathentry kind="lib" path="libs2/byte-buddy-1.12.4.jar"/>
@@ -27,11 +20,19 @@
 	<classpathentry kind="lib" path="libs2/lombok-1.18.12.jar"/>
 	<classpathentry kind="lib" path="libs2/slf4j-api-2.0.0-alpha3.jar"/>
 	<classpathentry kind="lib" path="libs2/hibernate-core-5.5.2.Final.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-orm-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/fest-assert-core-2.0M10.jar"/>
 	<classpathentry kind="lib" path="libs2/commons-dbcp2-2.9.0.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-test-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/fest-util-1.2.5.jar"/>
+	<classpathentry kind="lib" path="libs2/commons-pool2-2.11.1.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-aop-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-beans-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-context-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-core-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-expression-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-jdbc-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-orm-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-tx-5.3.14.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-test-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

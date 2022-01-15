@@ -34,33 +34,42 @@ public class CountryTest {
     
     @Test
     public void shouldDealWithCountryByCode() {
-    	final Country expected = new Country("France", "fr", "EURO","Bonjour", "eur");
+    	//Arrange attributes
+    	final Country expected;    	
+    	final Country result; 
+    	//Act 
+    	expected = new Country("France", "fr", "EURO","Bonjour", "eur");
     	expected.setId(1);
-    	final Country result = countryDAO.getByCode("fr");
-    	System.out.println(result);
+    	result = countryDAO.getByCode("fr");
     	assertEquals(expected, result);
     }
 	@Test
 	public void shouldDealWithSaveCountry() {
-		//Arrange		
+		//Arrange attributes		
 		final Country expected;
 		final Country result;
-		//act
+		//Act 
 		result = countryDAO.saveCountry(new Country("maroc","ma","mad","Salam!","afr"));
 		expected = countryDAO.getByCode("ma");
 		assertEquals(expected, result);
 	}
 	@Test
-	public void shouldDealWithDeleteCountry() {			
+	public void shouldDealWithDeleteCountry() {	
+		//Arrange attribute
+		final Country expected;
+		//Act
 		countryDAO.deleteCountry("fr");
-		final Country expected = countryDAO.getByCode("fr");
-//		final Country result = new Country("France", "fr", "EURO","Bonjour", "eur");
+		expected = countryDAO.getByCode("fr");
 		assertThat(expected).isEqualTo(null);		
 	}
 	@Test
 	public void shouldDealWithUpdateCountry() {
-		final Country country = new Country("franca","ma","mad","Salam!","afr");
-		final Country result = countryDAO.updateCountry(country, "ma");
+		//Arrange attributes
+		final Country country;
+		final Country result;
+		//Act
+		country = new Country("franca","ma","mad","Salam!","afr");
+		result = countryDAO.updateCountry(country, "ma");
 		assertEquals(country, result);
 	}
 	@Test
