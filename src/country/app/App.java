@@ -30,42 +30,61 @@ public class App {
 			Scanner It = new Scanner(System.in);
 			switch(It.nextInt()) {
 				case 1:
-					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings,code-continent\" :");
-					Scanner Ss = new Scanner(System.in);
-					String infos = Ss.next();
-					serviceWorker.dealWithSaveCountry(infos);
+					try {
+						System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings,code-continent\" :");
+						Scanner Ss = new Scanner(System.in);
+						String infos = Ss.next();
+						serviceWorker.dealWithSaveCountry(infos);
+					}catch(Exception e) {
+						System.out.println("il faut entrer les donnees en format specifie\n");						
+					}
 					break;
-				case 2:				
-					System.out.print("Choisir une langue : ");
-					Scanner inputFromConsole = new Scanner(System.in);
-					String language = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(language);
+				case 2:
+					try {
+						System.out.print("Choisir une langue : ");
+						Scanner inputFromConsole = new Scanner(System.in);
+						String language = inputFromConsole.next();
+						serviceWorker.dealWithCountryByCode(language);
+					}catch(Exception e) {
+						System.out.println("Ecrivez SVP un code de pays!\n");
+					}
 					break;
 				case 3:
-					System.out.println("choisir une langue : ");
-					Scanner inputOfDelete = new Scanner(System.in);
-					String lang = inputOfDelete.next();
-					serviceWorker.dealWithDeleteCountry(lang);
+					try {
+						System.out.println("choisir une langue : ");
+						Scanner inputOfDelete = new Scanner(System.in);
+						String lang = inputOfDelete.next();
+						serviceWorker.dealWithDeleteCountry(lang);
+					}catch(Exception e) {
+						System.out.println("Ecrivez SVP un code de pays!\n");
+					}
 					break;
 				case 4:
-					System.out.println("choisir une langue : ");
-					Scanner codeOfCountry = new Scanner(System.in);
-					String code = codeOfCountry.next();
-					System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings,code-continent\" :");
-					Scanner sNewInfos = new Scanner(System.in);
-					String newInfos = sNewInfos.next();
-					serviceWorker.dealWithUpdateCountry(newInfos, code);
+					try {
+						System.out.println("choisir une langue : ");
+						Scanner codeOfCountry = new Scanner(System.in);
+						String code = codeOfCountry.next();
+						System.out.println("saisi informations de pays, sous forme \"name,code,currency,greetings,code-continent\" :");
+						Scanner sNewInfos = new Scanner(System.in);
+						String newInfos = sNewInfos.next();
+						serviceWorker.dealWithUpdateCountry(newInfos, code);
+					}catch(Exception e) {
+						System.out.println("il faut entrer les donnees en format specifie\n");
+					}
 					break;
 				case 5:
-					System.out.println("choisir un continent :");
-					Scanner sContinent = new Scanner(System.in);
-					String codeContinent = sContinent.next();
-					serviceWorker.dealWithContinents(codeContinent);
+					try {
+						System.out.println("choisir un continent en écrivant just le code:");
+						Scanner sContinent = new Scanner(System.in);
+						String codeContinent = sContinent.next();
+						serviceWorker.dealWithContinents(codeContinent);
+					}catch(Exception e) {
+						System.out.println("Ecrivez SVP un code de continent!\\n");
+					}
 					break;
-				case 0:
-					System.out.println("exit de programme");
+				case 0:					
 					System.exit(0);
-					
+					System.out.println("exit de programme");
 					break;
 				default:
 					System.out.println("veuillez entrer un numéro s'il vous plaît! :");
