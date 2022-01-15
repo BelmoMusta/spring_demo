@@ -1,5 +1,7 @@
 package country.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +18,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="continent")
 @Table
-public class Continent {
+public class Continent implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8057364861138416013L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

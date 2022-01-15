@@ -28,7 +28,10 @@
 	<classpathentry kind="lib" path="libs2/slf4j-api-2.0.0-alpha3.jar"/>
 	<classpathentry kind="lib" path="libs2/hibernate-core-5.5.2.Final.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-orm-4.2.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-test-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/fest-assert-core-2.0M10.jar"/>
+	<classpathentry kind="lib" path="libs2/commons-dbcp2-2.9.0.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-test-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/fest-util-1.2.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
