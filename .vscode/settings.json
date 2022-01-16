@@ -1,0 +1,26 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "libs2/commons-logging-1.1.1.jar",
+    "libs2/h2-1.4.197.jar",
+    "libs2/spring-aop-5.0.7.RELEASE.jar",
+    "libs2/spring-beans-4.2.6.RELEASE.jar",
+    "libs2/spring-context-4.2.6.RELEASE.jar",
+    "libs2/spring-expression-4.2.6.RELEASE.jar",
+    "libs2/antlr-2.7.7.jar",
+    "libs2/commons-dbcp-1.4.jar",
+    "libs2/commons-pool-1.6.jar",
+    "libs2/dom4j-1.6.1.jar",
+    "libs2/hibernate-commons-annotations-5.0.0.Final.jar",
+    "libs2/hibernate-core-5.0.4.Final.jar",
+    "libs2/hibernate-jpa-2.1-api-1.0.0.Final.jar",
+    "libs2/jandex-2.0.0.CR1.jar",
+    "libs2/javassist-3.18.1-GA.jar",
+    "libs2/jboss-logging-3.3.0.Final.jar",
+    "libs2/spring-core-4.3.3.RELEASE.jar",
+    "libs2/spring-jdbc-4.2.6.RELEASE.jar",
+    "libs2/spring-orm-4.2.6.RELEASE.jar",
+    "libs2/spring-tx-4.2.6.RELEASE.jar",
+    "libs2/transaction-api-1.1.jar"
+  ]
+}
