@@ -41,12 +41,16 @@ public class App {
 					serviceWorker.addCountry(country);
 					break;
 				case "2":
-					serviceWorker.getAllCountries();
+					//affichage des infos d'un pays
+					System.out.print("Entrer le code pays: ");
+					String codePays = inputFromConsole.next();
+					serviceWorker.dealWithCountryByCode(codePays);
 					break;
 				case "3":
 					serviceWorker.getContientByName("Europe");
 					break;
 				case "4":
+
 					break;
 				case "5":
 					break;

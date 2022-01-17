@@ -7,5 +7,6 @@ import java.util.List;
 public interface CountryDAO {
 	Country getByCode(String code);
 	void save(Country country);
-	public List<Country> getALl();
+	List<Country> getALl();
+	boolean exist(String code);
 }
