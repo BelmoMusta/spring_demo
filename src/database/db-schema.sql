@@ -7,5 +7,6 @@ CREATE TABLE country
     name   VARCHAR(250) NOT NULL,
     code   VARCHAR(250) NOT NULL,
     devise VARCHAR(250) DEFAULT NULL,
-    greetings VARCHAR(250) DEFAULT NULL
+    greetings VARCHAR(250) DEFAULT NULL,
+    continent VARCHAR (250) DEFAULT NULL
 );
