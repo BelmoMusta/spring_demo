@@ -23,6 +23,8 @@ public class App {
 			System.out.println("1 - Pour ajouter un nouveau pays :");
 			System.out.println("2 - Pour lister les informations d'un pays :");
 			System.out.println("3 - Pour supprimer un pays :");
+			System.out.println("4 - Pour modifier les informations d'un pays :");
+
 
 			Scanner inputFromConsole1 = new Scanner(System.in);
 			int code = Integer.parseInt(inputFromConsole1.next());
@@ -49,6 +51,16 @@ public class App {
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
 					serviceWorker.deleteCountry(language);
+					break;
+				}
+				case 4: {
+					System.out.print("Entrer le code du pays à modifier: ");
+					Scanner inputFromConsole = new Scanner(System.in);
+					String language = inputFromConsole.next();
+					System.out.print("Entrer les nouveaux champs sous la forme suivante 'Le code de pays, Le nom de pays, son devise, son salut, son continent' :\n ");
+					Scanner inputFromConsole2 = new Scanner(System.in);
+					String modif = inputFromConsole.next();
+					serviceWorker.updateCountry(language,modif);
 					break;
 				}
 				default:{
