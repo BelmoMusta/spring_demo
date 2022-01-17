@@ -31,7 +31,8 @@ public class App {
 
 			switch (code){
 				case "0":
-					serviceWorker.getContientByName("Europe");
+					//sortir de l'application en affichant le code 1
+					System.exit(0);
 					break;
 				case "1":
 					//ajout d'un nouveau pays

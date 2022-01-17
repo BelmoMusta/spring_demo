@@ -26,6 +26,7 @@ public class CountryDAOImpl implements CountryDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+
 	public Country getByCode(String countryCode) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Country c where c.code = :code");
