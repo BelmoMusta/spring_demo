@@ -41,4 +41,13 @@ public class CountryDAOImpl implements CountryDAO {
 		return (List<Country>) sessionFactory.getCurrentSession().createQuery("from Country").list();
 	}
 
+	@Override
+	public boolean exist(String code) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Country c where c.code = :code");
+		query.setString("code",code);
+		return query.list().size() > 0;
+	}
+
+
 }
