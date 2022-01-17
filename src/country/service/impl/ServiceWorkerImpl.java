@@ -40,4 +40,15 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setContinent(continentDAO.getContinentByCode(continentId));
 		countryDAO.setNewCountry(country);
     }
+
+	@Override
+	public void getCountryInformations(String countryCode) {
+		Country country = countryDAO.getByCode(countryCode);
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
+
+		System.out.println("The country name is : " + countryService.name());
+		System.out.println("The Devise is : " + countryService.devise());
+		System.out.println("The Welcome word is : " + countryService.welcome());
+		System.out.println("The Continent is : " + countryService.continentName());
+	}
 }

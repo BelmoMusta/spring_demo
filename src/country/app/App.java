@@ -15,8 +15,13 @@ public class App {
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		org.h2.tools.Server.createWebServer().start();
 		while (true) {
-			System.out.print("Entrer le code : ");
-			System.out.println("\n1 - Pour ajouter un nouveau pays :");
+			try {
+				Thread.sleep(2000);
+			}catch (Exception E){}
+
+			System.out.println("Entrer le code : ");
+			System.out.println("1 - Pour ajouter un nouveau pays :");
+			System.out.println("2 - Pour lister les informations d'un pays :");
 			Scanner inputFromConsole1 = new Scanner(System.in);
 			int code = Integer.parseInt(inputFromConsole1.next());
 			switch (code) {
@@ -24,10 +29,17 @@ public class App {
 					System.exit(0);
 				}
 				case 1: {
-					System.out.print("\nEntrer Un pays sous-forme 'Le code de pays, Le nom de pays, son devise, son salut, son continent' :\n");
+					System.out.println("Entrer Un pays sous-forme 'Le code de pays, Le nom de pays, son devise, son salut, son continent' :\n");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
 					serviceWorker.addNewCountry(language);
+					break;
+				}
+				case 2: {
+					System.out.print("Entrer le code du pays : ");
+					Scanner inputFromConsole = new Scanner(System.in);
+					String language = inputFromConsole.next();
+					serviceWorker.getCountryInformations(language);
 					break;
 				}
 				default:{
