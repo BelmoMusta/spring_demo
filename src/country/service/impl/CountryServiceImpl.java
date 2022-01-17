@@ -4,8 +4,8 @@ import country.model.Country;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-@Scope(value = "prototype") // le service sera utilisé plusieurs fois, selon le pays en entrée.
-							// i.e : à chaque appel, une nouvelle instance sera créée
+@Scope(value = "prototype") // le service sera utilisï¿½ plusieurs fois, selon le pays en entrï¿½e.
+							// i.e : ï¿½ chaque appel, une nouvelle instance sera crï¿½ï¿½e
 @Service
 public class CountryServiceImpl extends AbstractCountryService {
 	private final Country country;
