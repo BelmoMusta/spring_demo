@@ -51,4 +51,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("The Welcome word is : " + countryService.welcome());
 		System.out.println("The Continent is : " + countryService.continentName());
 	}
+
+	@Override
+	public void deleteCountry(String countryCode) {
+		Country country = countryDAO.getByCode(countryCode);
+		countryDAO.deleteCountry(country);
+	}
 }

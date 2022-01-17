@@ -22,6 +22,8 @@ public class App {
 			System.out.println("Entrer le code : ");
 			System.out.println("1 - Pour ajouter un nouveau pays :");
 			System.out.println("2 - Pour lister les informations d'un pays :");
+			System.out.println("3 - Pour supprimer un pays :");
+
 			Scanner inputFromConsole1 = new Scanner(System.in);
 			int code = Integer.parseInt(inputFromConsole1.next());
 			switch (code) {
@@ -40,6 +42,13 @@ public class App {
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
 					serviceWorker.getCountryInformations(language);
+					break;
+				}
+				case 3: {
+					System.out.println("Entrer le code du pays à supprimer: ");
+					Scanner inputFromConsole = new Scanner(System.in);
+					String language = inputFromConsole.next();
+					serviceWorker.deleteCountry(language);
 					break;
 				}
 				default:{
