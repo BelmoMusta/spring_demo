@@ -28,7 +28,7 @@ public class CountryDAOImpl implements CountryDAO {
 	//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-	Session session ; 
+	Session session = sessionFactory.openSession() ; 
 	
 	//=sessionFactory.openSession();
 	//session.beginTransaction();
@@ -41,15 +41,15 @@ public class CountryDAOImpl implements CountryDAO {
 	public Country getByCode(String code) {
 		Country result;
 		
-		session =sessionFactory.openSession();
-		session.beginTransaction();
+		//session = sessionFactory.openSession();
+		//session.beginTransaction();
 		
 		Query query = session.createQuery("from Country where code = :code");
 		query.setParameter("code", code);
 		result = (Country) query.uniqueResult();
 		
-		session.getTransaction().commit();
-		session.close();
+		//session.getTransaction().commit();
+		//session.close();
 		
 		return result;
 	}

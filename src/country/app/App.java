@@ -35,7 +35,7 @@ public class App {
 		System.out.println("Pour Ajouter des informations sur un pays, clicker sur 1");
 		System.out.println("Pour Voir des informations sur un pays, clicker sur 2");
 		System.out.println("Pour supprimer un pays, clicker sur 3");
-		System.out.println("Pour sortir de l'application clicker sur 0");
+		System.out.println("Pour sortir de l'application, clicker sur 0");
 		
 		System.out.println("Enter numero :");
 		chose = inputFromConsole.nextInt();
@@ -52,13 +52,13 @@ public class App {
 				break;
 				
 			case 2 : 
-				System.out.print("Choisir une langue : ");
+				System.out.print("Entrer le code : ");
 				String language = inputFromConsole.next();
 				serviceWorker.dealWithCountryByCode(language);
 				break;
 				
 			case 3 :
-				System.out.print("Choisir une langue : ");
+				System.out.print("Entrer le code : ");
 				String code = inputFromConsole.next();
 				serviceWorker.deleteCountry(code);
 				break;
