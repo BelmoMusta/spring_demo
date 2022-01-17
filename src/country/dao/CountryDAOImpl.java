@@ -50,5 +50,14 @@ public class CountryDAOImpl implements CountryDAO {
 		return query.list().size() > 0;
 	}
 
+	@Override
+	public void delete(String code) {
+		if(exist(code)){
+			Country country = getByCode(code);
+			Session session = sessionFactory.getCurrentSession();
+			session.delete(country);
+		}
+	}
+
 
 }

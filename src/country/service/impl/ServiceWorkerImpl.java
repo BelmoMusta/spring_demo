@@ -61,4 +61,13 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void getContientByName(String name) {
 		System.out.println(continentDAO.getContientByName(name).toString());;
 	}
+
+	@Override
+	public void deleteCountryByCode(String code) {
+		if(countryDAO.exist(code)){
+			countryDAO.delete(code);
+		}else{
+			System.out.println("le code saisie ne correspand à aucun pays ");
+		}
+	}
 }

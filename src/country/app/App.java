@@ -28,7 +28,7 @@ public class App {
 			System.out.print("entrer un nombre de 0 à 5:");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String code = inputFromConsole.next();
-
+			String codePays ;
 			switch (code){
 				case "0":
 					//sortir de l'application en affichant le code 1
@@ -43,14 +43,16 @@ public class App {
 				case "2":
 					//affichage des infos d'un pays
 					System.out.print("Entrer le code pays: ");
-					String codePays = inputFromConsole.next();
+					codePays = inputFromConsole.next();
 					serviceWorker.dealWithCountryByCode(codePays);
 					break;
 				case "3":
-					serviceWorker.getContientByName("Europe");
+					//supprimer un pays par son code
+					System.out.print("Entrer le code pays à supprimer: ");
+					codePays = inputFromConsole.next();
+					serviceWorker.deleteCountryByCode(codePays);
 					break;
 				case "4":
-
 					break;
 				case "5":
 					break;

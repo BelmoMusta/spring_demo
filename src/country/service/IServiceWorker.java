@@ -7,4 +7,5 @@ public interface IServiceWorker {
 	void addCountry(String country);
 	void getAllCountries();
 	void getContientByName(String name);
+	void deleteCountryByCode(String code);
 }
