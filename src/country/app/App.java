@@ -73,10 +73,8 @@ public class App {
 				case "0":
 					for (int i = 0; i < 50; i++)
 						System.out.print("/\\");
-					System.out.println("\nSortie de l'application:");
-					System.out.println("\tAspect Fonctionnel 6 (WIP)");
-					for (int i = 0; i < 50; i++)
-						System.out.print("\\/");
+					System.out.println("\nSortie de l'application...");
+					System.exit(0);
 					break;
 				default:
 					break;
