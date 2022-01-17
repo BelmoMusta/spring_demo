@@ -8,4 +8,5 @@ public interface IServiceWorker {
 	void getAllCountries();
 	void getContientByName(String name);
 	void deleteCountryByCode(String code);
+	void getContinentCountries(String code);
 }

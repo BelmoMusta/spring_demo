@@ -55,6 +55,10 @@ public class App {
 				case "4":
 					break;
 				case "5":
+					//recuperation des pays d'un continent
+					System.out.print("Entrer le code du continent pour afficher les pays:");
+					String codeContinent = inputFromConsole.next();
+					serviceWorker.getContinentCountries(codeContinent);
 					break;
 
 			}

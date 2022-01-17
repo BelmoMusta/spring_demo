@@ -70,4 +70,13 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("le code saisie ne correspand à aucun pays ");
 		}
 	}
+
+	@Override
+	public void getContinentCountries(String code) {
+		if(continentDAO.exists(code)){
+			continentDAO.getContientByCode(code).getCountries().forEach(System.out::println);
+		}else {
+			System.out.println("veuiller saisir un code de continent valide (eur,afr,ame,aus,asia");
+		}
+	}
 }
