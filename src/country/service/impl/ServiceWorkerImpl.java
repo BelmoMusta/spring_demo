@@ -71,4 +71,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 		countryDAO.updateCountry(country);
 	}
+
+	@Override
+	public void getCountries() {
+		for( Country country : countryDAO.getCountries()){
+			System.out.println(country.toString());
+		}
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Repository
@@ -41,6 +42,12 @@ public class CountryDAOImpl implements CountryDAO {
 	@Override
 	public void updateCountry(Country country) {
 		sessionFactory.getCurrentSession().update(country);
+	}
+
+	@Override
+	public List<Country> getCountries() {
+		List<Country> countries=sessionFactory.getCurrentSession().createQuery("from Country").list();
+		return countries;
 	}
 
 }

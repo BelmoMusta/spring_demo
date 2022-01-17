@@ -24,14 +24,15 @@ public class App {
 			System.out.println("2 - Pour lister les informations d'un pays :");
 			System.out.println("3 - Pour supprimer un pays :");
 			System.out.println("4 - Pour modifier les informations d'un pays :");
+			System.out.println("5 - Pour lister tous les pays d'un continent :");
+
+
 
 
 			Scanner inputFromConsole1 = new Scanner(System.in);
 			int code = Integer.parseInt(inputFromConsole1.next());
 			switch (code) {
-				case 0: {
-					System.exit(0);
-				}
+
 				case 1: {
 					System.out.println("Entrer Un pays sous-forme 'Le code de pays, Le nom de pays, son devise, son salut, son continent' :\n");
 					Scanner inputFromConsole = new Scanner(System.in);
@@ -61,6 +62,10 @@ public class App {
 					Scanner inputFromConsole2 = new Scanner(System.in);
 					String modif = inputFromConsole.next();
 					serviceWorker.updateCountry(language,modif);
+					break;
+				}
+				case 5: {
+					serviceWorker.getCountries();
 					break;
 				}
 				default:{

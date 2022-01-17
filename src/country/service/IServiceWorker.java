@@ -6,4 +6,5 @@ public interface IServiceWorker {
 	void getCountryInformations(String countryCode);
 	void deleteCountry(String countryCode);
 	void updateCountry(String countryCode, String newData);
+	void getCountries();
 }
