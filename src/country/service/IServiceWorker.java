@@ -1,5 +1,7 @@
 package country.service;
 
+import country.model.Country;
+
 public interface IServiceWorker {
 	void getCountry(String language);
 	void addCountry(String countryInfos);

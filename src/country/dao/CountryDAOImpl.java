@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,31 +38,6 @@ public class CountryDAOImpl implements CountryDAO {
 		country = (Country)query.uniqueResult();
 		session.close();
 		return country;
-		
-//		try {
-//			Connection connection = dataSource.getConnection();
-//			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM country where code = ?;");
-//			preparedStatement.setString(1, countryCode);
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			
-//			if (resultSet.next()) {
-//				country = new Country();
-//				Integer id = resultSet.getInt(1);
-//				String name = resultSet.getString(2);
-//				String code = resultSet.getString(3);
-//				String devise = resultSet.getString(4);
-//				String greetings = resultSet.getString(5);
-//				
-//				country.setId(id);
-//				country.setName(name);
-//				country.setCode(code);
-//				country.setDevise(devise);
-//				country.setGreetings(greetings);
-//				
-//			}
-//		} catch (SQLException exception) {
-//			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-//		}
 	}
 
 	@Override
@@ -77,7 +53,6 @@ public class CountryDAOImpl implements CountryDAO {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Country countryToBeDeleted = this.getByCode(countryCode);
-		System.out.println(countryToBeDeleted);
 		session.delete(countryToBeDeleted);
 		session.getTransaction().commit();
 		return true;
@@ -85,22 +60,6 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Override
 	public boolean updateCountry(String countryCode, Country newCountryInfos) {
-//		String UPDATE_SQL = "UPDATE country SET code = ?, name = ?, devise = ?, greetings = ? WHERE code = ?;";
-//		int numRowAffected = 0;
-//		try {
-//			Connection connection = dataSource.getConnection();
-//			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL);
-//			preparedStatement.setString(1, newCountryInfos.getCode());
-//			preparedStatement.setString(2, newCountryInfos.getName());
-//			preparedStatement.setString(3, newCountryInfos.getDevise());
-//			preparedStatement.setString(4, newCountryInfos.getGreetings());
-//			preparedStatement.setString(5, countryCode);
-//			numRowAffected = preparedStatement.executeUpdate();
-//			
-//		}catch (SQLException exception) {
-//			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-//		}
-//		return numRowAffected == 1 ? true : false;
 		Country country = this.getByCode(countryCode);
 		newCountryInfos.setId(country.getId());
 		Session session = sessionFactory.openSession();

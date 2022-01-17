@@ -23,9 +23,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void getCountry(String language) {
 		Country pays = countryDAO.getByCode(language);
-		if(pays == null) {System.out.println("Ce pays n'existe pas"); return;}
+		if(pays == null) {System.out.println("Ce pays n'existe pas");}
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-		
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
 	}
