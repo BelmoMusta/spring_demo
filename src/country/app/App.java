@@ -49,7 +49,7 @@ public class App {
 				case "5":
 					System.out.print("entrer le code du continent:");
 					code = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(code);
+					serviceWorker.getAllCountriesInContinent(code);
 					break;
 				case "0":
 					System.out.print("au revoir 👋👋👋 !!!");
