@@ -12,11 +12,56 @@ public class App {
 		ApplicationContext applicationContext =
 				new ClassPathXmlApplicationContext("beans/*.xml");
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
+		String UserInput="";
 		while (true) {
-			System.out.print("Choisir une langue : ");
+			System.out.print("Enter the number of the operation ! ");
+			System.out.print("\n***********************************");
+			System.out.print("\n-1 Insert a new country .");
+			System.out.print("\n-2 Get a country details .");
+			System.out.print("\n-3 Delete a country .");
+			System.out.print("\n-4 Update a country .");
+			System.out.print("\n-6 Get the list of the contries .");
+			System.out.print("\n-0 to exit . ");
+			System.out.print("\nCode : ");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String language = inputFromConsole.next();
-			serviceWorker.dealWithCountryByCode(language);
+			  switch(language){  
+			   
+			    case "1": 
+			    {
+			    	serviceWorker.AddCountry();
+			    }
+			    break;  
+			    case "2":
+			    {
+			    	System.out.print("Choisir une langue Ex:(fr) : ");
+					Scanner inputFromConsoleCode = new Scanner(System.in);
+					String lang = inputFromConsoleCode.next();
+					serviceWorker.dealWithCountryByCode(lang);
+			    }
+			    break;  
+			    case "3":
+			    {
+			    	serviceWorker.DeleteCountry();
+			    }
+			    break; 
+			    case "4": 
+			    {
+			    	serviceWorker.UpdateCountry();
+			    }
+			    break; 
+			    case "6": 
+			    {
+			    	serviceWorker.GetList();
+			    }
+				    break; 
+			    case "0":  
+			    break;  
+			    
+			    default:System.out.println("Operation doesn't exist , Try again .");  
+			    }  
+			
+		
 			
 		}
 	}
