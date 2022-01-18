@@ -1,9 +1,10 @@
-package beans;
+package country.model;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "classpath:/src")
+@ComponentScan(basePackages = "country")
 public class ApplicationConfig {
 
 }

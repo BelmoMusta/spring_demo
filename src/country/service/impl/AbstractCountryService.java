@@ -8,20 +8,7 @@ import country.service.ICountryService;
 
 
 public abstract class AbstractCountryService implements ICountryService {
-	@Autowired 
-	private org.hibernate.SessionFactory SessionFactory;
-	
-	protected Session getSession() {
-		return SessionFactory.getCurrentSession();
-	}
-	
-	public void persist(Object obj) {
-		getSession().persist(obj);
-	}
-	
-	public void delete(Object obj) {
-		getSession().delete(obj);
-	}
+	 
 	
 	public String welcome() {
 		return getCountry().getGreetings();
