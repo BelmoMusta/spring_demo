@@ -24,8 +24,9 @@ public class App {
 			System.out.println("5 : List all countries of a given continent");
 			System.out.print("Code :");
 			Scanner inputFromConsole = new Scanner(System.in);
-			String language = inputFromConsole.next();
-			switch (language){
+			String code;
+			String operation = inputFromConsole.next();
+			switch (operation){
 				case "0":
 					System.exit(0);
 					break;
@@ -34,14 +35,17 @@ public class App {
 					String input = inputFromConsole.next();
 					serviceWorker.saveCountry(input);
 				break;
+
 				case "2":
 					System.out.print("Enter a country code: ");
-					String code = inputFromConsole.next();
+					code = inputFromConsole.next();
 					serviceWorker.dealWithCountryByCode(code);
-
-
 					break;
+
 				case "3":
+					System.out.print("Enter a country code to delete: ");
+					code = inputFromConsole.next();
+					serviceWorker.deleteCountry(code);
 					break;
 				case "4":
 					break;

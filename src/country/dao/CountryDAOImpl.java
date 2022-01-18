@@ -32,6 +32,11 @@ public class CountryDAOImpl implements CountryDAO {
 		return (Country) query.uniqueResult();
 	}
 
+	@Override
+	public void deleteByCode(String code){
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(getByCode(code));
+	}
 
 	@Override
 	public void save(Country country) {

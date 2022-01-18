@@ -40,6 +40,17 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	@Override
+	public void deleteCountry(String code){
+		Country country = countryDAO.getByCode(code);
+		if(country != null) {
+			countryDAO.deleteByCode(code);
+		}
+		else {
+			System.out.println("Country not found");
+		}
+
+	}
+	@Override
 	public void saveCountry(String input) {
 		Pattern pattern = Pattern.compile("(([A-Za-z]+),){4}(([A-Za-z]+)){1}");
 		Matcher matcher = pattern.matcher(input);
