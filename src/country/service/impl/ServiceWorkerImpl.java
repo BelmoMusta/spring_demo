@@ -74,4 +74,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("Format invalide");
 
 	}
+
+	@Override
+	public void deleteCountry(String countryCode) {
+		Country country = countryDAO.getByCode(countryCode);
+		if (country != null) {
+			countryDAO.delete(country);
+			System.out.println("Suppression faite avec succès.");
+		} else
+			System.out.println("Pays introuvable");
+	}
 }

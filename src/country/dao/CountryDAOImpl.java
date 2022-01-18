@@ -39,4 +39,10 @@ public class CountryDAOImpl implements CountryDAO {
 		sessionFactory.getCurrentSession().save(country);
 	}
 
+	@Override
+	public void delete(Country country) {
+		sessionFactory.getCurrentSession().delete(country);
+
+	}
+
 }

@@ -55,7 +55,9 @@ public class App {
 					for (int i = 0; i < 50; i++)
 						System.out.print("/\\");
 					System.out.println("\nSuppression d'un pays:");
-					System.out.println("\tAspect Fonctionnel 3 (WIP)");
+					System.out.print("\tEntrer le code du pays à supprimer : ");
+					String countryToDelete = inputFromConsole.next();
+					serviceWorker.deleteCountry(countryToDelete);
 					for (int i = 0; i < 50; i++)
 						System.out.print("\\/");
 					break;

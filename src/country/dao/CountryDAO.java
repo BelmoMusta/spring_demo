@@ -5,5 +5,7 @@ import country.model.Country;
 public interface CountryDAO {
 	Country getByCode(String code);
 
+	void delete(Country country);
+
 	void save(Country country);
 }
