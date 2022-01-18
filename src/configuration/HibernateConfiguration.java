@@ -44,7 +44,7 @@ public class HibernateConfiguration {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        hibernateProperties.setProperty("hibernate.show_sql","true");
+        hibernateProperties.setProperty("hibernate.show_sql","false");
         hibernateProperties.setProperty("hibernate.hbm2ddl.import_files", "database/populate-database.sql");
         return hibernateProperties;
     }

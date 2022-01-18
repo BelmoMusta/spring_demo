@@ -8,12 +8,25 @@ public class Country {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	@Column(unique = true)
 	private String code;
 	private String devise;
 	private String greetings;
+
 	@ManyToOne
 	private Continent continent;
-	
+
+	public Country() {
+	}
+
+	public Country( String name, String code, String devise, String greetings, Continent continent) {
+		this.name = name;
+		this.code = code;
+		this.devise = devise;
+		this.greetings = greetings;
+		this.continent = continent;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -60,5 +73,17 @@ public class Country {
 
 	public void setContinent(Continent continent) {
 		this.continent = continent;
+	}
+
+	@Override
+	public String toString() {
+		return "Country{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", code='" + code + '\'' +
+				", devise='" + devise + '\'' +
+				", greetings='" + greetings + '\'' +
+				", continent=" + continent +
+				'}';
 	}
 }

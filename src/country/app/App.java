@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
+
 @SuppressWarnings("all")
 public class App {
 	public static void main(String[] args) {
@@ -29,6 +30,9 @@ public class App {
 					System.exit(0);
 					break;
 				case "1":
+					System.out.print("Enter a country to add in the given format: Code,Name,Currency,Greeting,ContinentCode");
+					String input = inputFromConsole.next();
+					serviceWorker.saveCountry(input);
 				break;
 				case "2":
 					break;

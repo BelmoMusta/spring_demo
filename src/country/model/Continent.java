@@ -45,4 +45,6 @@ public class Continent {
 	public void setCountries(Collection<Country> countries) {
 		this.countries = countries;
 	}
+
+
 }
