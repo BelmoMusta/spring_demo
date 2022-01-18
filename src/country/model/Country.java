@@ -1,5 +1,6 @@
 package country.model;
 
+<<<<<<< HEAD
 public class Country {
 	private Integer id;
 	private String name;
@@ -7,6 +8,37 @@ public class Country {
 	private String devise;
 	private String greetings;
 	
+=======
+
+import javax.persistence.Column;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import javax.persistence.Table;
+
+import lombok.Data;
+
+
+@Entity
+@Table(name = "Country")
+public class Country {
+	@Id
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name ="name")
+	private String name;
+	@Column(name ="code")
+	private String code;
+	@Column(name ="devise")
+	private String devise;
+	@Column(name ="greetings")
+	private String greetings;
+	
+  
+>>>>>>> origin/aspect-fonctionnel-01
 	public Integer getId() {
 		return id;
 	}
@@ -46,4 +78,9 @@ public class Country {
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
 	}
+<<<<<<< HEAD
+=======
+
+	
+>>>>>>> origin/aspect-fonctionnel-01
 }
