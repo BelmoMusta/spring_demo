@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import country.domain.Country;
 import country.repository.CountryDAO;
 import country.repository.CountryDAOImpl;
+import country.service.impl.ServiceDeatails;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,6 +27,8 @@ public class CountryTest {
 
 	@Autowired
 	private CountryDAO countryDAO;
+	@Autowired
+	private ServiceDeatails serviceDeatails;
     @Before
     public void setup(){
 //        ctx = new ClassPathXmlApplicationContext("beans/*.xml");
@@ -33,7 +36,7 @@ public class CountryTest {
     }
     
     @Test
-    public void shouldDealWithCountryByCode() {
+    public void getByCodeTest() {
     	//Arrange attributes
     	final Country expected;    	
     	final Country result; 
@@ -49,7 +52,7 @@ public class CountryTest {
     	assertEquals(expected, result);
     }
 	@Test
-	public void shouldDealWithSaveCountry() {
+	public void createCountryTest() {
 		//Arrange attributes		
 		final Country expected;
 		final Country result;
@@ -60,12 +63,12 @@ public class CountryTest {
     	expected.setContinent("afr");
     	expected.setDevise("mad");
     	expected.setGreet("Salam");
-		result = countryDAO.saveCountry(expected);
-		assertEquals(expected, result);
+    	serviceDeatails.createCountry("ma,maroc,mad,salam,afr");
+		result = countryDAO.getByCode("ma");
+		assertEquals(result.getName(), "maroc");
 	}
-	
 	@Test
-	public void shouldDealWithUpdateCountry() {
+	public void updateCountryTest() {
 		//Arrange attributes
 		final Country expected;
 		final Country result;
@@ -76,11 +79,12 @@ public class CountryTest {
     	expected.setContinent("afr");
     	expected.setDevise("mad");
     	expected.setGreet("Salam");
-		result = countryDAO.updateCountry(expected, "ma");
-		assertEquals(expected, result);
+    	serviceDeatails.updateCountry("ma,france,afr,mad,salam");
+    	result = countryDAO.getByCode("ma");
+		assertEquals("france", result.getName());
 	}
 	@Test
-	public void shouldDealWithContinents() {
+	public void loadContinentsTest() {
 		final List<Country> expectedList= new ArrayList<>();
 			expectedList.add(new Country(1,"France", "fr", "EURO","Bonjour", "eur"));			
 			expectedList.add(new Country(2,"Spain", "es", "EURO","Hola", "eur"));
@@ -89,5 +93,15 @@ public class CountryTest {
 		final List<Country> List = countryDAO.continentCountries("eur");
 		
 		assertEquals(expectedList, List);
+	}
+	@Test
+	public void deleteCountryTest() {
+		//Arrange attribute
+				final Country expected;
+				//Act
+				serviceDeatails.createCountry("ro,rom,jin,rawama,inta");
+				serviceDeatails.deleteCountry("ro");
+				expected = countryDAO.getByCode("ro");
+				assertEquals(expected, null);
 	}
 }
