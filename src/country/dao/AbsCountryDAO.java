@@ -6,8 +6,9 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public  abstract class AbsCountryDAO {
+	
 	@Autowired
-	private  SessionFactory sF;
+	private SessionFactory sF;
 	
 	public Session getSession()
 	{

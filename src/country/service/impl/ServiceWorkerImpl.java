@@ -13,6 +13,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 	@Autowired
 	private CountryDAO cDAO;
+	
 	@Override
 	public void listCountry()
 	{
@@ -29,17 +30,18 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		cDAO.saveCountry(Ccountry);
 
 	}
+	
 	@Override
 	public void findByCode(String code) {
 			cDAO.findByCode(code);
-		
-		
 	}
+	
 	@Override
 	public void deleteByCode(String code)
 	{
 		cDAO.deleteByCode(code);
 	}
+	
 	@Override
 	public void updateByCode(String code, String country) {
 		String[] list=country.split(",");
@@ -47,7 +49,6 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countrry.setName(list[0]);
 		countrry.setDevise(list[1]);
 		countrry.setGreetings(list[2]);
-
 		cDAO.updateByCode(code,countrry);
 	
 	}
