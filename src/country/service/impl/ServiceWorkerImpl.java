@@ -4,6 +4,7 @@ import country.dao.ContinentDAO;
 import country.dao.CountryDAO;
 import country.model.Continent;
 import country.model.Country;
+import country.service.IContinentService;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
 
@@ -83,5 +84,20 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("Suppression faite avec succès.");
 		} else
 			System.out.println("Pays introuvable");
+	}
+
+	@Override
+	public void dealWithContinentByCode(String code) {
+		Continent continent = continentDAO.getContinentByCode(code);
+		if (continent != null) {
+			IContinentService continentService = applicationContext.getBean(IContinentService.class, continent);
+			if (continentService.countries().size() > 0) {
+				System.out.println("Pays du contient \"" + continent.getName() + "\" :");
+				continentService.countries().forEach(country -> System.out.println("\t" + country.getName()));
+			} else
+				System.out.println(continent.getName() + " ne contient aucun pays.");
+		} else
+			System.out.println("Continent introuvable");
+
 	}
 }
