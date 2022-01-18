@@ -1,48 +1,13 @@
 package country.app;
 
-<<<<<<< HEAD
-import country.service.IServiceWorker;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Scanner;
-
-@SuppressWarnings("all")
-public class App {
-	public static void main(String[] args) {
-		ApplicationContext applicationContext =
-				new ClassPathXmlApplicationContext("beans/*.xml");
-		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
-		while (true) {
-			System.out.print("Choisir une langue : ");
-			Scanner inputFromConsole = new Scanner(System.in);
-			String language = inputFromConsole.next();
-			serviceWorker.dealWithCountryByCode(language);
-			
-		}
-	}
-	
-}
-=======
-import country.configurationHibernate.AppConfig;
-import country.configurationHibernate.*;
-
-import country.model.Country;
-
-import country.service.IServiceWorker;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.*;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import country.configurationHibernate.ConfigurationHibernate;
+import country.service.IServiceWorker;
 
 @SuppressWarnings("all")
 public class App {
@@ -93,5 +58,3 @@ public class App {
 			
 			}}
 }
-
->>>>>>> origin/aspect-fonctionnel-01
