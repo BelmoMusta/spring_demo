@@ -61,7 +61,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 					countryToAdd.setContinent(continent);
 					try {
 						countryDAO.save(countryToAdd);
-						System.out.println("Insertion faite avec succes, pays insere:\n" + countryToAdd.toString());
+						System.out.println("Insertion faite avec succès, pays inseré:\n" + countryToAdd.toString());
 					} catch (ConstraintViolationException e) {
 						System.out.println("Code pays existant");
 					}
