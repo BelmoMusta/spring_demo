@@ -43,4 +43,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		
 		
 	}
+	@Override
+	public void supprimerByCode(String code)
+	{
+		countryDAO.supprimerByCode(code);
+	}
 }

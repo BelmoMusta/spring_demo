@@ -7,6 +7,7 @@ public interface IServiceWorker {
 	public void listCountry();
 	void AjouterCountry(String country);
 	public void findByCode(String code);
+	public void supprimerByCode(String code);
 	
 
 }

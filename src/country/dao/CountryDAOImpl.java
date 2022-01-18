@@ -55,5 +55,16 @@ public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO  {
 		}
 		trans.commit();
 		session.close();}
+	@Override
+	public void supprimerByCode(String code)
+	{
+		Session session = getSession();
+		Transaction trans2 = session.beginTransaction();
+		String str2 = "delete from Country where code = :codeID";
+		int query = session.createSQLQuery(str2).setParameter("codeID", code).executeUpdate();
+		trans2.commit();
+		session.close();
+	}
+
 
 }

@@ -13,7 +13,7 @@ import country.service.IServiceWorker;
 public class App {
 		public static void main(String[] args) {
 			AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ConfigurationHibernate.class);
-			IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
+			IServiceWorker iserviceWorker = applicationContext.getBean(IServiceWorker.class);
 			
 			
 			int choise=0;
@@ -27,7 +27,6 @@ public class App {
 					"6- Pour sortir de l'application tapper 0;");
 			while(true) {
 			System.out.println("S'il vous plait entrez un nombre :");
-			
 			Scanner inputFromConsole = new Scanner(System.in);
 			choise= inputFromConsole.nextInt();
 			
@@ -37,21 +36,29 @@ public class App {
 				System.out.println("Ajouter un payé : ");
 				Scanner inputFromConsole1 = new Scanner(System.in);
 				String country = inputFromConsole1.next();
-				serviceWorker.AjouterCountry(country);
-				serviceWorker.listCountry();
+				iserviceWorker.AjouterCountry(country);
+				iserviceWorker.listCountry();
 			}
 			else if(choise==2)
 			{
 				System.out.println("entrez votre code de country : ");
 				Scanner inputFromConsole2 = new Scanner(System.in);
 				String code = inputFromConsole2.next();
-				serviceWorker.findByCode(code);
+				iserviceWorker.findByCode(code);
 				
+			}
+			else if(choise==3)
+			{
+				System.out.println("entrez votre code de country : ");
+				Scanner inputFromConsole3 = new Scanner(System.in);
+				String code = inputFromConsole3.next();
+				iserviceWorker.supprimerByCode(code);
+				iserviceWorker.listCountry();
 			}
 			else if(choise==0)
 			{
 
-				System.out.print("Vous étes sortis de l'application");
+				System.out.print("Merci pour votre utilisation vous étes Sortis de l'application");
 				System.exit(0);
 			}
 			
