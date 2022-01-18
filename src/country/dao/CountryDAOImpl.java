@@ -1,5 +1,5 @@
 package country.dao;
-
+import country.service.impl.AbstractCountryService;
 import country.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,11 +9,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
+
 @Repository
-public class CountryDAOImpl implements CountryDAO {
+public class CountryDAOImpl extends AbstractCountryService implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	@Autowired
 	private DataSource dataSource;
@@ -46,5 +51,40 @@ public class CountryDAOImpl implements CountryDAO {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
 		return country;
+	}
+
+	@Override
+	public void saveCountry(Country country) {
+		// TODO Auto-generated method stub
+		 persist(country);
+	}
+
+
+	@Override
+	public List<Country> findCountrys() {
+		// TODO Auto-generated method stub
+		Criteria criteria = getSession().createCriteria(Country.class);
+		return (List<Country>) criteria.list();
+	}
+
+	@Override
+	public void deleteCountryByCode(String code) {
+		Query query = getSession().createSQLQuery("delete from Country where code = :code");
+		query.setString("code", code);
+		query.executeUpdate();
+		
+	}
+
+	@Override
+	public void updateCountry(Country country) {
+		// TODO Auto-generated method stub
+		getSession().update(country);
+	}
+
+	@Override
+	public Country getCountry() {
+		return null;
+		// TODO Auto-generated method stub
+		
 	}
 }
