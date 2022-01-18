@@ -35,6 +35,11 @@ public class App {
 					serviceWorker.saveCountry(input);
 				break;
 				case "2":
+					System.out.print("Enter a country code: ");
+					String code = inputFromConsole.next();
+					serviceWorker.dealWithCountryByCode(code);
+
+
 					break;
 				case "3":
 					break;
