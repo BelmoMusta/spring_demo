@@ -14,14 +14,30 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private CountryDAO countryDAO;
 	@Autowired
 	private ApplicationContext applicationContext;
-	
+
 	@Override
 	public void dealWithCountryByCode(String language) {
 		Country pays = countryDAO.getByCode(language);
 		// car c'est prototype
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-		
+
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
+	}
+
+	@Override
+	public void updateCountry(String coutryCode, String countryData) {
+		// TODO Auto-generated method stub
+		countryDAO.updateByCode(coutryCode, getContryFromData(countryData));
+	}
+
+	private Country getContryFromData(String countryData) {
+		Country country = new Country();
+		String[] data = countryData.split(",");
+		country.setCode(data[0]);
+		country.setName(data[1]);
+		country.setDevise(data[2]);
+		country.setGreetings(data[3]);
+		return country;
 	}
 }
