@@ -51,6 +51,18 @@ public class CountryTest {
     	result = countryDAO.getByCode("fr");
     	assertEquals(expected, result);
     }
+    @Test
+    public void afficheCountryTest() {
+    	serviceDeatails.deleteCountry("janj");
+    	boolean thrown = false;
+    	 try {
+    		 serviceDeatails.afficheCountry("janj");
+    		  } catch (Exception e) {
+    		    thrown = true;
+    		  }
+
+    		  assertTrue(thrown);
+    }
 	@Test
 	public void createCountryTest() {
 		//Arrange attributes		
