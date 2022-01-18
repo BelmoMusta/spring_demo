@@ -1,5 +1,4 @@
 package country.app;
-
 import country.Configuration.ApplicationConfig;
 import country.Configuration.HibernateConfig;
 import country.model.Country;
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.util.*;
 
 @SuppressWarnings("all")
