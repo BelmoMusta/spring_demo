@@ -1,5 +1,6 @@
 package country.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ public class Country {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	@Column(unique = true)
 	private String code;
 	private String devise;
 	private String greetings;
@@ -72,11 +74,11 @@ public class Country {
 	public String toString() {
 		return "[" +
 				"ID =>" + id +
-				" | Nom =>'" + name + '\'' +
-				" | Code =>'" + code + '\'' +
-				" | Devise =>'" + devise + '\'' +
-				" | Greetings =>'" + greetings + '\'' +
-				" | Continent =>'" + continent + '\'' +
-				']';
+				"\nNom =>'" + name + '\'' +
+				"\nCode =>'" + code + '\'' +
+				"\nDevise =>'" + devise + '\'' +
+				"\nGreetings =>'" + greetings + '\'' +
+				"\nContinent =>'" + continent + '\'' +
+				"\n]";
 	}
 }

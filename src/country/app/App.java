@@ -34,7 +34,10 @@ public class App {
 					for (int i = 0; i < 50; i++)
 						System.out.print("/\\");
 					System.out.println("\nAjout d'un nouveau pays:");
-					System.out.println("\tAspect Fonctionnel 1 (WIP)");
+					System.out.print(
+							"\nEntrer les informations requis sous le format suivant (code,nom,devise,greeting,code continent): ");
+					String countryToAdd = inputFromConsole.next();
+					serviceWorker.addCountry(countryToAdd);
 					for (int i = 0; i < 50; i++)
 						System.out.print("\\/");
 					break;

@@ -49,9 +49,9 @@ public class Continent {
     @Override
     public String toString() {
         return "[" +
-                "ID =>" + id +
-                " | Nom =>'" + name + '\'' +
-                " | Code =>'" + code + '\'' +
+                "\n\tID =>" + id +
+                "\n\tNom =>'" + name + '\'' +
+                "\n\tCode =>'" + code + '\'' +
                 ']';
     }
 }
