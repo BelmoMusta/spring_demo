@@ -7,6 +7,7 @@ import java.util.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import country.configurationHibernate.ConfigurationHibernate;
+import country.model.Country;
 import country.service.IServiceWorker;
 
 @SuppressWarnings("all")
@@ -33,7 +34,7 @@ public class App {
 			if(choise==1)
 			{
 
-				System.out.println("Ajouter un payé : ");
+				System.out.println("Ajouter un payé comme suite code,nom,devise,greeting : ");
 				Scanner inputFromConsole1 = new Scanner(System.in);
 				String country = inputFromConsole1.next();
 				iserviceWorker.AjouterCountry(country);
@@ -41,7 +42,7 @@ public class App {
 			}
 			else if(choise==2)
 			{
-				System.out.println("entrez votre code de country : ");
+				System.out.println("entrez votre code de country pour afiicher: ");
 				Scanner inputFromConsole2 = new Scanner(System.in);
 				String code = inputFromConsole2.next();
 				iserviceWorker.findByCode(code);
@@ -49,12 +50,25 @@ public class App {
 			}
 			else if(choise==3)
 			{
-				System.out.println("entrez votre code de country : ");
+				System.out.println("entrez votre code de country pour supprimer : ");
 				Scanner inputFromConsole3 = new Scanner(System.in);
 				String code = inputFromConsole3.next();
 				iserviceWorker.supprimerByCode(code);
 				iserviceWorker.listCountry();
 			}
+			else if(choise==4)
+			{
+				System.out.println("entrez le code de country pour modifier avec nom,devise,greeting  : ");
+				Scanner inputFromConsole4 = new Scanner(System.in);
+				String code = inputFromConsole4.next();
+				Scanner nouvinfo = new Scanner(System.in);
+				String nouvvinfo = inputFromConsole4.next();
+				iserviceWorker.modificationByCode(code,nouvvinfo);
+				iserviceWorker.listCountry();
+			}
+			
+			
+			
 			else if(choise==0)
 			{
 

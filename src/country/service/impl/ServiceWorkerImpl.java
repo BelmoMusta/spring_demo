@@ -28,9 +28,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		String[] list=country.split(",");
 		Country countrry=new Country();
 		countrry.setCode(list[0]);
+		countrry.setName(list[1]);
 		countrry.setDevise(list[2]);
 		countrry.setGreetings(list[3]);
-		countrry.setName(list[1]);
+
 		countryDAO.enregistrerCountry(countrry);
 		
 
@@ -48,4 +49,16 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	{
 		countryDAO.supprimerByCode(code);
 	}
+	@Override
+	public void modificationByCode(String code, String country) {
+		String[] list=country.split(",");
+		Country countrry=new Country();
+		countrry.setName(list[0]);
+		countrry.setDevise(list[1]);
+		countrry.setGreetings(list[2]);
+
+		countryDAO.modificationByCode(code,countrry);
+	
+	}
+
 }
