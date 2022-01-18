@@ -45,7 +45,9 @@ public class App {
 					for (int i = 0; i < 50; i++)
 						System.out.print("/\\");
 					System.out.println("\nInformations d'un pays:");
-					System.out.println("\tAspect Fonctionnel 2 (WIP)");
+					System.out.print("\tEntrer le code du pays recherché : ");
+					String codeCountry = inputFromConsole.next();
+					serviceWorker.dealWithCountryByCode(codeCountry);
 					for (int i = 0; i < 50; i++)
 						System.out.print("\\/");
 					break;

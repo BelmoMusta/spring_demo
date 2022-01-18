@@ -22,13 +22,20 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private ApplicationContext applicationContext;
 
 	@Override
-	public void dealWithCountryByCode(String language) {
-		Country pays = countryDAO.getByCode(language);
+	public void dealWithCountryByCode(String code) {
+		Country pays = countryDAO.getByCode(code);
 		// car c'est prototype
-		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
+		if (pays != null) {
+			ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 
-		System.out.println("WELCOME : " + countryService.welcome());
-		System.out.println("Devise is :" + countryService.devise());
+			System.out.println("Nom :" + countryService.nom());
+			System.out.println("Greeting : " + countryService.welcome());
+			System.out.println("Devise:" + countryService.devise());
+			System.out.println("Continent: " + countryService.continent().toString());
+		} else {
+			System.out.println("Pays introuvable !");
+		}
+
 	}
 
 	@Override

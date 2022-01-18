@@ -2,6 +2,8 @@ package country.dao;
 
 import country.model.Country;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,8 +28,10 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Override
 	public Country getByCode(String countryCode) {
-
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Country c where c.code = :code");
+		query.setString("code", countryCode);
+		return (Country) query.uniqueResult();
 	}
 
 	@Override
