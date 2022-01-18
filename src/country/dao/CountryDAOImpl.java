@@ -64,9 +64,6 @@ import java.util.List;
 @Repository("countryDAO")
 public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO  {
 
-	
-	
-	
 	@Override
 	public void enregistrerCountry(Country country) 
 	{
@@ -87,9 +84,27 @@ public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO  {
 			System.out.print(" ,Devise: " + country.getDevise());
 			System.out.print(" ,Greetings: " + country.getGreetings());
 			System.out.println(",Code: " + country.getCode());
-	}}
+	}
+		tran.commit();
+		session.close();
+		}
 	
-
+	@Override
+	public void findByCode(String code) {
+	
+		Session session = getSession();
+		Transaction trans = session.beginTransaction();
+		String str1 = "FROM Country where code=:countrCode";
+		List <Country> countries1 = session.createQuery(str1).setParameter("countrCode", code).list();
+		for (Iterator iterator =countries1.iterator(); iterator.hasNext();){
+        Country country = (Country) iterator.next();
+		System.out.print(" Nom: " + country.getName());
+		System.out.print(" ,Devise: " + country.getDevise());
+		System.out.print(" ,Greetings: " + country.getGreetings());
+		System.out.println(",Code: " + country.getCode());
+		}
+		trans.commit();
+		session.close();}
 	
 
 	

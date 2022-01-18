@@ -56,4 +56,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		
 >>>>>>> origin/aspect-fonctionnel-01
 	}
+
+
+	@Override
+	public void findByCode(String code) {
+			countryDAO.findByCode(code);
+		
+		
+	}
 }

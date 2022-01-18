@@ -52,6 +52,7 @@ public class App {
 			
 			
 			int choise=0;
+			
 			System.out.println("Le menu devra etre interactif : \r\n" + 
 					"1- Pour l'ajout d'un nouveau pays tapper 1,r\n" + 
 					"2- Pour lister les informations d'un pays, tapper 2, (le code pays sera saisi par l'utilisateur).\r\n" + 
@@ -59,7 +60,8 @@ public class App {
 					"4- Pour modifier des informations d'un pays, tapper 4, (le code pays sera saisi par l'utilisateur).\r\n" + 
 					"5- Pour lister tous les pays d'un continent, tapper 5, (le code du continent sera saisi par l'utilisateur).\r\n" + 
 					"6- Pour sortir de l'application tapper 0;");
-			System.out.println("S'il vous plait entrez un nombre");
+			while(true) {
+			System.out.println("S'il vous plait entrez un nombre :");
 			
 			Scanner inputFromConsole = new Scanner(System.in);
 			choise= inputFromConsole.nextInt();
@@ -67,11 +69,19 @@ public class App {
 			if(choise==1)
 			{
 
-				System.out.println("Ajouter un payé: ");
+				System.out.println("Ajouter un payé : ");
 				Scanner inputFromConsole1 = new Scanner(System.in);
 				String country = inputFromConsole1.next();
 				serviceWorker.AjouterCountry(country);
 				serviceWorker.listCountry();
+			}
+			else if(choise==2)
+			{
+				System.out.println("entrez votre code de country : ");
+				Scanner inputFromConsole2 = new Scanner(System.in);
+				String code = inputFromConsole2.next();
+				serviceWorker.findByCode(code);
+				
 			}
 			else if(choise==0)
 			{
@@ -81,7 +91,7 @@ public class App {
 			}
 			
 			
-		}
+			}}
 }
 
 >>>>>>> origin/aspect-fonctionnel-01
