@@ -55,8 +55,10 @@ public class App {
 			    	serviceWorker.GetList();
 			    }
 				    break; 
-			    case "0":  
-			    break;  
+			    case "0": {
+			    	System.out.println("End of Operation " );return;
+			    }
+			      
 			    
 			    default:System.out.println("Operation doesn't exist , Try again .");  
 			    }  
