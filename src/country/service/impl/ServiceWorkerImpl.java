@@ -4,6 +4,7 @@ import country.dao.ContinentDAO;
 import country.dao.CountryDAO;
 import country.model.Continent;
 import country.model.Country;
+import country.service.IContinentService;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
 import org.hibernate.exception.ConstraintViolationException;
@@ -26,9 +27,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void dealWithCountryByCode(String code) {
 		Country country = countryDAO.getByCode(code);
-		ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
 
 		if(country != null){
+			ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
 			System.out.println("WELCOME : " + countryService.welcome());
 			System.out.println("Devise is :" + countryService.devise());
 			System.out.println("Continent is :" + countryService.continent());
@@ -37,6 +38,22 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("Country not found!");
 		}
 
+	}
+
+	@Override
+	public void dealWithContinentByCode(String code) {
+		Continent continent = continentDao.getByCode(code);
+
+		if(continent != null){
+			IContinentService continentService = applicationContext.getBean(IContinentService.class, continent);
+			System.out.println("Continent: "+continent.getName()+ "Countries: ");
+			for(Country c:continent.getCountries()){
+				System.out.println(c.toString());
+			}
+		}
+		else {
+			System.out.println("Continent doesn't exist!");
+		}
 	}
 
 	@Override

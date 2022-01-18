@@ -83,7 +83,7 @@ public class Country {
 				", code='" + code + '\'' +
 				", devise='" + devise + '\'' +
 				", greetings='" + greetings + '\'' +
-				", continent=" + continent +
+				", continent=" + continent.getName() +
 				'}';
 	}
 }

@@ -47,9 +47,13 @@ public class App {
 					code = inputFromConsole.next();
 					serviceWorker.deleteCountry(code);
 					break;
+
 				case "4":
 					break;
 				case "5":
+					System.out.print("Enter a continent code to display its countries: ");
+					 code = inputFromConsole.next();
+					 serviceWorker.dealWithContinentByCode(code);
 					break;
 				default:
 					break;

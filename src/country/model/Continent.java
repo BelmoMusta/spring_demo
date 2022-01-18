@@ -10,7 +10,7 @@ public class Continent {
 	private Integer id;
 	private String name;
 	private String code;
-	@OneToMany(mappedBy = "continent",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "continent",cascade = CascadeType.ALL)
 	private Collection<Country> countries;
 
 
@@ -46,5 +46,13 @@ public class Continent {
 		this.countries = countries;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Continent{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", code='" + code + '\'' +
+				", countries=" + countries +
+				'}';
+	}
 }

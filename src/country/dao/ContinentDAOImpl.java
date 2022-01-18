@@ -31,7 +31,7 @@ public class ContinentDAOImpl implements ContinentDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Continent c where c.code = :code");
 		query.setString("code",continentCode);
-		return (Continent) query.list().get(0);
+		return (Continent) query.uniqueResult();
 	}
 
 	@Override
