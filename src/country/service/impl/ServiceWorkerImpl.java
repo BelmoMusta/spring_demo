@@ -33,4 +33,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.enregistrerCountry(countrry);
 		
 	}
+
+
+	@Override
+	public void findByCode(String code) {
+			countryDAO.findByCode(code);
+		
+		
+	}
 }
