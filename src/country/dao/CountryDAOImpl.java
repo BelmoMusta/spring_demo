@@ -35,10 +35,4 @@ public class CountryDAOImpl implements CountryDAO {
 		sessionFactory.getCurrentSession().save(country);
 	}
 
-	@Override
-	public void getAllCountries() {
-		List<Country> countries = sessionFactory.getCurrentSession().createQuery("from Country").list();
-		countries.forEach(System.out::println);
-
-	}
 }

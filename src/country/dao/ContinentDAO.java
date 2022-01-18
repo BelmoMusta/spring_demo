@@ -5,5 +5,4 @@ import country.model.Continent;
 public interface ContinentDAO {
     Continent getContinentByCode(String code);
 
-    boolean continentExists(String code);
 }

@@ -43,9 +43,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			String greetings = countryInfo[3];
 
 			if (code.length() > 0 && name.length() > 0 && devise.length() > 0 && greetings.length() > 0) {
-				if (continentDAO.continentExists(countryInfo[4])) {
-					Continent continent = continentDAO.getContinentByCode(countryInfo[4]);
 
+				Continent continent = continentDAO.getContinentByCode(countryInfo[4]);
+				if (continent != null) {
 					Country countryToAdd = new Country();
 					countryToAdd.setCode(code);
 					countryToAdd.setName(name);
