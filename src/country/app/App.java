@@ -54,13 +54,17 @@ public class App {
 				case "4":
 					System.out.print("Enter a country code to modify its information: ");
 					code = inputFromConsole.next();
-					System.out.println("Enter the new information in the following format: ");
-					System.out.println("-------------------------------------");
-					System.out.println("Name,Devise,Greeting,ContinentCode");
-					System.out.println("-------------------------------------");
-					System.out.println("PS: If you don't want to modify a certain field, you can leave it empty");
-					String info = inputFromConsole.next();
-					serviceWorker.updateCountry(code,info);
+					if(serviceWorker.countryExists(code)){
+						System.out.println("Enter the new information in the following format: ");
+						System.out.println("-------------------------------------");
+						System.out.println("Name,Devise,Greeting,ContinentCode");
+						System.out.println("-------------------------------------");
+						System.out.println("PS: If you don't want to modify a certain field, you can leave it empty");
+						String info = inputFromConsole.next();
+						serviceWorker.updateCountry(code,info);
+					}else{
+						System.out.println("Country doesn't exist!");
+					}
 					break;
 				case "5":
 					System.out.print("Enter a continent code to display its countries: ");
