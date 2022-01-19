@@ -21,6 +21,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		// car c'est prototype
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 		
+		
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
 	}
