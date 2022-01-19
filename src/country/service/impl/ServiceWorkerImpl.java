@@ -36,6 +36,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.addCountry(getContryFromData(countryData));
 	}
 
+	public void updateCountry(String coutryCode, String countryData) {
+		// TODO Auto-generated method stub
+		countryDAO.updateByCode(coutryCode, getContryFromData(countryData));
+	}
+
 	private Country getContryFromData(String countryData) {
 		Country country = new Country();
 		String[] data = countryData.split(",");

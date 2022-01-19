@@ -123,4 +123,24 @@ public class CountryDAOImpl implements CountryDAO {
 		return rslt;
 	}
 
+	public int updateByCode(String countryCode, Country country) {
+		// TODO Auto-generated method stub
+		int rslt = 0;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("UPDATE country SET code=?, name=?,devise=?,greetings=? where code = ?;");
+			preparedStatement.setString(1, country.getCode());
+			preparedStatement.setString(2, country.getName());
+			preparedStatement.setString(3, country.getDevise());
+			preparedStatement.setString(4, country.getGreetings());
+			preparedStatement.setString(5, countryCode);
+			int resultSet = preparedStatement.executeUpdate();
+			return resultSet;
+		} catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return rslt;
+	}
+
 }

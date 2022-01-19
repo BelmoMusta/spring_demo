@@ -13,4 +13,5 @@ public interface CountryDAO {
 
 	int removeCountry(String countryCode);
 
+	int updateByCode(String countryCode, Country country);
 }

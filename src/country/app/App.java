@@ -44,7 +44,9 @@ public class App {
 				case "4":
 					System.out.print("entrer le code du pays:");
 					code = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(code);
+					System.out.print("entrer les informations du pays:");
+					String countryData = inputFromConsole.next();
+					serviceWorker.updateCountry(code, countryData);
 					break;
 				case "5":
 					System.out.print("entrer le code du continent:");
