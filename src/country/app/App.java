@@ -51,6 +51,13 @@ public class App {
 					String countryInfosToUpdate = countryInfosToUpdateInput.next();
 					serviceWorker.UpdateCountry(countryCodeToUpdate,countryInfosToUpdate);
 					break;
+				case 5:
+					System.out.println("Veullier saisier le code du continent");
+					Scanner continentCodeInput = new Scanner(System.in);
+					String continentCode = continentCodeInput.next();
+					serviceWorker.GetCountriesByContinentCode(continentCode);
+					break;
+
 				case 0:
 					System.out.println("Au revoir");
 					System.exit(0);

@@ -3,10 +3,7 @@ package country.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,9 +16,11 @@ public class Country {
 	private String code;
 	private String devise;
 	private String greetings;
-	private String continent;
 
-	public Country(String name, String code, String devise, String greetings, String continent) {
+	@ManyToOne
+	private Continent continent;
+
+	public Country(String name, String code, String devise, String greetings, Continent continent) {
 		this.name=name;
 		this.code=code;
 		this.devise=devise;
@@ -29,12 +28,23 @@ public class Country {
 		this.continent=continent;
 	}
 
-    public Country(String name, String devise, String greetings, String continent) {
+    public Country(String name, String devise, String greetings, Continent continent) {
 		this.name=name;
 		this.devise=devise;
 		this.greetings=greetings;
 		this.continent=continent;
     }
+
+	@Override
+	public String toString() {
+		return "Country{" +
+				"name='" + name + '\'' +
+				", code='" + code + '\'' +
+				", devise='" + devise + '\'' +
+				", greetings='" + greetings + '\'' +
+				", continent=" + continent.getName() +
+				'}';
+	}
 
     public Integer getId() {
 		return id;
@@ -76,11 +86,11 @@ public class Country {
 		this.greetings = greetings;
 	}
 
-	public String getContinent() {
+	public Continent getContinent() {
 		return continent;
 	}
 
-	public void setContinent(String continent) {
+	public void setContinent(Continent continent) {
 		this.continent = continent;
 	}
 

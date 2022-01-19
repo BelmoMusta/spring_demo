@@ -12,6 +12,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>country.model.Country</value>
+                <value>country.model.Continent</value>
             </list>
         </property>
     </bean>

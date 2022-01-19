@@ -2,6 +2,7 @@ package country.dao;
 
 import country.model.Country;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,9 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Autowired
+	private ContinentDAO continentDAO;
 	
 	@Override
 	public Country getByCode(String countryCode) {
@@ -49,7 +54,7 @@ public class CountryDAOImpl implements CountryDAO {
 				country.setCode(code);
 				country.setDevise(devise);
 				country.setGreetings(greetings);
-				country.setContinent(continent);
+				country.setContinent(continentDAO.getByID(continent));
 				
 			}
 		} catch (SQLException exception) {
@@ -114,5 +119,19 @@ public class CountryDAOImpl implements CountryDAO {
 			System.out.println("Pays n'existe pas");
 		}
 
+	}
+
+	@Override
+	public List<Country> CountriesByContinentCode(String continentCode) {
+		Session session;
+		try {
+			session = sessionFactory.getCurrentSession();
+		} catch (HibernateException e) {
+			session = sessionFactory.openSession();
+		}
+
+		Query query= session.createQuery("from Country c where c.continent.code= :code");
+		query.setParameter("code", continentCode);
+		return (List<Country>) query.list();
 	}
 }
