@@ -15,13 +15,13 @@ public class App {
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		org.h2.tools.Server.createWebServer().start();
 		while (true) {
-			System.out.println("-Pour l'ajout d'un nouveau pays tapper 1"); //L'utilisateur sera amen� � saisir les information du pays 
+			System.out.println("-Pour l'ajout d'un nouveau pays tapper 1"); //L'utilisateur sera amené à saisir les information du pays
 			System.out.println("- Pour lister les informations d'un pays, tapper 2");
 			System.out.println("- Pour supprimer un pays, tapper 3");
 			System.out.println("- Pour modifier des informations d'un pays, tapper 4");
 			System.out.println("- Pour lister tous les pays d'un continent, tapper 5");
 			System.out.println("- Pour sortir de l'application tapper 0\n");
-			System.out.print("entrer un nombre de 0 �5:");
+			System.out.print("entrer un nombre de 0 à 5:");
 			Scanner inputFromConsole1 = new Scanner(System.in);
 			int code = Integer.parseInt(inputFromConsole1.next());
 			switch (code) {
@@ -29,7 +29,7 @@ public class App {
 					System.exit(0);
 				}
 				case 1: {
-					System.out.print("Entrer le pays que vous voulez sous la forme suivante: 'code,name,devise,salutaions,code du continent' ");
+					System.out.print("Veuillez saisir le pays à ajouter, selon le fromat suivant: `FR,france,EURO,Bonjour!,eur` : ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
 					serviceWorker.addCountry(language);
@@ -39,41 +39,45 @@ public class App {
 					System.out.print("Entrer le code du pays : ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
-					serviceWorker.getCountryInfos(language);
+					serviceWorker.getCountryData(language);
 					break;
 				}
 				case 3: {
-					System.out.print("Entrer le code du pays que vous voulez le supprimer: ");
+					System.out.print("Entrer le code du pays à supprimer: ");
 					Scanner inputFromConsole = new Scanner(System.in);
-					String language = inputFromConsole.next();
-					serviceWorker.deletCountry(language);
+					String countryCode = inputFromConsole.next();
+					serviceWorker.deleteCountry(countryCode);
 					break;
 				}
 				case 4: {
-					System.out.print("Entrer le code du pays que vous voulez le�modifier: ");
+					System.out.print("Veuillez saisir le code du pays à modifier: ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
-					System.out.print("Entrer les nouveaux champs sous la forme suivante: 'code,name,devise,salutations,code du continent' ");
+					System.out.print("Veuillez saisir les nouveaux champs, selon le fromat suivant: 'code,name,devise,greetings,code du continent' ");
 					Scanner inputFromConsole2 = new Scanner(System.in);
 					String modif = inputFromConsole.next();
-					serviceWorker.updateCountry(language,modif);
+					try{
+						serviceWorker.updateCountry(language,modif);
+
+					}catch (IndexOutOfBoundsException e){
+						System.err.print("Le code du pays entré n'existe pas \n");
+					}
 					break;
 				}
 				case 5: {
-					serviceWorker.getCountries();
+					System.out.print("Veuillez saisir le code du continent à lister: ");
+					Scanner inputFromConsole = new Scanner(System.in);
+					String continentCode = inputFromConsole.next();
+					serviceWorker.getCountriesByContinent(continentCode);
 					break;
 				}
-				default:{
-					System.out.print("Choisir une langue : ");
-					Scanner inputFromConsole = new Scanner(System.in);
-					String language = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(language);
-					break;
+
+				default: {
+					System.out.print("Veuillez saisir un code entre 0 et 5. \n");
 				}
 
 			}
 
 		}
 	}
-
 }
