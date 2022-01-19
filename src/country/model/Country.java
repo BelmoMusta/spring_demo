@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="country")
 public class Country {
-	
+	/*@ManyToOne
+	private Continent continent;
+	*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -23,6 +25,17 @@ public class Country {
 	
 	@Column(name="greetings",nullable=false)
 	private String greetings;
+	
+	public Country(String code, String name, String devise,String greetings/*,Continent continent*/) {
+		this.code = code;
+		this.name = name;
+		this.devise = devise;
+		this.greetings = greetings;
+		//this.continent=continent;
+	}
+
+	public Country() {
+	}
 	
 	public Integer getId() {
 		return id;
@@ -63,4 +76,12 @@ public class Country {
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
 	}
+	
+	/*public Continent getContinent() {
+		return continent;
+	}
+
+	public void setContinent(Continent continent) {
+		this.continent = continent;
+	}*/
 }

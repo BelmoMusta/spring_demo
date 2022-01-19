@@ -20,4 +20,14 @@ public abstract class AbstractCountryService implements ICountryService {
 	}
 	
 	public abstract Country getCountry();// c'est quoi ton pays ?
+	
+	/*@Override
+	public String countryname(){ 
+		return getCountry().getName(); 
+		}
+
+	@Override
+	public String continentName() {
+		return getCountry().getContinent().getName();
+	}*/
 }

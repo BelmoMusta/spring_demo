@@ -30,6 +30,7 @@ public class CountryDAOImpl extends AbsCountryDAO implements CountryDAO {
 			System.out.print(" ,currency: " + country.getDevise());
 			System.out.print(" ,Greetings: " + country.getGreetings());
 			System.out.println(",Code: " + country.getCode());
+			//System.out.println(",Continent: " + country.getContinent());
 	}
 		}
 	@Override
@@ -46,6 +47,7 @@ public class CountryDAOImpl extends AbsCountryDAO implements CountryDAO {
 		System.out.print(" ,currency: " + country.getDevise());
 		System.out.print(" ,Greetings: " + country.getGreetings());
 		System.out.println(",Code: " + country.getCode());
+		//System.out.println(",Continent: " + country.getContinent());
 		}
 		transaction.commit();
 		session2.close();}
@@ -61,12 +63,12 @@ public class CountryDAOImpl extends AbsCountryDAO implements CountryDAO {
 	}
  
 	@Override
-	public void updateByCode(String code, Country contry) {
+	public void updateByCode(String code, Country country) {
 		
 		Session session4 = getSession();
 		Transaction transaction3 = session4.beginTransaction();
 		String str3 ="UPDATE Country SET name = :name ,devise =:devise ,greetings=:greetings  WHERE code = :codeID";
-		int req2 = session4.createSQLQuery(str3).setParameter("codeID", code).setParameter("name", contry.getName()).setParameter("devise", contry.getDevise()).setParameter("greetings", contry.getGreetings()).executeUpdate();
+		int req2 = session4.createSQLQuery(str3).setParameter("codeID", code).setParameter("name", country.getName()).setParameter("devise", country.getDevise()).setParameter("greetings", country.getGreetings())/*.setParameter("continent-id", country.getContent())*/.executeUpdate();
 		transaction3.commit();
 		session4.close();
 	}

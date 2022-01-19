@@ -11,4 +11,5 @@ public interface IServiceWorker {
 	public void findByCode(String code);
 	public void deleteByCode(String code);
 	public void updateByCode(String code, String country);
+	//List<Country> getCountriesByContinent(String continentCode);
 }

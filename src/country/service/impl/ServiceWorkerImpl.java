@@ -1,9 +1,13 @@
 package country.service.impl;
 
+import country.dao.ContinentDAO;
 import country.dao.CountryDAO;
 import country.model.Country;
 
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -14,6 +18,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
 	private CountryDAO cDAO;
 	
+	/*@Autowired
+	private ContinentDAO conDAO;
+	*/
 	@Override
 	public void listCountry()
 	{
@@ -27,6 +34,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		Ccountry.setDevise(list[2]);
 		Ccountry.setGreetings(list[3]);
 		Ccountry.setName(list[1]);
+		//String continentId = list[4];
+		//country.setContinent(conDAO.getContinentByCode(continentId));
+
 		cDAO.saveCountry(Ccountry);
 
 	}
@@ -49,10 +59,19 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countrry.setName(list[0]);
 		countrry.setDevise(list[1]);
 		countrry.setGreetings(list[2]);
+		//country.setContinent(conDAO.getContinentByCode(list[4]));
 		cDAO.updateByCode(code,countrry);
 	
 	}
+  
+	/*@Override
+	public List<Country> getCountriesByContinent(String conCode) {
 
+		for( Country country : cDAO.getCountriesByContinent(conCode)){
+			System.out.println(country.toString());
+		}
+		return cDAO.getCountriesByContinent(conCode);
+	}*/
 
 	
 }
