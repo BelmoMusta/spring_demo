@@ -70,4 +70,25 @@ public class CountryDAOImpl implements CountryDAO {
 		session.close();
 		return this.getByCode(country.getCode());
 	}
+
+	@Override
+	public void DeleteCountry(String code) {
+		Session session;
+		try {
+			session = sessionFactory.getCurrentSession();
+		} catch (HibernateException e) {
+			session = sessionFactory.openSession();
+		}
+		session.beginTransaction();
+		Country country = this.getByCode(code);
+		if(country!=null) {
+			session.delete(country);
+			session.getTransaction().commit();
+			session.close();
+			System.out.println("Pays supprimé");
+		}else {
+			System.out.println("Pays n'existe pas");
+		}
+
+	}
 }

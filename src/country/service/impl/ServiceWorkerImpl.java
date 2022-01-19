@@ -35,4 +35,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
 		System.out.println("Pays enregestré avec succes");
 	}
+
+	@Override
+	public void DeleteCountry(String code) {
+			countryDAO.DeleteCountry(code);
+	}
 }

@@ -36,6 +36,12 @@ public class App {
 					String countryToFind = countryToFindInput.next();
 					serviceWorker.dealWithCountryByCode(countryToFind);
 					break;
+				case 3:
+					System.out.println("Veullier entrer le code du pays à afficher:");
+					Scanner countryToDeleteInput = new Scanner(System.in);
+					String countryToDelete = countryToDeleteInput.next();
+					serviceWorker.DeleteCountry(countryToDelete);
+					break;
 				case 0:
 					System.out.println("Au revoir");
 					System.exit(0);
