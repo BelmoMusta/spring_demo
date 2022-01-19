@@ -9,6 +9,8 @@
         "libs2\\spring-core-4.2.6.RELEASE.jar",
         "libs2\\spring-expression-4.2.6.RELEASE.jar",
         "libs2\\spring-jdbc-4.3.10.RELEASE.jar",
-        "libs2\\spring-tx-4.2.5.RELEASE.jar"
+        "libs2\\spring-tx-4.2.5.RELEASE.jar",
+        "c:\\Users\\hp\\Desktop\\devoir\\hamcrest-core-1.3.jar",
+        "c:\\Users\\hp\\Desktop\\devoir\\junit-4.13.2.jar"
     ]
 }

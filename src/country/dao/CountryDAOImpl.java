@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +52,9 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public void getAllCountries() {
+	public List<Country> getAllCountries() {
+		List<Country> countries = new ArrayList<>();
+		Country country = null;
 		// TODO Auto-generated method stub
 		try {
 			Connection connection = dataSource.getConnection();
@@ -63,10 +67,25 @@ public class CountryDAOImpl implements CountryDAO {
 				System.out.print(", " + rs.getString("code"));
 				System.out.print(", " + rs.getString("devise"));
 				System.out.println(", " + rs.getString("greetings"));
+
+				country = new Country();
+				Integer id = rs.getInt(1);
+				String name = rs.getString(2);
+				String code = rs.getString(3);
+				String devise = rs.getString(4);
+				String greetings = rs.getString(5);
+
+				country.setId(id);
+				country.setName(name);
+				country.setCode(code);
+				country.setDevise(devise);
+				country.setGreetings(greetings);
+				countries.add(country);
 			}
 
 		} catch (SQLException exception) {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
+		return countries;
 	}
 }
