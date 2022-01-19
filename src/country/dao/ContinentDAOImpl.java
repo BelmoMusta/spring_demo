@@ -33,16 +33,4 @@ public class ContinentDAOImpl implements ContinentDAO {
 		query.setString("code",continentCode);
 		return (Continent) query.uniqueResult();
 	}
-
-	@Override
-	public Continent getByName(String continentName){
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Continent c where c.name = :name");
-		query.setString("name",continentName);
-		return (Continent) query.list().get(0);
-	}
-
-
-
-
 }
