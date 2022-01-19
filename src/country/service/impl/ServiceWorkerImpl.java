@@ -46,7 +46,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 		if(continent != null){
 			IContinentService continentService = applicationContext.getBean(IContinentService.class, continent);
-			System.out.println("Continent: "+continent.getName()+ "Countries: ");
+			System.out.println("Continent: "+continent.getName()+ "\n Countries: ");
 			for(Country c:continent.getCountries()){
 				System.out.println(c.toString());
 			}
@@ -65,7 +65,36 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		else {
 			System.out.println("Country not found");
 		}
+	}
 
+	@Override
+	public void updateCountry(String codeCountry, String info){
+		Country country = countryDAO.getByCode(codeCountry);
+		String name, devise, greeting, continentCode;
+		Continent continent;
+		if(country != null) {
+			if(info.split(",")[0].length() > 0) {
+				name = info.split(",")[0];
+				country.setName(name);
+			}
+			if(info.split(",")[1].length() > 0) {
+				devise = info.split(",")[1];
+				country.setDevise(devise);
+			}
+			if(info.split(",")[2].length() > 0) {
+				greeting = info.split(",")[2];
+				country.setGreetings(greeting);
+			}
+			if(info.split(",")[3].length() > 0) {
+				continentCode = info.split(",")[3];
+				continent = continentDao.getByCode(continentCode);
+				country.setContinent(continent);
+			}
+			countryDAO.update(country);
+		}
+		else {
+			System.out.println("Country doesn't exist!");
+		}
 	}
 	@Override
 	public void saveCountry(String input) {

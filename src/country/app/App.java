@@ -22,7 +22,7 @@ public class App {
 			System.out.println("3 : Delete an existing country by code");
 			System.out.println("4 : Update information of an existing country by code");
 			System.out.println("5 : List all countries of a given continent");
-			System.out.print("Code :");
+			System.out.print("Code : ");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String code;
 			String operation = inputFromConsole.next();
@@ -31,7 +31,10 @@ public class App {
 					System.exit(0);
 					break;
 				case "1":
-					System.out.print("Enter a country to add in the given format: Code,Name,Currency,Greeting,ContinentCode");
+					System.out.println("Enter a country to add in the following format: ");
+					System.out.println("----------------------------------------------");
+					System.out.println("Code,Name,Currency,Greeting,ContinentCode");
+					System.out.println("----------------------------------------------");
 					String input = inputFromConsole.next();
 					serviceWorker.saveCountry(input);
 				break;
@@ -49,6 +52,15 @@ public class App {
 					break;
 
 				case "4":
+					System.out.print("Enter a country code to modify its information: ");
+					code = inputFromConsole.next();
+					System.out.println("Enter the new information in the following format: ");
+					System.out.println("-------------------------------------");
+					System.out.println("Name,Devise,Greeting,ContinentCode");
+					System.out.println("-------------------------------------");
+					System.out.println("PS: If you don't want to modify a certain field, you can leave it empty");
+					String info = inputFromConsole.next();
+					serviceWorker.updateCountry(code,info);
 					break;
 				case "5":
 					System.out.print("Enter a continent code to display its countries: ");
