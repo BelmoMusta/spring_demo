@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
@@ -18,7 +21,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private ContinentDAO continentDAO;
 	@Autowired
 	private ApplicationContext applicationContext;
-
+	
 	@Override
 	public void dealWithCountryByCode(String language) {
 		Country pays = countryDAO.getByCode(language);
@@ -33,7 +36,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void addCountry(String info) {
 		Country country = new Country();
 		Continent continent = new Continent();
-		
+
 		String continentId = info.split(",")[4];
 		continent=continentDAO.getContientByCode(continentId);
 
@@ -44,50 +47,44 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setContinent(continent);
 		countryDAO.saveCountry(country);
 	}
-
 	@Override
-	public void getCountryInfos(String countryCode) {
-		Country pays = countryDAO.getByCode(countryCode);
-		// car c'est prototype
+	public Country getCountryData(String code) {
+		Country pays = countryDAO.getByCode(code);
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-
-		System.out.println("Name is :" + countryService.name());
-		System.out.println("WELCOME : " + countryService.welcome());
-		System.out.println("Devise is :" + countryService.devise());
-		System.out.println("Continent is :" + countryService.continentName());
+		System.out.println(pays.toString());
+		return pays;
 	}
 
 	@Override
-	public void deletCountry(String countryCode) {
-		Country country = countryDAO.getByCode(countryCode);
+	public void deleteCountry(String code) {
+		Country country = countryDAO.getByCode(code);
 		countryDAO.deleteCountry(country);
-
-
 	}
 
 	@Override
 	public void updateCountry(String countryCode, String newFields) {
 		Country country = countryDAO.getByCode(countryCode);
 		Continent continent;
-		String[] fields = newFields.split(",");
+		List<String> newFieldsList = Arrays.asList(newFields.split(","));
 
-		continent=continentDAO.getContientByCode(fields[4]);
+		continent=continentDAO.getContientByCode(newFieldsList.get(4));
 
-		country.setCode(fields[0]);
-		country.setName(fields[1]);
-		country.setDevise(fields[2]);
-		country.setGreetings(fields[3]);
+		country.setCode(newFieldsList.get(0));
+		country.setName(newFieldsList.get(1));
+		country.setDevise(newFieldsList.get(2));
+		country.setGreetings(newFieldsList.get(3));
 		country.setContinent(continent);
 		countryDAO.updateCountry(country);
 	}
-
+	
 	@Override
-	public void getCountries() {
+	public List<Country> getCountriesByContinent(String continentCode) {
 
-		for( Country country : countryDAO.getAllCountries()){
+		for( Country country : countryDAO.getAllCountriesByContinent(continentCode)){
 			System.out.println(country.toString());
 			System.out.println("\n");
-
 		}
+		return countryDAO.getAllCountriesByContinent(continentCode);
 	}
+
 }
