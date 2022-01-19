@@ -1,4 +1,4 @@
-INSERT INTO continent(name, code) VALUES ('Africa', 'af');
+INSERT INTO continent(name, code) VALUES ('Afrique', 'af');
 INSERT INTO continent(name, code) VALUES ('Europe', 'eu');
 INSERT INTO continent(name, code) VALUES ('America', 'Am');
 INSERT INTO continent(name, code) VALUES ('Aisia', 'Ais');
