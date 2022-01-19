@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
@@ -43,14 +45,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	@Override
-	public void getInformations(String countryCode) {
-		Country pays = countryDAO.getByCode(countryCode);
-		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-
-		System.out.println("Le nom du pays est :" + countryService.name());
-		System.out.println("Son salutation est : " + countryService.welcome());
-		System.out.println("Sa devise est :" + countryService.devise());
-		System.out.println("Son continent est :" + countryService.continentName());
+	public Country getInformations(String countryCode) {
+		Country country = countryDAO.getByCode(countryCode);
+		System.out.println(country.toString());
+		return country;
 	}
 
 	@Override
@@ -74,9 +72,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	@Override
-	public void getCountries() {
-		for( Country country : countryDAO.getAllCountries()){
+	public List<Country> getCountries(String continentCode) {
+		for( Country country : countryDAO.getAllCountries(continentCode)){
 			System.out.println(country.toString());
 		}
+		return countryDAO.getAllCountries(continentCode);
 	}
 }
+

@@ -14,6 +14,19 @@ public class Country implements Serializable{
 
 	@ManyToOne
 	private Continent continent;
+
+	public Country(String name, String code, String devise, String greetings, Continent continent) {
+		this.name = name;
+		this.code = code;
+		this.devise = devise;
+		this.greetings = greetings;
+		this.continent = continent;
+	}
+
+	public Country(){
+
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -8,5 +8,5 @@ public interface CountryDAO {
 	void saveCountry(Country country);
 	void deleteCountry(Country country);
 	void updateCountry(Country country);
-	List<Country> getAllCountries();
+	List<Country> getAllCountries(String continentCode);
 }

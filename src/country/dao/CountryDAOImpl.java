@@ -50,7 +50,11 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public List<Country> getAllCountries() {
-		return (List<Country>) sessionFactory.getCurrentSession().createQuery("from Country").list();
+	public List<Country> getAllCountries(String continentCode){
+			Query query = sessionFactory.getCurrentSession().createQuery("from Country where continent.code= :code");
+			query.setParameter("code", continentCode);
+			return (List<Country>) query.list();
+		}
+
 	}
-}
+

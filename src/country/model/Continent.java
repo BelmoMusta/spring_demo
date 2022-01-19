@@ -16,6 +16,13 @@ public class Continent implements Serializable {
     @JoinColumn(name="CONTINENT_ID")
     private Set<Country> countries;
 
+    public Continent(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+    public Continent(){
+
+    }
     public Integer getId() {
         return id;
     }

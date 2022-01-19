@@ -1,10 +1,14 @@
 package country.service;
 
+import country.model.Country;
+
+import java.util.List;
+
 public interface IServiceWorker {
 	void dealWithCountryByCode(String language);
 	void addCountry(String info);
-	void getInformations(String countryCode);
+	Country getInformations(String countryCode);
 	void deleteCountry(String countryCode);
 	void updateCountry(String countryCode, String newFields);
-	void getCountries();
+	List<Country> getCountries(String continentCode);
 }

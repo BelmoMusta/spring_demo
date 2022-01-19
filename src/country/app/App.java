@@ -60,7 +60,10 @@ public class App {
 					break;
 				}
 				case 5: {
-					serviceWorker.getCountries();
+					System.out.print("Entrer le code du continent pour afficher ses pays: ");
+					Scanner inputFromConsole = new Scanner(System.in);
+					String language = inputFromConsole.next();
+					serviceWorker.getCountries(language);
 					break;
 				}
 				default:{
