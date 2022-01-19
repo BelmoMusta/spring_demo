@@ -119,13 +119,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 				if (updatedCountry != null) {
 					countryDAO.update(updatedCountry);
 					System.out
-							.println("Insertion faite avec succès, pays inseré:\n\tCode: " + updatedCountry.getCode()
-									+ "\n\tNom: "
-									+ updatedCountry.getName()
-									+ "\n\tDevise: " + updatedCountry.getDevise() + "\n\tGreeting: "
-									+ updatedCountry.getGreetings()
-									+ "\n\tContinent: "
-									+ updatedCountry.getContinent().getName());
+							.println(
+									"Modification faite avec succès, pays modifié:\n\tCode: " + updatedCountry.getCode()
+											+ "\n\tNom: "
+											+ updatedCountry.getName()
+											+ "\n\tDevise: " + updatedCountry.getDevise() + "\n\tGreeting: "
+											+ updatedCountry.getGreetings()
+											+ "\n\tContinent: "
+											+ updatedCountry.getContinent().getName());
 				}
 			} catch (DataIntegrityViolationException e) {
 				System.out.println("Code pays dupliqué");
