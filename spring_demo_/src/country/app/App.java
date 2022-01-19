@@ -29,7 +29,7 @@ public class App {
 					System.exit(0);
 				}
 				case 1: {
-					System.out.print("Veuillez saisir le pays à ajouter, selon le fromat suivant: `FR,france,EURO,Bonjour!,eur` : ");
+					System.out.print("Veuillez saisir le pays que vous voulez ajouter: `code,pays,devise,salutations,continent` : ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
 					serviceWorker.addCountry(language);
@@ -43,17 +43,17 @@ public class App {
 					break;
 				}
 				case 3: {
-					System.out.print("Entrer le code du pays à supprimer: ");
+					System.out.print("Entrer le code du pays que vous voulez supprimer: ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String countryCode = inputFromConsole.next();
 					serviceWorker.deleteCountry(countryCode);
 					break;
 				}
 				case 4: {
-					System.out.print("Veuillez saisir le code du pays à modifier: ");
+					System.out.print("Veuillez saisir le code du pays que vous voulez modifier modifier: ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String language = inputFromConsole.next();
-					System.out.print("Veuillez saisir les nouveaux champs, selon le fromat suivant: 'code,name,devise,greetings,code du continent' ");
+					System.out.print("Veuillez saisir les nouveaux champs, selon le fromat suivant: 'code,name,devise,salutations,code du continent' ");
 					Scanner inputFromConsole2 = new Scanner(System.in);
 					String modif = inputFromConsole.next();
 					try{
@@ -65,7 +65,7 @@ public class App {
 					break;
 				}
 				case 5: {
-					System.out.print("Veuillez saisir le code du continent à lister: ");
+					System.out.print("Veuillez saisir le code du continent que vous voulez lister: ");
 					Scanner inputFromConsole = new Scanner(System.in);
 					String continentCode = inputFromConsole.next();
 					serviceWorker.getCountriesByContinent(continentCode);
