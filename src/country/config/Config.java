@@ -31,14 +31,6 @@ public class Config {
 		dataSource.setUrl("jdbc:h2:mem:dataSource;DB_CLOSE_DELAY=-1");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
-		//add schema script
-//		Resource initSchema = new ClassPathResource("database/db-schema.sql");
-//		DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema);
-//		DatabasePopulatorUtils.execute(databasePopulator, dataSource);
-//		//add initial data 
-//		initSchema  = new ClassPathResource("database/populate-database.sql");
-//		databasePopulator = new ResourceDatabasePopulator(initSchema);
-//		DatabasePopulatorUtils.execute(databasePopulator, dataSource);
 		return dataSource;
 	}
 	@Bean
@@ -48,7 +40,6 @@ public class Config {
 		sessionFactory.setAnnotatedClasses(Country.class,Continent.class);
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "create");
-//		properties.setProperty("javax.persistence.sql-load-script-source", "database/populate-database.sql");
 		sessionFactory.setHibernateProperties(properties);
 		return sessionFactory;
 	}
