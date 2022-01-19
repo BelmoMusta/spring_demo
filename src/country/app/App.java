@@ -38,23 +38,23 @@ public class App {
 				Country country=new Country();
 				
 				System.out.println("Ajouter les informations du pays comme: "
-						+ "code,name,devise,greeting,nameofcontinent:");
+						+ "code,nom,devise,salutation,nomDeContinent:");
 				String data=dataFromConsole.next();
 				
 				try{
-					String[] informationOfCountry=data.split(",");
+					String[] dataArray=data.split(",");
 					
-					country.setCode(informationOfCountry[0]);
-					country.setName(informationOfCountry[1]);
-					country.setDevise(informationOfCountry[2]);
-					country.setGreetings(informationOfCountry[3]);
+					country.setCode(dataArray[0]);
+					country.setName(dataArray[1]);
+					country.setDevise(dataArray[2]);
+					country.setGreetings(dataArray[3]);
 					
-					serviceWorker.InsertNewCountry(country,informationOfCountry[4]);
+					serviceWorker.InsertNewCountry(country,dataArray[4]);
 					
 				}
 				catch (ArrayIndexOutOfBoundsException e) {
-					System.out.println("Remarque: Les données doivent être fournie comme suvant"
-							+ " code,name,devise,greeting,nameofcontinent \n");
+					System.out.println("Remarque: Les données doivent être fournie comme suvant :"
+							+ " code,nom,devise,salutation,nomDeContinent \n");
 				}
 				
 				
@@ -73,6 +73,31 @@ public class App {
 				
 				serviceWorker.deleteCountryByCode(code);
 			}break;
+			
+			case "4": {
+				
+				System.out.println("Saisissez le code du pays à modifier: ");
+				String code=dataFromConsole.next();
+				serviceWorker.ListCountryData(code);
+				
+				System.out.println("Entrez les nouvelles informations du pays comme: "
+						+ "code,nom,devise,salutation,nomDeContinent:");
+				
+				String data=dataFromConsole.next();
+				try {
+				String[] dataArray=data.split(",");
+				Country country=new Country();
+				country.setCode(dataArray[0]);
+				country.setName(dataArray[1]);
+				country.setDevise(dataArray[2]);
+				country.setGreetings(dataArray[3]);
+				
+				serviceWorker.updateCountry(code, country, dataArray[4]);
+				}catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("Remarque: Les données doivent être fournie comme suvant :"
+							+ " code,nom,devise,salutation,nomDeContinent \n");
+				}
+				}break;
 			
 		}
 	}

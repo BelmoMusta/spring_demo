@@ -8,4 +8,5 @@ public interface CountryDAO {
 	int insert(Country country,String nameOfContinet);
 	Continent getContinentByName(String name);
 	public int deleteCountryByCode(String code);
+	int updateCountry(String code, Country country, String nameOfContinet);
 }
