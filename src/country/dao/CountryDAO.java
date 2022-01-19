@@ -7,4 +7,5 @@ public interface CountryDAO {
 	Country getByCode(String code);
 	int insert(Country country,String nameOfContinet);
 	Continent getContinentByName(String name);
+	public int deleteCountryByCode(String code);
 }

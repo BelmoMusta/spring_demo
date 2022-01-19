@@ -48,6 +48,7 @@ public class App {
 					country.setName(informationOfCountry[1]);
 					country.setDevise(informationOfCountry[2]);
 					country.setGreetings(informationOfCountry[3]);
+					
 					serviceWorker.InsertNewCountry(country,informationOfCountry[4]);
 					
 				}
@@ -64,7 +65,14 @@ public class App {
 				String code=dataFromConsole.next();
 				
 				serviceWorker.ListCountryData(code);
-			}
+			}break;
+			
+			case "3": {
+				System.out.println("Saisissez le code du pays à supprimer: ");
+				String code=dataFromConsole.next();
+				
+				serviceWorker.deleteCountryByCode(code);
+			}break;
 			
 		}
 	}

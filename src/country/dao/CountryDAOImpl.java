@@ -74,7 +74,7 @@ public class CountryDAOImpl implements CountryDAO {
         	    System.out.println("** Merci, Un nouveau Pays est crée **");
         	}
             else
-        		System.out.println("** Insertion n'a pas réussie **");
+        		System.out.println("** L'Insertion n'a pas réussie **");
             }
             else 
             	System.out.println("** Le code exist déjà **");
@@ -89,5 +89,25 @@ public class CountryDAOImpl implements CountryDAO {
 		Query query=getSessionFactory().openSession().createQuery(hql);
 		query.setParameter("name", name);
 		return (Continent) query.uniqueResult();
+	}
+	
+	public int deleteCountryByCode(String code) {		
+		Session session=getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		String hql = "delete from Country where code = :code";
+		Query query = session.createQuery(hql);
+		query.setParameter("code",code);
+		 
+		int affectedRows=0;
+		affectedRows = query.executeUpdate();
+		transaction.commit();
+		
+		if (affectedRows > 0) {
+		    System.out.println("** Merci, le Pays est supprimé **");
+		}
+		else {System.out.println("** La suppression n'a pas réussie **");}
+			
+		return affectedRows;
 	}
 }
