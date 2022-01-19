@@ -8,4 +8,6 @@ public interface CountryDAO {
 	Country getByCode(String code);
 
 	List<Country> getAllCountries();
+
+	int addCountry(Country contryFromData);
 }

@@ -82,10 +82,29 @@ public class CountryDAOImpl implements CountryDAO {
 				country.setGreetings(greetings);
 				countries.add(country);
 			}
-
 		} catch (SQLException exception) {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
 		return countries;
+	}
+
+	public int addCountry(Country country) {
+		// TODO Auto-generated method stub
+		int rslt = 0;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("INSERT INTO country(name, code, devise, greetings) VALUES(?, ?, ?,?);");
+			preparedStatement.setString(1, country.getName());
+			preparedStatement.setString(2, country.getCode());
+			preparedStatement.setString(3, country.getDevise());
+			preparedStatement.setString(4, country.getGreetings());
+			int resultSet = preparedStatement.executeUpdate();
+			return resultSet;
+
+		} catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return rslt;
 	}
 }

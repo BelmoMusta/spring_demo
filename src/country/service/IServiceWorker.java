@@ -4,4 +4,6 @@ public interface IServiceWorker {
 	void dealWithCountryByCode(String language);
 
 	void getAllCountries();
+
+	void addCountry(String contryData);
 }
