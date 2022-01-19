@@ -7,10 +7,12 @@ import country.model.Country;
 import country.service.IContinentService;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+import country.service.IUtilityService;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +23,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private ContinentDAO continentDAO;
 	@Autowired
 	private ApplicationContext applicationContext;
+	@Autowired
+	private IUtilityService utilityService;
 
 	@Override
 	public void dealWithCountryByCode(String code) {
@@ -103,5 +107,30 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		} else
 			System.out.println("Continent introuvable");
 
+	}
+
+	@Override
+	public void updateCountry(String countryCode) {
+		Country updatedCountry = countryDAO.getByCode(countryCode);
+		if (updatedCountry != null) {
+			updatedCountry = utilityService.updateSubMenu(updatedCountry);
+
+			try {
+				if (updatedCountry != null) {
+					countryDAO.update(updatedCountry);
+					System.out
+							.println("Insertion faite avec succès, pays inseré:\n\tCode: " + updatedCountry.getCode()
+									+ "\n\tNom: "
+									+ updatedCountry.getName()
+									+ "\n\tDevise: " + updatedCountry.getDevise() + "\n\tGreeting: "
+									+ updatedCountry.getGreetings()
+									+ "\n\tContinent: "
+									+ updatedCountry.getContinent().getName());
+				}
+			} catch (DataIntegrityViolationException e) {
+				System.out.println("Code pays dupliqué");
+			}
+		} else
+			System.out.println("Pays introuvable !");
 	}
 }

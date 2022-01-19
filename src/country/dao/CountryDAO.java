@@ -8,4 +8,6 @@ public interface CountryDAO {
 	void delete(Country country);
 
 	void save(Country country);
+
+	public void update(Country country);
 }

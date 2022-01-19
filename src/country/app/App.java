@@ -65,7 +65,9 @@ public class App {
 					for (int i = 0; i < 50; i++)
 						System.out.print("/\\");
 					System.out.println("\nModification d'un pays:");
-					System.out.println("\tAspect Fonctionnel 4 (WIP)");
+					System.out.print("\tEntrez le code du pays à modifier: ");
+					String codeCountryToUpdate = inputFromConsole.next();
+					serviceWorker.updateCountry(codeCountryToUpdate);
 					for (int i = 0; i < 50; i++)
 						System.out.print("\\/");
 					break;
