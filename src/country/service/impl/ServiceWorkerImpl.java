@@ -41,7 +41,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.updateByCode(coutryCode, getContryFromData(countryData));
 	}
 
-	private Country getContryFromData(String countryData) {
+	public Country getContryFromData(String countryData) {
 		Country country = new Country();
 		String[] data = countryData.split(",");
 		country.setCode(data[0]);
