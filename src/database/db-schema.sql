@@ -1,5 +1,14 @@
 CREATE SCHEMA if not exists countries;
 DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS Continent;
+
+CREATE TABLE Continent
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(250) NOT NULL,
+    code VARCHAR(250) NOT NULL
+
+);
 
 CREATE TABLE country
 (
@@ -7,5 +16,7 @@ CREATE TABLE country
     name   VARCHAR(250) NOT NULL,
     code   VARCHAR(250) NOT NULL,
     devise VARCHAR(250) DEFAULT NULL,
-    greetings VARCHAR(250) DEFAULT NULL
+    greetings VARCHAR(250) DEFAULT NULL,
+    continent_identifiant INT,
+    CONSTRAINT continent_identifiant_const FOREIGN KEY (continent_identifiant) REFERENCES Continent(identifiant)
 );
