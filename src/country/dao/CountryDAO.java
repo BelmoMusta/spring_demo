@@ -7,6 +7,9 @@ import java.util.List;
 public interface CountryDAO {
 	Country getByCode(String code);
 	void save(Country country);
-	void deleteByCode(String Code);
+
 	void update(Country country);
+
+	void deleteByCode(Country country);
+
 }
