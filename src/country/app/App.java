@@ -20,7 +20,7 @@ public class App {
 							+ "3-Pour supprimer un pays\n"
 							+ "4-Pour modifier les informations d'un pays\n"
 							+ "5-Pour afficher les pays d'un continent\n"
-							+ "6-Pour quitter\n"
+							+ "0-Pour quitter\n"
 							+ "Entrez un numéro:");
 			Scanner choice = new Scanner(System.in);
 			switch(choice.nextInt()) {
@@ -37,10 +37,19 @@ public class App {
 					serviceWorker.dealWithCountryByCode(countryToFind);
 					break;
 				case 3:
-					System.out.println("Veullier entrer le code du pays à afficher:");
+					System.out.println("Veullier entrer le code du pays à supprimer:");
 					Scanner countryToDeleteInput = new Scanner(System.in);
 					String countryToDelete = countryToDeleteInput.next();
 					serviceWorker.DeleteCountry(countryToDelete);
+					break;
+				case 4:
+					System.out.println("Veullier saisier le code de pays à modifier");
+					Scanner countryCodeToUpdateInput = new Scanner(System.in);
+					String countryCodeToUpdate = countryCodeToUpdateInput.next();
+					System.out.println("Veullier entrer les informations à jour du pays de la forme suivante :name,currency,greetings,code-continent:\n");
+					Scanner countryInfosToUpdateInput = new Scanner(System.in);
+					String countryInfosToUpdate = countryInfosToUpdateInput.next();
+					serviceWorker.UpdateCountry(countryCodeToUpdate,countryInfosToUpdate);
 					break;
 				case 0:
 					System.out.println("Au revoir");

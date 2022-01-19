@@ -91,4 +91,28 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 
 	}
+
+	@Override
+	public void UpdateCountry(String code, Country country) {
+
+		Session session;
+		try {
+			session = sessionFactory.getCurrentSession();
+		} catch (HibernateException e) {
+			session = sessionFactory.openSession();
+		}
+		session.beginTransaction();
+		Country countryExists = this.getByCode(code);
+		if(countryExists!=null) {
+			country.setId(countryExists.getId());
+			country.setCode(code);
+			session.update(country);
+			session.getTransaction().commit();
+			session.close();
+			System.out.println("Pays mis à jour");
+		}else {
+			System.out.println("Pays n'existe pas");
+		}
+
+	}
 }

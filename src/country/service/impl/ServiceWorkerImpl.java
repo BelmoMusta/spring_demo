@@ -40,4 +40,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void DeleteCountry(String code) {
 			countryDAO.DeleteCountry(code);
 	}
+
+	@Override
+	public void UpdateCountry(String code, String country) {
+		String[] countrytoUpdate = country.split(",");
+		countryDAO.UpdateCountry(code,new Country(countrytoUpdate[0],countrytoUpdate[1],countrytoUpdate[2],countrytoUpdate[3]));
+
+	}
 }

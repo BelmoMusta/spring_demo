@@ -29,7 +29,14 @@ public class Country {
 		this.continent=continent;
 	}
 
-	public Integer getId() {
+    public Country(String name, String devise, String greetings, String continent) {
+		this.name=name;
+		this.devise=devise;
+		this.greetings=greetings;
+		this.continent=continent;
+    }
+
+    public Integer getId() {
 		return id;
 	}
 	
