@@ -5,7 +5,7 @@ import country.model.Country;
 public interface IServiceWorker {
 	Country get = null;
 
-	void dealWithCountryByCode(String language);
+	void getCountryByCode(String language);
 
 	Country getContryFromData(String countryData);
 

@@ -34,7 +34,7 @@ public class App {
 				case "2":
 					System.out.print("entrer le code du pays:");
 					code = inputFromConsole.next();
-					serviceWorker.dealWithCountryByCode(code);
+					serviceWorker.getCountryByCode(code);
 					break;
 				case "3":
 					System.out.print("entrer le code du pays:");
@@ -56,6 +56,7 @@ public class App {
 				case "0":
 					System.out.print("au revoir 👋👋👋 !!!");
 					exit = !exit;
+					System.exit(0);
 					break;
 				default:
 					System.out.println("choisir un numero entre 1 et 6!");
