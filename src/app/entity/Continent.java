@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +26,11 @@ public class Continent {
 	private String code;
 	@Column( unique = true, nullable = false, length = 40)
 	private String name;
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "continent")
+	@OneToMany(mappedBy = "continent",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Country> countries;
 	@Override
 	public String toString() {
-		return "Continent [ code=" + code + ", name=" + name + "]";
+		return "[" + code + "] " + name + "]";
 	}
 	
 	

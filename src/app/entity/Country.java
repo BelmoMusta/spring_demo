@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 @Table(name="country")
 public class Country {
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column( unique = true, nullable = false, length = 40)
@@ -31,4 +31,9 @@ public class Country {
 	@ManyToOne(cascade = CascadeType.REFRESH , fetch = FetchType.EAGER)
 	@JoinColumn(name = "continent_id")
 	private Continent continent;
+	
+	@Override
+	public String toString() {
+		return String.format("- [%s] , %s , %s , %s ( continent = [%s] )", getCode(),getName(),getDevise(),getGreetings(),getContinent().getName() );
+	}
 }

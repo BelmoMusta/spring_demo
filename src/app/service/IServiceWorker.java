@@ -10,5 +10,6 @@ public interface IServiceWorker {
 	Country getCountry(String code);
 	List<Country> getCountries();
 	void deleteCountry(String code);
-	Country updateCountry(Country country , String code);
+	Country updateCountry(Country country);
+	List<Country> getCountriesByContinent(String continent);
 }

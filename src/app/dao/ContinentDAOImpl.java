@@ -1,13 +1,6 @@
 package app.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,9 +12,6 @@ import org.springframework.stereotype.Repository;
 import app.entity.Continent;
 @Repository
 public class ContinentDAOImpl implements ContinentDAO {
-	private static final Logger LOGGER = Logger.getLogger(ContinentDAOImpl.class.getName());
-	@Autowired
-	private DataSource dataSource;
 	@Autowired
 	private SessionFactory sessionFactory;
 	@Autowired
@@ -37,19 +27,7 @@ public class ContinentDAOImpl implements ContinentDAO {
 
 	@Override
 	public Continent addContinent(Continent continent) {
-		try (Connection connection = dataSource.getConnection();) {
-
-			try (PreparedStatement preparedStatement = connection
-					.prepareStatement("INSERT INTO  continent(code,name) VALUES(?,?);");) {
-				preparedStatement.setString(1, continent.getCode());
-				preparedStatement.setString(2, continent.getName());
-				preparedStatement.executeUpdate();
-
-			}
-
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
+		hibernateTemplate.save(continent);
 		return continent;
 	}
 
@@ -66,10 +44,11 @@ public class ContinentDAOImpl implements ContinentDAO {
 
 	@Override
 	public void deleteContinent(String code) {
-		String hql = "DELETE FROM Continent where code = ?1";
+		String hql = "DELETE FROM Continent C where C.code = ?1";
 		Query<?> query = this.getSessionFactory().createQuery(hql);
 		query.setParameter(1, code);
 		query.executeUpdate();
+		
 
 	}
 
