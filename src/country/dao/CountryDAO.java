@@ -14,4 +14,8 @@ public interface CountryDAO {
 	int removeCountry(String countryCode);
 
 	int updateByCode(String countryCode, Country country);
+
+	List<Country> getAllCountriesInContinent(String continentCode);
+
+	String getContinentName(String continentCode);
 }

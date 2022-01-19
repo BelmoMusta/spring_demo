@@ -4,6 +4,9 @@ import country.dao.CountryDAO;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -54,5 +57,15 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void removeCountry(String CountryCode) {
 		// TODO Auto-generated method stub
 		countryDAO.removeCountry(CountryCode);
+	}
+
+	public void getAllCountriesInContinent(String continentCode) {
+		// TODO Auto-generated method stub
+		List<Country> countries = countryDAO.getAllCountriesInContinent(continentCode);
+		String continentName = countryDAO.getContinentName(continentCode);
+		System.out.println("les pays que se trouvent dans le continent " + continentName + " sont:");
+		for (Country country : countries) {
+			System.out.println("- " + country.getName());
+		}
 	}
 }

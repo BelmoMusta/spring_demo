@@ -16,4 +16,6 @@ public interface IServiceWorker {
 	void removeCountry(String CountryCode);
 
 	void updateCountry(String countryCode, String countryData);
+
+	void getAllCountriesInContinent(String continentCode);
 }

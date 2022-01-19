@@ -35,12 +35,14 @@ public class CountryDAOImpl implements CountryDAO {
 				Integer id = resultSet.getInt(1);
 				String name = resultSet.getString(2);
 				String code = resultSet.getString(3);
-				String devise = resultSet.getString(4);
-				String greetings = resultSet.getString(5);
+				String continent = resultSet.getString(4);
+				String devise = resultSet.getString(5);
+				String greetings = resultSet.getString(6);
 
 				country.setId(id);
 				country.setName(name);
 				country.setCode(code);
+				country.setContinent(continent);
 				country.setDevise(devise);
 				country.setGreetings(greetings);
 
@@ -94,9 +96,11 @@ public class CountryDAOImpl implements CountryDAO {
 		try {
 			Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("INSERT INTO country(name, code, devise, greetings) VALUES(?, ?, ?,?);");
+					.prepareStatement(
+							"INSERT INTO country(name, code, continent, devise, greetings) VALUES(?, ?, ?, ?,?);");
 			preparedStatement.setString(1, country.getName());
 			preparedStatement.setString(2, country.getCode());
+			preparedStatement.setString(2, country.getContinent());
 			preparedStatement.setString(3, country.getDevise());
 			preparedStatement.setString(4, country.getGreetings());
 			int resultSet = preparedStatement.executeUpdate();
@@ -129,12 +133,14 @@ public class CountryDAOImpl implements CountryDAO {
 		try {
 			Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("UPDATE country SET code=?, name=?,devise=?,greetings=? where code = ?;");
+					.prepareStatement(
+							"UPDATE country SET code=?, name=?,continent=?, devise=?,greetings=? where code = ?;");
 			preparedStatement.setString(1, country.getCode());
 			preparedStatement.setString(2, country.getName());
-			preparedStatement.setString(3, country.getDevise());
-			preparedStatement.setString(4, country.getGreetings());
-			preparedStatement.setString(5, countryCode);
+			preparedStatement.setString(3, country.getContinent());
+			preparedStatement.setString(4, country.getDevise());
+			preparedStatement.setString(5, country.getGreetings());
+			preparedStatement.setString(6, countryCode);
 			int resultSet = preparedStatement.executeUpdate();
 			return resultSet;
 		} catch (SQLException exception) {
@@ -143,4 +149,55 @@ public class CountryDAOImpl implements CountryDAO {
 		return rslt;
 	}
 
+	public List<Country> getAllCountriesInContinent(String continentCode) {
+		// TODO Auto-generated method stub
+		List<Country> countryList = new ArrayList<>();
+		Country country;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("SELECT * FROM country where continent = ?;");
+			preparedStatement.setString(1, continentCode);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				country = new Country();
+				Integer id = resultSet.getInt(1);
+				String name = resultSet.getString(2);
+				String code = resultSet.getString(3);
+				String continent = resultSet.getString(4);
+				String devise = resultSet.getString(5);
+				String greetings = resultSet.getString(6);
+				country.setId(id);
+				country.setName(name);
+				country.setCode(code);
+				country.setContinent(continent);
+				country.setDevise(devise);
+				country.setGreetings(greetings);
+				countryList.add(country);
+
+			}
+		} catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return countryList;
+	}
+
+	@Override
+	public String getContinentName(String continentCode) {
+		// TODO Auto-generated method stub
+		String continentName = "";
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("SELECT name FROM continent where code = ?;");
+			preparedStatement.setString(1, continentCode);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next())
+				continentName = resultSet.getString(1);
+		} catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return continentName;
+	}
 }
