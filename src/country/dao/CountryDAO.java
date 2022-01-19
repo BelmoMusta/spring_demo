@@ -1,5 +1,7 @@
 package country.dao;
 
+import java.util.List;
+
 import country.model.Country;
 
 public interface CountryDAO {
@@ -10,6 +12,7 @@ public interface CountryDAO {
 	public void findByCode(String code);
 	public void supprimerByCode(String code);
 	public void modificationByCode(String code, Country contry);
+	public List<Country>findCountryByContinent(String codecontin) ;
 	
 }
 

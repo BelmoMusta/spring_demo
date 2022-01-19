@@ -7,6 +7,7 @@ import java.util.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import country.configurationHibernate.ConfigurationHibernate;
+import country.model.Continent;
 import country.model.Country;
 import country.service.IServiceWorker;
 
@@ -27,7 +28,7 @@ public class App {
 					"5- Pour lister tous les pays d'un continent, tapper 5, (le code du continent sera saisi par l'utilisateur).\r\n" + 
 					"6- Pour sortir de l'application tapper 0;");
 			while(true) {
-			System.out.println("S'il vous plait entrez un nombre :");
+			System.out.println("S'il vous plait entrez un nombre de 0 à 5:");
 			Scanner inputFromConsole = new Scanner(System.in);
 			choise= inputFromConsole.nextInt();
 			
@@ -67,15 +68,35 @@ public class App {
 				iserviceWorker.listCountry();
 			}
 			
-			
+			else if(choise==5)
+			{
+				List<Country> country1=null;
+				System.out.println("entrer le code de contienent   : ");
+				Scanner inputFromConsole5 = new Scanner(System.in);
+				String codecontinent = inputFromConsole5.next();
+				country1=iserviceWorker.findCountryByContinent(codecontinent);
+				for (Iterator iterator =country1.iterator(); 
+						iterator.hasNext();){
+						Country country = (Country) iterator.next();
+						System.out.print(" Nom: " + country.getName());
+						System.out.print(" ,Devise: " + country.getDevise());
+						System.out.print(" ,Greetings: " + country.getGreetings());
+						System.out.println(",Code: " + country.getCode());
+				}
+				
+			}
 			
 			else if(choise==0)
 			{
 
-				System.out.print("Merci pour votre utilisation vous étes Sortis de l'application");
+				System.out.println("Merci pour votre utilisation vous étes Sortis de l'application");
 				System.exit(0);
 			}
-			
+			else
+			{
+				System.out.println("Ce nombre n'existe pas Merci");
+			}
 			
 			}}
+			
 }
