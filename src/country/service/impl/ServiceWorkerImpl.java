@@ -23,16 +23,17 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void getCountry(String language) {
 		Country pays = countryDAO.getByCode(language);
-		if(pays == null) {System.out.println("Ce pays n'existe pas");}
+		if(pays == null) {System.out.println("Ce pays n'existe pas");return;}
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-		System.out.println("WELCOME : " + countryService.welcome());
-		System.out.println("Devise is :" + countryService.devise());
+		System.out.println("NAME is   : " + countryService.name());
+		System.out.println("WELCOME   : " + countryService.welcome());
+		System.out.println("Devise is : " + countryService.devise());
 	}
 
 	@Override
-	public void addCountry(String countryInfos) {
+	public void addCountry(String countryInfos, String continentCode) {
 		Country country = stringToCountry(countryInfos);
-		if(countryDAO.addCountry(country)) {
+		if(countryDAO.addCountry(country,continentCode)) {
 			System.out.println("Country added");
 		}else {
 		    System.err.println("Some problem happened");
@@ -66,9 +67,20 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void getCountriesOfContinent(String ContinentCode) {
 		List<Country> countriesOfContinent = countryDAO.getCountriesOfContinent(ContinentCode);
-		for(Country country : countriesOfContinent) {
-			System.out.println(country.getName());
+		if(countriesOfContinent == null) {
+			System.out.println("Cette continent n'existe pas");
+			return;
 		}
+		for(Country country : countriesOfContinent) {
+			ICountryService countryService = applicationContext.getBean(ICountryService.class, country);
+			System.out.println("NAME is   : " + countryService.name());
+			System.out.println("WELCOME   : " + countryService.welcome());
+			System.out.println("Devise is : " + countryService.devise());
+			System.out.println("-----------------------------------------------");
+		}
+	}
+	public void initData() {
+		countryDAO.initData();
 	}
 	
 	private Country stringToCountry(String countryInfos) {

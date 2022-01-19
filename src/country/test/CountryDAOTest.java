@@ -6,27 +6,43 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import country.config.Config;
 import country.dao.CountryDAO;
 import country.model.Country;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/beans/database-config.xml","/beans/hibernate-config.xml"})
+@ContextConfiguration(classes = Config.class)
 public class CountryDAOTest {
 	
 	@Autowired
 	CountryDAO countryDAO;
+	
+	static boolean isInitialized = false;
+	
+	
+	@Before
+	public void setup() {
+		if(!isInitialized) {
+			countryDAO.initData();
+			isInitialized = true;
+		}
+	}
+	
+
 	@Test
 	public void testGetCountry() {
 		Country expectedCountry = new Country();
-		expectedCountry.setId(1);
 		expectedCountry.setCode("fr");
-		expectedCountry.setDevise("EURO");
+		expectedCountry.setDevise("Euro");
 		expectedCountry.setGreetings("Bonjour");
 		expectedCountry.setName("France");
 		assertEquals(expectedCountry,countryDAO.getByCode("fr"));
@@ -39,7 +55,7 @@ public class CountryDAOTest {
 		addedCountry.setGreetings("kharachov");
 		addedCountry.setName("russia");
 		addedCountry.setId(9);
-		assertTrue(countryDAO.addCountry(addedCountry) && countryDAO.getByCode("rsa").equals(addedCountry));
+		assertTrue(countryDAO.addCountry(addedCountry, "eu") && countryDAO.getByCode("rsa").equals(addedCountry));
 	}
 	@Test
 	public void testDeleteCountry() {

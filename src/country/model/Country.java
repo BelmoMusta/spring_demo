@@ -1,5 +1,7 @@
 package country.model;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,5 +29,29 @@ public class Country {
 	private String code;
 	private String devise;
 	private String greetings;
+	@ManyToOne
+	private Continent continent;
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Country other = (Country) obj;
+		return Objects.equals(code, other.code) && Objects.equals(devise, other.devise)
+				&& Objects.equals(greetings, other.greetings) && Objects.equals(name, other.name);
+	}
+
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", name=" + name + ", code=" + code + ", devise=" + devise + ", greetings="
+				+ greetings + "]";
+	}
+
+	
+	
 	
 }

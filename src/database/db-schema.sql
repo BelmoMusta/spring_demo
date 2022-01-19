@@ -12,11 +12,11 @@ CREATE TABLE continent
 CREATE TABLE country
 (
     id     INT AUTO_INCREMENT PRIMARY KEY,
-    continentId  INT,
+    continent_Id  INT,
     name   VARCHAR(250) NOT NULL,
     code   VARCHAR(250) NOT NULL,
     devise VARCHAR(250) DEFAULT NULL,
     greetings VARCHAR(250) DEFAULT NULL,
-    FOREIGN KEY(continentId) REFERENCES continent(id)
+    FOREIGN KEY(continent_Id) REFERENCES continent(id)
 );
 
