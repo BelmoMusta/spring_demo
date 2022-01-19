@@ -19,6 +19,9 @@ public class App {
 			System.out.println("\n");
 			System.out.println("tapez 1 pour l'ajout d'un nouveau pays");
 			System.out.println("tapez 2 Pour lister les informations d'un pays");
+			System.out.println("tapez 3 Pour supprimer un pays");
+			System.out.println("tapez 4 Pour modifier des informations d'un pays");
+			System.out.println("tapez 5 Pour lister tous les pays d'un continent");
 			System.out.println("tapez 0 pour sortir ");
 			System.out.print("entrer un nombre:");
 			Scanner scanner = new Scanner(System.in);
@@ -39,6 +42,30 @@ public class App {
 					Scanner scanner1 = new Scanner(System.in);
 					String code = scanner1.next();
 					serviceWorker.getInfos(code);
+					break;
+				}
+				case 3: {
+					System.out.print("Entrer le code du pays à supprimer: ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					serviceWorker.deleteCountry(code);
+					break;
+				}
+				case 4: {
+					System.out.print("Entrer le code du pays à modifier: ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					System.out.print("Entrer les informations sous forme code,name,devise,greetings,continent :");
+					Scanner scanner2 = new Scanner(System.in);
+					String information = scanner2.next();
+					serviceWorker.updateCountry(code,information);
+					break;
+				}
+				case 5: {
+					System.out.print("Entrer le code du continent: ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					serviceWorker.getCountries(code);
 					break;
 				}
 				default: {

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {
 
@@ -38,8 +40,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setDevise(information.split(",")[2]);
 		country.setGreetings(information.split(",")[3]);
 		Continent continent = new Continent();
-		String continentId = information.split(",")[4];
-		continent=continentDAO.getContientByCode(continentId);
+		String code = information.split(",")[4];
+		continent=continentDAO.getContientByCode(code);
 		country.setContinent(continent);
 		countryDAO.saveCountry(country);
 	}
@@ -59,6 +61,42 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("Devise :" + pays.getDevise());
 		System.out.println("Continent :" + pays.getContinent().getName());
 		return pays;
+	}
+
+	@Override
+	public void deleteCountry(String code) {
+		Country country = countryDAO.getByCode(code);
+		countryDAO.deleteCountry(country);
+
+	}
+
+	@Override
+	public void updateCountry(String code, String information) {
+		Country country = countryDAO.getByCode(code);
+		country.setCode(information.split(",")[0]);
+		country.setName(information.split(",")[1]);
+		country.setDevise(information.split(",")[2]);
+		country.setGreetings(information.split(",")[3]);
+		Continent continent = new Continent();
+		String codeContinent = information.split(",")[4];
+		continent=continentDAO.getContientByCode(codeContinent);
+		country.setContinent(continent);
+		countryDAO.updateCountry(country);
+
+	}
+
+	@Override
+	public List<Country> getCountries(String code) {
+		List<Country> list = countryDAO.getCountries(code);
+		for( Country pays : list){
+			System.out.println("name : " + pays.getName());
+			System.out.println("code :" + pays.getCode());
+			System.out.println("WELCOME : " + pays.getGreetings());
+			System.out.println("Devise :" + pays.getDevise());
+			System.out.println("Continent :" + pays.getContinent().getName());
+			System.out.println("\n");
+		}
+		return list;
 	}
 
 
