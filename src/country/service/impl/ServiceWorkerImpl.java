@@ -49,8 +49,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		String[] data = countryData.split(",");
 		country.setCode(data[0]);
 		country.setName(data[1]);
-		country.setDevise(data[2]);
-		country.setGreetings(data[3]);
+		country.setContinent(data[2]);
+		country.setDevise(data[3]);
+		country.setGreetings(data[4]);
 		return country;
 	}
 

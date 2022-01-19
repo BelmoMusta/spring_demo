@@ -20,15 +20,15 @@ public class CountryDAOImplTest {
     IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
     List<Country> dataBase = new ArrayList<>();
 
-    @Ignore
+    // @Ignore
     @Test
     public void getByCode() {
         dataBase = countryDAO.getAllCountries();
-        assertEquals("meme nom", countryDAO.getByCode("fr").getName(), dataBase.get(0).getName());
+        assertEquals("meme nom", countryDAO.getByCode("fr").getName(), "France");
         assertEquals("meme devise", countryDAO.getByCode("fr").getDevise(),
-                dataBase.get(0).getDevise());
+                "EURO");
         assertEquals("meme greetings", countryDAO.getByCode("fr").getGreetings(),
-                dataBase.get(0).getGreetings());
+                "Bonjour");
         dataBase.clear();
     }
 
@@ -36,7 +36,7 @@ public class CountryDAOImplTest {
     @Test
     public void addCoutry() {
         dataBase = countryDAO.getAllCountries();
-        Country country = serviceWorker.getContryFromData("ma,maroc,dirham,salam");
+        Country country = serviceWorker.getContryFromData("ma,maroc,af,dirham,salam");
         countryDAO.addCountry(country);
         assertEquals("meme nom", countryDAO.getAllCountries().size(), dataBase.size() + 1);
         dataBase.clear();
@@ -54,17 +54,17 @@ public class CountryDAOImplTest {
     @Test
     public void updateCountry() {
         dataBase = countryDAO.getAllCountries();
-        Country country = serviceWorker.getContryFromData("ma,morroco,dh,salamalaykom");
+        Country country = serviceWorker.getContryFromData("ma,morroco,af,dh,salamalaykom");
         assertEquals("meme nom", countryDAO.updateByCode("fr", country), 1);
         dataBase.clear();
     }
 
-    @Ignore
+    // @Ignore
     @Test
     public void listAllCoutriesInContinent() {
         dataBase = countryDAO.getAllCountries();
 
-        assertEquals("meme nom", countryDAO.getByCode("fr").getName(), dataBase.get(0).getName());
+        assertEquals("meme nom", countryDAO.getAllCountriesInContinent("eu").size(), 3);
         dataBase.clear();
     }
 }

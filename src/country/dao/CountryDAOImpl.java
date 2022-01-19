@@ -74,12 +74,14 @@ public class CountryDAOImpl implements CountryDAO {
 				Integer id = rs.getInt(1);
 				String name = rs.getString(2);
 				String code = rs.getString(3);
-				String devise = rs.getString(4);
-				String greetings = rs.getString(5);
+				String continent = rs.getString(4);
+				String devise = rs.getString(5);
+				String greetings = rs.getString(6);
 
 				country.setId(id);
 				country.setName(name);
 				country.setCode(code);
+				country.setContinent(continent);
 				country.setDevise(devise);
 				country.setGreetings(greetings);
 				countries.add(country);
@@ -100,9 +102,9 @@ public class CountryDAOImpl implements CountryDAO {
 							"INSERT INTO country(name, code, continent, devise, greetings) VALUES(?, ?, ?, ?,?);");
 			preparedStatement.setString(1, country.getName());
 			preparedStatement.setString(2, country.getCode());
-			preparedStatement.setString(2, country.getContinent());
-			preparedStatement.setString(3, country.getDevise());
-			preparedStatement.setString(4, country.getGreetings());
+			preparedStatement.setString(3, country.getContinent());
+			preparedStatement.setString(4, country.getDevise());
+			preparedStatement.setString(5, country.getGreetings());
 			int resultSet = preparedStatement.executeUpdate();
 			return resultSet;
 		} catch (SQLException exception) {
