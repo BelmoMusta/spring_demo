@@ -10,4 +10,7 @@ public interface CountryDAO {
 	List<Country> getAllCountries();
 
 	int addCountry(Country contryFromData);
+
+	int removeCountry(String countryCode);
+
 }

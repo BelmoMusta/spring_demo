@@ -6,4 +6,7 @@ public interface IServiceWorker {
 	void getAllCountries();
 
 	void addCountry(String contryData);
+
+	void removeCountry(String CountryCode);
+
 }

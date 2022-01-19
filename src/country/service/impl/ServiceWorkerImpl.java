@@ -45,4 +45,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setGreetings(data[3]);
 		return country;
 	}
+
+	public void removeCountry(String CountryCode) {
+		// TODO Auto-generated method stub
+		countryDAO.removeCountry(CountryCode);
+	}
 }

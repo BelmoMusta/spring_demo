@@ -101,10 +101,26 @@ public class CountryDAOImpl implements CountryDAO {
 			preparedStatement.setString(4, country.getGreetings());
 			int resultSet = preparedStatement.executeUpdate();
 			return resultSet;
-
 		} catch (SQLException exception) {
 			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
 		}
 		return rslt;
 	}
+
+	public int removeCountry(String countryCode) {
+		// TODO Auto-generated method stub
+		int rslt = 0;
+		try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("DELETE FROM country WHERE code = ?;");
+			preparedStatement.setString(1, countryCode);
+			int resultSet = preparedStatement.executeUpdate();
+			return resultSet;
+		} catch (SQLException exception) {
+			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		}
+		return rslt;
+	}
+
 }
