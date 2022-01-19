@@ -17,7 +17,7 @@ public class App {
 		ApplicationContext applicationContext =
 				new AnnotationConfigApplicationContext("country");
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
-		Scanner inputFromConsole = new Scanner(System.in);
+		Scanner dataFromConsole = new Scanner(System.in);
 		
 		
 		System.out.println("1 -->Ajouter un pays");
@@ -30,7 +30,7 @@ public class App {
 		org.h2.tools.Server.createWebServer().start();
 		while (true) {
 			System.out.println("Votre choix:");
-			String choice = inputFromConsole.next();
+			String choice = dataFromConsole.next();
 			
 			switch (choice) {
 			//
@@ -39,10 +39,10 @@ public class App {
 				
 				System.out.println("Ajouter les informations du pays comme: "
 						+ "code,name,devise,greeting,nameofcontinent:");
-				String input=inputFromConsole.next();
+				String data=dataFromConsole.next();
 				
 				try{
-					String[] informationOfCountry=input.split(",");
+					String[] informationOfCountry=data.split(",");
 					
 					country.setCode(informationOfCountry[0]);
 					country.setName(informationOfCountry[1]);
@@ -52,13 +52,19 @@ public class App {
 					
 				}
 				catch (ArrayIndexOutOfBoundsException e) {
-					System.err.println("Remarque: Les données doivent être fournie comme suvant"
+					System.out.println("Remarque: Les données doivent être fournie comme suvant"
 							+ " code,name,devise,greeting,nameofcontinent \n");
 				}
 				
 				
 			}
 				      break;
+			case "2": {
+				System.out.println("Saisissez le code du pays: ");
+				String code=dataFromConsole.next();
+				
+				serviceWorker.ListCountryData(code);
+			}
 			
 		}
 	}

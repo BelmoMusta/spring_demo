@@ -30,4 +30,22 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void InsertNewCountry(Country country,String nameOfContinet) {
 		countryDAO.insert(country,nameOfContinet);
 	}
+	
+	@Override
+	public void ListCountryData(String code) {
+		Country country=countryDAO.getByCode(code);
+		if(country==null) {
+			System.out.println("** Il n'y aucun pays avec ce code **");
+		}else{
+		System.out.println("          Informations sur le pays   ");
+		System.out.println("Nom :"+country.getName());
+		System.out.println("Code :"+country.getCode());
+		System.out.println("Devise :"+country.getDevise());
+		System.out.println("Salutation :"+country.getGreetings());
+		System.out.println("Continent :"+country.getContinent().getName());
+		}
+	}
+
+	
+
 }

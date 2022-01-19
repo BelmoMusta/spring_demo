@@ -42,43 +42,22 @@ public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	
 	
-	@Override
-	public Country getByCode(String countryCode) {
-		/**/Country country = null;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM country where code = ?;");
-			preparedStatement.setString(1, countryCode);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			if (resultSet.next()) {
-				country = new Country();
-				Integer id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				String code = resultSet.getString(3);
-				String devise = resultSet.getString(4);
-				String greetings = resultSet.getString(5);
-				
-				country.setId(id);
-				country.setName(name);
-				country.setCode(code);
-				country.setDevise(devise);
-				country.setGreetings(greetings);
-				
-			}
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return country;
-		
+@Override
+	
+	public Country getByCode(String code) {
+		String hql="from Country C where C.code =:code";
+		Query query=getSessionFactory().openSession().createQuery(hql);
+		query.setParameter("code", code);
+		Country country=(Country) query.uniqueResult();
+        return country;
 	}
 	
 	@Override
 	public int insert(Country country,String nameOfContinet) {
-		 int rowsAffected=0;
+		 int affectedRows=0;
 		country.setContinent(getContinentByName(nameOfContinet));
         if(country.getContinent()==null)
-        	System.err.println("** Aucun continent avec le nom indiqué, seulement la première lettre en majiscule 'Afrique' **\n");
+        	System.out.println("** Aucun continent avec le nom indiqué, seulement la première lettre en majiscule 'Afrique' **\n");
         else {
             if(getByCode(country.getCode())==null) {
         	Session session=getSessionFactory().openSession();
@@ -89,18 +68,18 @@ public class CountryDAOImpl implements CountryDAO {
             .setParameter("greeting",country.getGreetings())
             .setParameter("continent",country.getContinent());
             
-             rowsAffected = query.executeUpdate();
+             affectedRows = query.executeUpdate();
         	transaction.commit();
-        	if (rowsAffected > 0) {
+        	if (affectedRows > 0) {
         	    System.out.println("** Merci, Un nouveau Pays est crée **");
         	}
             else
-        		System.err.println("** Insertion n'a pas réussie **");
+        		System.out.println("** Insertion n'a pas réussie **");
             }
             else 
-            	System.err.println("** Le code exist déjà **");
+            	System.out.println("** Le code exist déjà **");
        
-	}return rowsAffected;
+	}return affectedRows;
 	}
 	
 	@Override
