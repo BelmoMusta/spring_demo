@@ -7,7 +7,6 @@ import country.model.Country;
 import country.service.IContinentService;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -69,33 +68,44 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 	@Override
 	public void updateCountry(String codeCountry, String info){
-		Country country = countryDAO.getByCode(codeCountry);
-		String name, devise, greeting, continentCode;
-		Continent continent;
-		if(country != null) {
-			if(info.split(",")[0].length() > 0) {
+		Pattern pattern = Pattern.compile("(([A-Za-z]+),){3}(([A-Za-z]+)){1}");
+		Matcher matcher = pattern.matcher(info);
+		if(matcher.find()) {
+			Country country = countryDAO.getByCode(codeCountry);
+			String name, devise, greeting, continentCode;
+			Continent continent;
+			if (info.split(",")[0].length() > 0) {
 				name = info.split(",")[0];
 				country.setName(name);
 			}
-			if(info.split(",")[1].length() > 0) {
+			if (info.split(",")[1].length() > 0) {
 				devise = info.split(",")[1];
 				country.setDevise(devise);
 			}
-			if(info.split(",")[2].length() > 0) {
+			if (info.split(",")[2].length() > 0) {
 				greeting = info.split(",")[2];
 				country.setGreetings(greeting);
 			}
-			if(info.split(",")[3].length() > 0) {
+			if (info.split(",")[3].length() > 0) {
 				continentCode = info.split(",")[3];
 				continent = continentDao.getByCode(continentCode);
-				country.setContinent(continent);
+				if(continent != null){
+					country.setContinent(continent);
+				}else{
+					System.out.println("Continent doesn't exist.");
+				}
 			}
 			countryDAO.update(country);
-		}
-		else {
-			System.out.println("Country doesn't exist!");
+		}else{
+			System.out.println("Invalid Format.");
 		}
 	}
+
+	@Override
+	public boolean countryExists(String code) {
+		return countryDAO.getByCode(code) != null;
+	}
+
 	@Override
 	public void saveCountry(String input) {
 		Pattern pattern = Pattern.compile("(([A-Za-z]+),){4}(([A-Za-z]+)){1}");

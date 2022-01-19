@@ -6,4 +6,5 @@ public interface IServiceWorker {
 	void deleteCountry(String code);
 	void dealWithContinentByCode(String code);
 	void updateCountry(String codeCountry, String info);
+	boolean countryExists(String code);
 }
