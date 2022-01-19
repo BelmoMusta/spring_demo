@@ -42,12 +42,14 @@ public class CountryDAOImpl implements CountryDAO {
 				String code = resultSet.getString(3);
 				String devise = resultSet.getString(4);
 				String greetings = resultSet.getString(5);
+				String continent = resultSet.getString(6);
 				
 				country.setId(id);
 				country.setName(name);
 				country.setCode(code);
 				country.setDevise(devise);
 				country.setGreetings(greetings);
+				country.setContinent(continent);
 				
 			}
 		} catch (SQLException exception) {

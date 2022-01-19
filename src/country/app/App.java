@@ -1,6 +1,7 @@
 package country.app;
 
 import country.service.IServiceWorker;
+import country.service.impl.ServiceWorkerImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,6 +29,12 @@ public class App {
 					Scanner country_input = new Scanner(System.in);
 					String countryInfos = country_input.next();
 					serviceWorker.SaveCountry(countryInfos);
+					break;
+				case 2:
+					System.out.println("Veullier entrer le code du pays à afficher:");
+					Scanner countryToFindInput = new Scanner(System.in);
+					String countryToFind = countryToFindInput.next();
+					serviceWorker.dealWithCountryByCode(countryToFind);
 					break;
 				case 0:
 					System.out.println("Au revoir");
