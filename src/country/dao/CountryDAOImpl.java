@@ -123,6 +123,32 @@ public class CountryDAOImpl implements CountryDAO {
 	return affectedRows;
 	}
 	
+	
+
+	@Override
+	public List<Country> listCountriesByContinent(String continentCode) {
+		Continent continent=getContinentByCode(continentCode);
+		
+		Session session=getSessionFactory().openSession();
+		String hql="FROM Country C WHERE C.continent=:continent";
+		Query query = session.createQuery(hql);
+		query.setParameter("continent",continent);
+		
+		return query.getResultList();
+	}
+	
+	@Override
+	public Continent getContinentByCode(String code) {
+		
+		String hql="from Continent C where C.code =:code";
+		Query query=getSessionFactory().openSession().createQuery(hql);
+		query.setParameter("code", code);
+		
+		Continent continent=(Continent) query.uniqueResult();
+		return continent;
+	}
+	
+	@Override
 	public int deleteCountryByCode(String code) {		
 		Session session=getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();

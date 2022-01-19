@@ -33,7 +33,6 @@ public class App {
 			String choice = dataFromConsole.next();
 			
 			switch (choice) {
-			//
 			case "1": {
 				Country country=new Country();
 				
@@ -58,8 +57,8 @@ public class App {
 				}
 				
 				
-			}
-				      break;
+			}break;
+			
 			case "2": {
 				System.out.println("Saisissez le code du pays: ");
 				String code=dataFromConsole.next();
@@ -98,6 +97,14 @@ public class App {
 							+ " code,nom,devise,salutation,nomDeContinent \n");
 				}
 				}break;
+				
+			case "5": {
+				
+				System.out.println("Saisissez le code du continent: ");
+				String continentCode=dataFromConsole.next();
+				
+				serviceWorker.listCountriesByContinent(continentCode);
+			}break;
 			
 		}
 	}
