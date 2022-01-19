@@ -29,10 +29,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		if (pays != null) {
 			ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 
-			System.out.println("Nom :" + countryService.nom());
+			System.out.println("Nom : " + countryService.nom());
 			System.out.println("Greeting : " + countryService.welcome());
-			System.out.println("Devise:" + countryService.devise());
-			System.out.println("Continent: " + countryService.continent().toString());
+			System.out.println("Devise : " + countryService.devise());
+			System.out.println("Continent : " + countryService.continent().getName());
 		} else {
 			System.out.println("Pays introuvable !");
 		}
