@@ -91,6 +91,38 @@ public class CountryDAOImpl implements CountryDAO {
 		return (Continent) query.uniqueResult();
 	}
 	
+	@Override
+	public int updateCountry(String code, Country country,String nameOfContinet) {
+		int affectedRows=0;
+		country.setContinent(getContinentByName(nameOfContinet));
+	    if(country.getContinent()==null)
+	    	System.out.println("** Aucun continent avec le nom indiqué, seulement la première lettre en majiscule 'Afrique' **\n");
+	    else {
+	    	
+		Session session=getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		String hql = "update Country c set c.name=:name,c.code=:code,c.devise=:devise,c.greetings=:greeting,c.continent=:continent where c.code=:codeToUpdate";
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("name",country.getName())
+		      .setParameter("code",country.getCode())
+		      .setParameter("devise",country.getDevise())
+		      .setParameter("greeting",country.getGreetings())
+		      .setParameter("continent",country.getContinent())
+		      .setParameter("codeToUpdate", code);
+		affectedRows = query.executeUpdate();
+		
+		transaction.commit();
+		if (affectedRows > 0) {
+		    System.out.println("** Merci, Le Pays est mis à jour **");
+		}
+		else
+			System.out.println("** La modification n'a pas réussie **");
+	    	}
+	    	
+	return affectedRows;
+	}
+	
 	public int deleteCountryByCode(String code) {		
 		Session session=getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
