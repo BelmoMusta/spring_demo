@@ -1,16 +1,15 @@
 package country.tests;
 
 
-import country.model.Continent;
+import configuration.PersistentConfig;
 import country.model.Country;
 import country.service.IServiceWorker;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 public class AppTest {
 
-    ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans/*.xml");
+    ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PersistentConfig.class);
     IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 
     @Before

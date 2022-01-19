@@ -1,8 +1,9 @@
 package country.app;
 
+import configuration.PersistentConfig;
 import country.service.IServiceWorker;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 import java.sql.SQLException;
@@ -10,8 +11,7 @@ import java.sql.SQLException;
 @SuppressWarnings("all")
 public class App {
 	public static void main(String[] args) throws SQLException {
-		ApplicationContext applicationContext =
-				new ClassPathXmlApplicationContext("beans/*.xml");
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PersistentConfig.class);
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		org.h2.tools.Server.createWebServer().start();
 
