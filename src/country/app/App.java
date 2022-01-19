@@ -18,6 +18,7 @@ public class App {
 		while (true) {
 			System.out.println("\n");
 			System.out.println("tapez 1 pour l'ajout d'un nouveau pays");
+			System.out.println("tapez 2 Pour lister les informations d'un pays");
 			System.out.println("tapez 0 pour sortir ");
 			System.out.print("entrer un nombre:");
 			Scanner scanner = new Scanner(System.in);
@@ -33,11 +34,24 @@ public class App {
 					serviceWorker.addCountry(information);
 					break;
 				}
+				case 2: {
+					System.out.print("Entrer le code du pays : ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					serviceWorker.getInfos(code);
+					break;
+				}
+				default: {
+					System.out.print("Entrer un code : ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					serviceWorker.dealWithCountryByCode(code);
+					break;
 
-
+				}
 			}
+
 		}
 
 	}
-
 }

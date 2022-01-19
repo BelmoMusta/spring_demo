@@ -27,7 +27,7 @@ public class AppTest {
     @Test
     public void shouldDealWithAddCountry() {
 
-        Country expected=  new Country();
+        /*Country expected=  new Country();
         expected.setCode("bl");
         expected.setName("Belgique");
         expected.setDevise("EURO");
@@ -35,16 +35,29 @@ public class AppTest {
         Continent continent = new Continent();
         continent.setName("Europe");
         continent.setCode("eu");
-        expected.setContinent(continent);
+        expected.setContinent(continent);*/
         serviceWorker.addCountry("bl,Belgique,EURO,Bonjour,eu");
         Country result = serviceWorker.getCountryByCode("bl");
-        assertEquals(expected.getCode(),result.getCode());
-        assertEquals(expected.getName(),result.getName());
-        assertEquals(expected.getDevise(),result.getDevise());
-        assertEquals(expected.getGreetings(),result.getGreetings());
-        assertEquals(expected.getContinent().getCode(),result.getContinent().getCode());
-        assertEquals(expected.getContinent().getName(),result.getContinent().getName());
+        assertEquals("bl",result.getCode());
+        assertEquals("Belgique",result.getName());
+        assertEquals("EURO",result.getDevise());
+        assertEquals("Bonjour",result.getGreetings());
+        assertEquals("eu",result.getContinent().getCode());
+        assertEquals("Europe",result.getContinent().getName());
     }
+
+    @Test
+    public void shouldDealWithGetInfos() {
+        Country result = serviceWorker.getInfos("fr");
+        assertEquals("fr",result.getCode());
+        assertEquals("France",result.getName());
+        assertEquals("EURO",result.getDevise());
+        assertEquals("Bonjour",result.getGreetings());
+        assertEquals("eu",result.getContinent().getCode());
+        assertEquals("Europe",result.getContinent().getName());
+    }
+
+
 }
 
 

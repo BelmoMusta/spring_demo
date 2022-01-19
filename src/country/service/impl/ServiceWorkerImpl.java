@@ -49,4 +49,17 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		Country pays = countryDAO.getByCode(code);
 		return pays;
 	}
+
+	@Override
+	public Country getInfos(String code) {
+		Country pays = countryDAO.getByCode(code);
+		System.out.println("name : " + pays.getName());
+		System.out.println("code :" + pays.getCode());
+		System.out.println("WELCOME : " + pays.getGreetings());
+		System.out.println("Devise :" + pays.getDevise());
+		System.out.println("Continent :" + pays.getContinent().getName());
+		return pays;
+	}
+
+
 }
