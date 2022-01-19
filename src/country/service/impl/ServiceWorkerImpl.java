@@ -43,7 +43,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void deleteCountry(String code){
 		Country country = countryDAO.getByCode(code);
 		if(country != null) {
-			countryDAO.deleteByCode(code);
+			countryDAO.deleteByCode(country);
 		}
 		else {
 			System.out.println("Country not found");

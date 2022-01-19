@@ -33,9 +33,9 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public void deleteByCode(String code){
+	public void deleteByCode(Country country){
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(getByCode(code));
+		session.delete(country);
 	}
 
 	@Override
