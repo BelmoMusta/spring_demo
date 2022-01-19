@@ -4,6 +4,9 @@ import country.dao.CountryDAO;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -57,6 +60,29 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("Continent :"+country.getContinent().getName());
 		}
 	}
+	
+	@Override
+	public void listCountriesByContinent(String continentCode) {
+		
+
+		List<Country> countries=countryDAO.listCountriesByContinent(continentCode);
+		
+		if(countries.size()!=0) 
+			for(Country country:countries) { 
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			
+			System.out.println("Nom :"+country.getName());
+			System.out.println("Code :"+country.getCode());
+			System.out.println("Devise :"+country.getDevise());
+			System.out.println("Salutation :"+country.getGreetings());
+			
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");			
+		}
+		else {
+			System.out.println("Aucun pays de ce continent n'est présent dans notre liste ou code non valide");
+		}
+		
+		}	
 
 	
 
