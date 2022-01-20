@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs2/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs2/h2-1.4.197.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-aop-5.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-beans-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-context-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-core-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-expression-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-jdbc-4.3.10.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs2/spring-tx-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/.m2/repository/org/springframework/spring-orm/5.3.1/spring-orm-5.3.1.jar" sourcepath="C:/Users/zineb/.m2/repository/org/springframework/spring-orm/5.3.1/spring-orm-5.3.1-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+			<attribute name="maven.artifactId" value="spring-orm"/>
+			<attribute name="maven.version" value="5.3.1"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/spring_demo-1/lib1/commons-dbcp2-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/apiguardian-api-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/assertj-core-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/byte-buddy-1.9.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/classmate-1.3.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/commons-dbcp2-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/commons-logging-1.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/commons-pool2-2.11.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/dom4j-2.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/h2-2.0.204.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/hibernate-core-5.6.3.Final (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/javax.transaction-api-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/jaxb-api-2.4.0-b180830.0359.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/jboss-logging-3.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/junit-jupiter-api-5.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/junit-platform-commons-1.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/junit-platform-engine-1.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/lombok.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-aop-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-beans-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-context-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-core-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-expression-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-jdbc-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-orm-5.3.14 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/zineb/Desktop/Projet_Spring/spring-tx-5.3.14.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
