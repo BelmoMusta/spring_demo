@@ -19,5 +19,5 @@ CREATE TABLE Country
     devise VARCHAR(250) DEFAULT NULL,
     greetings VARCHAR(250) DEFAULT NULL,
     continent_id INT,
-    CONSTRAINT continent_id_const FOREIGN KEY (continent_id) REFERENCES Continent(id)
+    CONSTRAINT continent_id_const FOREIGN KEY (continent_id) REFERENCES Continent (id)
 );
