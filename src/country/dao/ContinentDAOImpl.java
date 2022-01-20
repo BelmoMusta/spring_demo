@@ -46,7 +46,10 @@ public class ContinentDAOImpl implements ContinentDAO{
         query.setString("name",name);
         return query.list().size() > 0;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> premier_aspect_fonctionnel
 }
 
 

@@ -37,7 +37,7 @@ public class App {
 
 				case "1":
 					//ajout d'un nouveau pays
-					System.out.print("Entrer le pays à ajouter sous le format suivant: ");
+					System.out.print("Entrer le pays à ajouter sous le format suivant (code,nom,devise,greetings,nom du continent): ");
 					String country = inputFromConsole.next();
 					serviceWorker.addCountry(country);
 					break;
