@@ -15,5 +15,9 @@ public abstract class AbstractCountryService implements ICountryService {
 		return getCountry().getDevise();
 	}
 	
+	/*public String continent(){ 
+		return getCountry().getContinent().getName();
+		}*/
+	
 	public abstract Country getCountry();// c'est quoi ton pays ?
 }
