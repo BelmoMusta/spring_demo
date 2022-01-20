@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository("hibernate")
+@Transactional 
 public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	@Autowired
@@ -87,4 +89,17 @@ public class CountryDAOImpl implements CountryDAO {
 	}
         return rows;
 	}
+	@Override
+
+	public int SuppByCode(String _inputCode) {
+		if (getByCode(_inputCode) == null)
+			return -2;
+		Query query = getSession().createQuery("delete from Country where code = :code");
+		query.setParameter("code", _inputCode);
+		return query.executeUpdate();
+	}
+	private Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
 }

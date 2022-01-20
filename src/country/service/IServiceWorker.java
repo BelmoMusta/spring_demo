@@ -9,5 +9,7 @@ public interface IServiceWorker {
 
 	void afficheCountry(String input);
 
+	void SuppCountry(String input);
+
 	
 }

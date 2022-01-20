@@ -9,4 +9,6 @@ public interface CountryDAO {
 	int ajouter(Country _country, String _nameOfContinet);
 
 	Continent getByName(String name);
+	
+	int SuppByCode(String code);
 }

@@ -45,4 +45,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("Continent de country :"+country.getContinent().getName());
 		}
 	}
+
+	@Override
+	public void SuppCountry(String _inputCode) {
+		int rowsAffected = countryDAO.SuppByCode(_inputCode);
+		if (rowsAffected == -2)
+			System.err.println("pas country avec ce code ");
+		else if (rowsAffected > 0) {
+			System.out.println("Supprimer " + rowsAffected + " ligne.");
+		} else System.err.println("not deleted");
+	}
 }
