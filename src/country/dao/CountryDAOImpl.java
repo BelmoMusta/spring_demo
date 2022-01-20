@@ -29,7 +29,8 @@ public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO {
 		}
 		transaction.commit();
 		session.close();
-
+		if (countries.size() == 0)
+			return null;
 		return countries.get(0);
 	}
 

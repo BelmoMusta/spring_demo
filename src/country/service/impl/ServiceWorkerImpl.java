@@ -22,12 +22,16 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void getCountryByCode(String language) {
 		Country pays = countryDAO.getCountryByCode(language);
 		// car c'est prototype
-		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
+		if (pays != null) {
+			ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 
-		System.out.println("Nom : " + countryService.name());
-		System.out.println("Continent :" + countryService.continent());
-		System.out.println("Devise :" + countryService.devise());
-		System.out.println("greetings :" + countryService.welcome());
+			System.out.println("Nom : " + countryService.name());
+			System.out.println("Continent :" + countryService.continent());
+			System.out.println("Devise :" + countryService.devise());
+			System.out.println("greetings :" + countryService.welcome());
+		} else {
+			System.out.println("il n'exit pas un pays avec cet code!!!");
+		}
 	}
 
 	@Override
@@ -41,8 +45,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	public void updateCountry(String coutryCode, String countryData) {
-		countryDAO.updateByCode(coutryCode, getContryFromData(countryData));
-		System.out.println("le pays a été modifier avec success");
+		if (countryDAO.getCountryByCode(coutryCode) == null)
+			System.out.println("il n'exit pas un pays avec cet code!!!");
+		else {
+			countryDAO.updateByCode(coutryCode, getContryFromData(countryData));
+			System.out.println("le pays a été modifier avec success");
+		}
 	}
 
 	public Country getContryFromData(String countryData) {
@@ -57,8 +65,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	public void removeCountry(String CountryCode) {
-		countryDAO.removeCountry(CountryCode);
-		System.out.println("le pays a été supprimer avec success");
+		int rslt = countryDAO.removeCountry(CountryCode);
+		if (rslt == 1)
+			System.out.println("le pays a été supprimer avec success");
+		else
+			System.out.println("il n'exit pas un pays avec cet code!!!");
 	}
 
 	public void getAllCountriesInContinent(String continentCode) {
