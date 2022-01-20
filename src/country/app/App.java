@@ -65,6 +65,7 @@ public class App {
 					System.out.print("*********************FIN   : Pays informations********************\n");
 				}
 
+				ctr = null;
 				break;
 			case 3:
 				System.out.println("Entrer le code du pays à supprimer:");
@@ -84,6 +85,7 @@ public class App {
 					System.out
 							.println("*********************FIN   : les informations à modifier********************\n");
 				}
+				ctr = null;
 				System.out.println("*********************************************************************");
 				System.out.println(
 						"Entrer les informatioms nécessaires pour la modification sous la forme \" Nom, devise, greetings\":");
