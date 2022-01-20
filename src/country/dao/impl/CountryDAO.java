@@ -47,4 +47,17 @@ public class CountryDAO implements ICountryDAO {
         session.close();
         return country;
     }
+
+    @Override
+    public Country deleteByCode(String code) {
+        Country countryToDelete = getByCode(code);
+        if(countryToDelete == null) return null;
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.delete(countryToDelete);
+        session.getTransaction().commit();
+        session.close();
+        return countryToDelete;
+    }
+
 }

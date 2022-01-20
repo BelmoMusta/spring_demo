@@ -21,6 +21,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 				break;
 			case "2" : this.choiceShowCountry();
 				break;
+			case "3" : this.choiceDeleteCountry();
+				break;
 			default: break;
 		}
 	}
@@ -47,7 +49,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		} else {
 			Country country = new Country();
 			country.setCode(informations[0].toUpperCase(Locale.ROOT));
-			country.setName(informations[1]);
+			country.setName(informations[1].substring(0, 1).toUpperCase() + informations[1].substring(1));
 			country.setDevise(informations[2]);
 			country.setGreetings(informations[3]);
 
@@ -59,12 +61,22 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.println("Veuillez saisir le code du pays recherché (ex :FR) :");
 		Scanner inputFromConsole = new Scanner(System.in);
 		String input = inputFromConsole.next();
-		Country returned = this.countryDAO.getByCode(input);
+		Country returned = this.countryDAO.getByCode(input.toUpperCase());
 		if(returned == null) {
 			System.out.println("Aucun pays trouvé");
 
 		} else {
 			System.out.println(returned);
 		}
+	}
+
+	private void choiceDeleteCountry() {
+		System.out.println("Veuillez saisir le code du pays à supprimer (ex :FR) :");
+		Scanner inputFromConsole = new Scanner(System.in);
+		String input = inputFromConsole.next();
+		Country countryDeleted = this.countryDAO.deleteByCode(input.toUpperCase());
+		if(countryDeleted != null) System.out.println(countryDeleted.getName() + " a été supprimé");
+		else System.out.println("Pays avec le code " + input.toUpperCase() + " non trouvé");
+
 	}
 }
