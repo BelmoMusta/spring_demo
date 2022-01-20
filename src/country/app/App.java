@@ -35,6 +35,7 @@ public class App {
 			System.out.println("Pour ajouter des informations sur un pays, clicker sur ---------> 1");
 			System.out.println("Pour afficher des informations sur un pays, clicker sur --------> 2");
 			System.out.println("Pour supprimer un pays, clicker sur ----------------------------> 3");
+			System.out.println("Pour modifié les informations d'un pays, clicker sur -----------> 4");
 			System.out.println("Pour afficher des informations sur un continent, clicker sur ---> 5");
 			System.out.println("Pour sortir de l'application, clicker sur ----------------------> 0");
 			//Input user
