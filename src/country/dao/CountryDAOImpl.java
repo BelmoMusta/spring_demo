@@ -8,6 +8,23 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import country.model.Country;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 @Repository("countryDAO")
 public  class CountryDAOImpl extends Dao implements CountryDAO {
@@ -54,6 +71,7 @@ public  class CountryDAOImpl extends Dao implements CountryDAO {
 		}
 		transaction.commit();
 		session.close();
+		
 		}
 	@Override
 	public void deletByCode(String code)
@@ -76,6 +94,15 @@ public  class CountryDAOImpl extends Dao implements CountryDAO {
 		session.close();
 	}
 	
+	
+	public Country getByCode(String code) {
+		Session session = getSession();
+		Transaction transaction = session.beginTransaction();
+		String q1 = "FROM Country where code=:Code";
+		List <Country> listepayes = session.createQuery(q1).setParameter("Code", code).list();
+		Country c1=listepayes.get(0);
+		return c1;
+	}
 	
 	
 

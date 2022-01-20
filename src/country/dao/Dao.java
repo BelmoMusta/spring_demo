@@ -9,7 +9,7 @@ import country.model.Country;
 public abstract class Dao
 {
 	@Autowired
-	private SessionFactory sessionFactory;
+	public SessionFactory sessionFactory;
 	protected Session getSession()
 	{
 		return sessionFactory.getCurrentSession();

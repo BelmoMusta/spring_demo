@@ -50,6 +50,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.updateByCode(code,countryToAdd);
 		}
 	
+	@Override
+	public Country getCountryByCode(String code) {
+		Country pays = countryDAO.getByCode(code);
+		return pays;
+	}
+	
 	
 
 	

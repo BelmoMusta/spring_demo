@@ -8,4 +8,7 @@ public interface IServiceWorker {
 	public void deletByCode(String code);
 	void updateByCode(String code, String nvCountry);
 	
+	Country getCountryByCode(String code);
+ 
+	
 }
