@@ -73,7 +73,7 @@ public class App {
 					for (int i = 0; i < 50; i++)
 						System.out.print("/\\");
 					System.out.println("\nPays d'un continent:");
-					System.out.print("\tEntrer le code du continent pour lister ses pays : ");
+					System.out.print("\tEntrer le code du continent pour lister ses pays (af,eu,au,as,na,sa,an) : ");
 					String codeContinent = inputFromConsole.next();
 					serviceWorker.dealWithContinentByCode(codeContinent);
 					for (int i = 0; i < 50; i++)
