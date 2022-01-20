@@ -1,11 +1,19 @@
 package country.model;
 
-public class Country {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Country {	
 	private Integer id;
 	private String name;
 	private String code;
 	private String devise;
 	private String greetings;
+	private String continentCode;
 	
 	public Integer getId() {
 		return id;
@@ -46,4 +54,13 @@ public class Country {
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
 	}
+	
+	public void setContinentCode(String continentCode) {
+		this.continentCode = continentCode;
+	}
+	
+	public String getContinentCode() {
+		return continentCode;
+	}
+	
 }
