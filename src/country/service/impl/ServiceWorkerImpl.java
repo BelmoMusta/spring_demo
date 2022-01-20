@@ -1,6 +1,8 @@
 package country.service.impl;
 
 import country.dao.CountryDAO;
+import country.dao.ContinentDAO;
+import country.model.Continent;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
@@ -12,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
 	private CountryDAO countryDAO;
+
+	@Autowired
+	private ContinentDAO continentDAO;
 	@Autowired
 	private ApplicationContext applicationContext;
 	
@@ -23,5 +28,23 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		
 		System.out.println("WELCOME : " + countryService.welcome());
 		System.out.println("Devise is :" + countryService.devise());
+	}
+
+	@Override
+	public void addCountry(String countryinfos){
+		Country country = new Country();
+		Continent continent = new Continent();
+
+		String continent_identifiant = countryinfos.split(",")[4];
+		continent = continentDAO.getContinentByCode(continent_identifiant);
+
+		country.setCode(countryinfos.split(",")[0]);
+		country.setName(countryinfos.split(",")[1]);
+		country.setName(countryinfos.split(",")[2]);
+		country.setName(countryinfos.split(",")[3]);
+		country.setGreetings(countryinfos.split(",")[4]);
+		country.setContinent(continent);
+		countryDAO.saveCountry(country);
+
 	}
 }
