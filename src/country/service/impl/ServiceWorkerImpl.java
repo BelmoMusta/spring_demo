@@ -74,7 +74,13 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void getContinentCountries(String code) {
 		if(continentDAO.exists(code)){
-			continentDAO.getContientByCode(code).getCountries().forEach(System.out::println);
+			Continent continent = continentDAO.getContientByCode(code);
+			if(continent.getCountries().isEmpty())
+				System.out.println("\nLe continent ne contient pour l'instant aucun pays");
+			else {
+				System.out.println("\nLes pays de "+ continent.getName()+": ");
+				continentDAO.getContientByCode(code).getCountries().forEach(System.out::println);
+			}
 		}else {
 			System.out.println("veuiller saisir un code de continent valide (eur,afr,ame,aus,asia");
 		}
