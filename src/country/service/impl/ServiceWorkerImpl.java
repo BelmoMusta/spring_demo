@@ -19,37 +19,60 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private ApplicationContext applicationContext;
 
 	@Override
-	public void dealWithCountryByCode(String code) {
-		Country pays = countryDAO.getByCode(code);
+	public Country dealWithCountryByCode(String code) {
+		Country pays = null;
+		try {
+			pays = countryDAO.getCountyByCode(code);
 
-		System.out.print(" -Nom: " + pays.getName() + "\r\n");
-		System.out.print(" -Devise: " + pays.getDevise() + "\r\n");
-		System.out.println(" -Greetings: " + pays.getGreetings());
-		// System.out.print(" -Code: " + pays.getCode() + "\r\n");
+			System.out.print(" -Nom: " + pays.getName() + "\r\n");
+			System.out.print(" -Devise: " + pays.getDevise() + "\r\n");
+			System.out.println(" -Greetings: " + pays.getGreetings());
+			// System.out.print(" -Code: " + pays.getCode() + "\r\n");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("le code du pays {" + code + "} n'existe pas!!");
+		}
+		return pays;
 
 	}
 
 	@Override
 	public void addNewCountry(String informations) {
+		try {
+			Country countrry = setCountry(informations);
 
-		Country countrry = setCountry(informations);
-
-		countryDAO.AddNewCountry(countrry);
+			countryDAO.AddNewCountry(countrry);
+		} catch (Exception e) {
+			System.out.println(" la forme de la saisie des informations que vous avez entrées est incorrect.");
+		}
 
 	}
 
 	@Override
 	public void DeleteCountryByCode(String Code) {
+		try {
+			countryDAO.DeleteCountry(Code);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("le code du pays à supprimer:{" + Code + "} n'existe pas!!");
+		}
 
-		countryDAO.DeleteCountry(Code);
 	}
 
 	@Override
-	public void EditCountryByCode(String code, String ModifyInfos) {
+	public Integer EditCountryByCode(String code, String ModifyInfos) {
+		Country country = null;
+		Integer NbrOfLignesModified = null;
+		try {
+			country = setCountry(ModifyInfos);
+			NbrOfLignesModified = countryDAO.EditCountryInfos(code, country);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(" la forme de la saisie des informations que vous avez entrées est incorrect.");
+		}
 
-		Country country = setCountry(ModifyInfos);
-
-		countryDAO.EditInfos(code, country);
+		return NbrOfLignesModified;
 
 	}
 

@@ -7,13 +7,13 @@ import country.model.Country;
 
 public interface CountryDAO {
 
-	Country getByCode(String code);
+	Country getCountyByCode(String code);
 
 	public Integer AddNewCountry(Country country);
 
 	public Integer DeleteCountry(String Code);
 
-	public Integer EditInfos(String code, Country country);
+	public Integer EditCountryInfos(String code, Country country);
 
 	public List<Country> CountriesOfContinent(String codeContinent);
 

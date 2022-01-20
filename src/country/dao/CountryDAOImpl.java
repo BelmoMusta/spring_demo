@@ -29,14 +29,17 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public Country getByCode(String countryCode) {
+	public Country getCountyByCode(String countryCode) {
 		Session session = getSession();
 		Transaction trans = session.beginTransaction();
 		String requet = "FROM Country where code=:paysCode";
+		Country countrie = null;
+
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery(requet).setParameter("paysCode", countryCode);
 		query.setMaxResults(1);
-		Country countrie = (Country) query.uniqueResult();
+		countrie = (Country) query.uniqueResult();
+
 		trans.commit();
 		session.close();
 		return countrie;
@@ -64,15 +67,21 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public Integer EditInfos(String code, Country country) {
+	public Integer EditCountryInfos(String code, Country country) {
 		Session session4 = getSession();
 		Transaction trans3 = session4.beginTransaction();
 		String str3 = "UPDATE Country SET name = :name ,devise =:devise ,greetings=:greetings  WHERE code = :Payscode";
-		Integer query1 = session4.createSQLQuery(str3).setParameter("Payscode", code)
-				.setParameter("name", country.getName()).setParameter("devise", country.getDevise())
-				.setParameter("greetings", country.getGreetings()).executeUpdate();
+		Integer query1;
+		try {
+			query1 = session4.createSQLQuery(str3).setParameter("Payscode", code)
+					.setParameter("name", country.getName()).setParameter("devise", country.getDevise())
+					.setParameter("greetings", country.getGreetings()).executeUpdate();
+		} catch (Exception exception) {
+			query1 = 0;
+		}
 		trans3.commit();
 		session4.close();
+
 		return query1;
 	}
 
@@ -81,6 +90,7 @@ public class CountryDAOImpl implements CountryDAO {
 		Session session = getSession();
 		Transaction tran = session.beginTransaction();
 		String str = "FROM Country where codeContinent=:codeContinent";
+		@SuppressWarnings("unchecked")
 		List<Country> countries = session.createQuery(str).setParameter("codeContinent", codeContinent).list();
 
 		tran.commit();

@@ -10,6 +10,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Country")
 public class Country {
+	public Country() {
+
+	}
+
+	public Country(String name, String code, String devise, String greetings, String codeContinent) {
+		this.name = name;
+		this.code = code;
+		this.devise = devise;
+		this.greetings = greetings;
+		this.codeContinent = codeContinent;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

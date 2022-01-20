@@ -5,10 +5,12 @@ import java.util.Scanner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import country.config.HBconfiguration;
+import country.model.Country;
 import country.service.IServiceWorker;
 
 @SuppressWarnings("all")
 public class App {
+
 	public static void main(String[] args) {
 
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(
@@ -27,6 +29,7 @@ public class App {
 						+ "=================================================================================================================\n");
 		Scanner inputFromConsole;
 		String codePays = "", ModifierInfos = "", CodeContinent = "";
+		Country ctr = null;
 		while (true) {
 
 			System.out.print("entrer le numéro :");
@@ -49,14 +52,19 @@ public class App {
 				break;
 
 			case 2:
-				System.out.print("entrer le code du pays:");
-				inputFromConsole = new Scanner(System.in);
-				codePays = inputFromConsole.next();
+
 				// serviceWorker.dealWithCountryByCode(codePays);
-				System.out.print("*********************DEBUT : Pays informations********************\n");
-				serviceWorker.dealWithCountryByCode(codePays);
-				System.out.print("*********************FIN   : Pays informations********************\n");
-				codePays = "";
+
+				while (hashCode(ctr)) {
+
+					System.out.print("entrer le code correct du pays:");
+					inputFromConsole = new Scanner(System.in);
+					codePays = inputFromConsole.next();
+					System.out.print("*********************DEBUT : Pays informations********************\n");
+					ctr = serviceWorker.dealWithCountryByCode(codePays);
+					System.out.print("*********************FIN   : Pays informations********************\n");
+				}
+
 				break;
 			case 3:
 				System.out.println("Entrer le code du pays à supprimer:");
@@ -66,12 +74,16 @@ public class App {
 				codePays = "";
 				break;
 			case 4:
-				System.out.println("Entrer le code du pays à modifier:");
-				inputFromConsole = new Scanner(System.in);
-				codePays = inputFromConsole.next();
-				System.out.println(" ");
-				System.out.println("*********************les informations à modifier:********************");
-				serviceWorker.dealWithCountryByCode(codePays);
+				while (hashCode(ctr)) {
+
+					System.out.println("entrer le code correct du pays à modifier:");
+					inputFromConsole = new Scanner(System.in);
+					codePays = inputFromConsole.next();
+					System.out.print("*********************DEBUT : les informations à modifier********************\n");
+					ctr = serviceWorker.dealWithCountryByCode(codePays);
+					System.out
+							.println("*********************FIN   : les informations à modifier********************\n");
+				}
 				System.out.println("*********************************************************************");
 				System.out.println(
 						"Entrer les informatioms nécessaires pour la modification sous la forme \" Nom, devise, greetings\":");
@@ -94,5 +106,9 @@ public class App {
 			}
 		}
 
+	}
+
+	public static Boolean hashCode(Object o) {
+		return o != null ? false : true;
 	}
 }

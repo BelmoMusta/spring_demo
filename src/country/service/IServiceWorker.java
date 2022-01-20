@@ -1,13 +1,15 @@
 package country.service;
 
+import country.model.Country;
+
 public interface IServiceWorker {
-	void dealWithCountryByCode(String language);
+	Country dealWithCountryByCode(String language);
 
 	void addNewCountry(String country);
 
 	void DeleteCountryByCode(String Code);
 
-	void EditCountryByCode(String code, String ModifyInfos);
+	Integer EditCountryByCode(String code, String ModifyInfos);
 
 	void CountriesOfSameContinent(String codeContinent);
 
