@@ -44,4 +44,12 @@ public class CountryDAOImpl implements CountryDAO {
 	public void updateCountry(Country country) {
 		sessionFactory.getCurrentSession().update(country);
 	}
+	@Override
+	public List<Country> getAllCountries(String codeContinent) {
+		List<Country> res;
+		Query query = sessionFactory.getCurrentSession().createQuery("from Country where continent.code= :codeContinent");
+		query.setParameter("codeContinent", codeContinent);
+		res =(List<Country>) query.list();
+		return res;
+	}
 }

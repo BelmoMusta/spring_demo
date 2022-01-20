@@ -58,6 +58,13 @@ public class App {
 					serviceWorker.updateCountry(code,info);
 					break;
 				}
+				case 5: {
+					System.out.print("Saisir le code du continent: ");
+					Scanner scannerCode = new Scanner(System.in);
+					String code = scannerCode.next();
+					serviceWorker.getAllCountries(code);
+					break;
+				}
 				default: {
 					break;
 				}
