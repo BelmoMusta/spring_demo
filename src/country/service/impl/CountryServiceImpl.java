@@ -17,4 +17,9 @@ public class CountryServiceImpl extends AbstractCountryService {
 	public Country getCountry() {
 		return country;
 	}
+	@Override
+	public String continent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

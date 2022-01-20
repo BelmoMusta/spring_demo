@@ -9,3 +9,4 @@ CREATE TABLE country
     devise VARCHAR(250) DEFAULT NULL,
     greetings VARCHAR(250) DEFAULT NULL
 );
+

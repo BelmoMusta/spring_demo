@@ -1,10 +1,21 @@
 package country.model;
 
+import javax.annotation.Generated;
+import javax.persistence.*;
+
+@Entity
 public class Country {
+	
+	@Id
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name ="name")
 	private String name;
+	@Column(name ="code")
 	private String code;
+	@Column(name ="devise")
 	private String devise;
+	@Column(name ="greetings")
 	private String greetings;
 	
 	public Integer getId() {

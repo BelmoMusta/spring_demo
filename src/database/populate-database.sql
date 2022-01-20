@@ -2,3 +2,12 @@ INSERT INTO country(name, code, devise, greetings) VALUES('France', 'fr', 'EURO'
 INSERT INTO country(name, code, devise, greetings) VALUES('Spain', 'es', 'EURO','Hola');
 INSERT INTO country(name, code, devise, greetings) VALUES('England', 'en', 'GBP','Hello');
 INSERT INTO country(name, code, devise, greetings) VALUES('Germany', 'de', 'EURO','Halo');
+INSERT INTO country(name, code, devise, greetings) VALUES('Japan', 'ja', 'YEN','konnichiwa');
+
+INSERT INTO country(name, code, devise, greetings) VALUES('South Korea', 'sk', 'WON','annyeonghaseyo');
+
+
+INSERT INTO Continent(id,name, code) VALUES (1,'Europe','eur');
+
+INSERT INTO Continent(id,name, code) VALUES (2,'Asia','asia');
+

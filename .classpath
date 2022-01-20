@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs2/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="libs2/spring-aop-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-beans-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-context-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-core-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs2/spring-expression-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/jandex-2.0.0.CR1.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/spring-aop-5.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/spring-jdbc-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/spring-orm-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/spring-tx-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-rabhi/spring_demo-develop/libs2/transaction-api-1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/apiguardian-api-1.1.2.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/assertj-core-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/byte-buddy-1.9.10.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/classmate-1.3.4.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/commons-dbcp2-2.9.0.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/commons-logging-1.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/commons-pool2-2.11.1.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/dom4j-2.1.3.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/h2-2.0.204.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/hibernate-core-5.6.3.Final (1).jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/javax.transaction-api-1.3.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/jaxb-api-2.4.0-b180830.0359.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/jboss-logging-3.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/junit-jupiter-api-5.5.2.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/junit-platform-commons-1.5.2.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/junit-platform-engine-1.8.2.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/lombok.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-aop-5.3.14.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-beans-5.3.14.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-context-5.3.14.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-core-5.3.14.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-expression-5.3.14.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-jdbc-5.3.14.jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-orm-5.3.14 (1).jar"/>
+	<classpathentry kind="lib" path="D:/app/Manal/Downloads/spring_demo-1-develop/spring_demo-1-develop/lib1/spring-tx-5.3.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
