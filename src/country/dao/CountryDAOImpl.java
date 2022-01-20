@@ -1,88 +1,109 @@
 package country.dao;
 
-import country.model.Country;
 
-import org.hibernate.Query;
+import java.util.List;
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
+import country.model.Continent;
+import country.model.Country;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Repository
+@Transactional
 public class CountryDAOImpl implements CountryDAO {
-	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
-	//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
-	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-	Session session = sessionFactory.openSession() ; 
+	@Autowired
+    SessionFactory sessionFactory;
 	
-	//=sessionFactory.openSession();
-	//session.beginTransaction();
-	//session.getTransaction().commit();
-	//session=sessionFactory.openSession();
-	//session.close();
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
+	@Autowired
+	ContinentDAO continentDAO;
 	
 	@Override
 	public Country getByCode(String code) {
-		Country result;
+		//Get session and Begin transaction
+		Session session = getSessionFactory().openSession();
+    	session.beginTransaction();
 		
-		//session = sessionFactory.openSession();
-		//session.beginTransaction();
-		
+    	//Query
 		Query query = session.createQuery("from Country where code = :code");
 		query.setParameter("code", code);
-		result = (Country) query.uniqueResult();
+		Country country=(Country) query.uniqueResult();
 		
-		//session.getTransaction().commit();
-		//session.close();
+		//Commit transaction and close session
+		session.getTransaction().commit();
+		session.close();
 		
-		return result;
+		//return the Result
+        return country;
 	}
 
 	@Override
-	public void addCountry(Country country) {
-		session =sessionFactory.openSession();
-		session.beginTransaction();
+	public void addCountry(Country country,String nameOfContinet) {
+		country.setContinent(continentDAO.getContientByName(nameOfContinet));
 		
-		session.save(country);
-		
-		//List result = session.createQuery("from Country").list();
-		//for (Country event : (List<Country>) result) {System.out.println(event.getName());}
-		
-		session.getTransaction().commit();
+		//Get session and Begin transaction
+        Session session=getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        Query query = session.createSQLQuery("INSERT INTO Country(name, code, devise, greetings,continent_id) VALUES(:name, :code, :devise,:greeting,:continent);");
+        query.setParameter("name",country.getName())
+        .setParameter("code",country.getCode())
+        .setParameter("devise",country.getDevise())
+        .setParameter("greeting",country.getGreetings())
+        .setParameter("continent",country.getContinent());
+        query.executeUpdate();
+        
+		//Commit transaction and close session
+        session.getTransaction().commit();
 		session.close();
 	}
 
 	@Override
 	public void deleteCountry(String code) {
-		Country result;
-		session =sessionFactory.openSession();
+		//Get session and Begin transaction
+		Session session = getSessionFactory().openSession();
 		session.beginTransaction();
 		
-		Query query = session.createQuery("from Country where code = :code");
-		query.setParameter("code", code);
-		result = (Country) query.uniqueResult();
-		session.delete(result);
-		//List resulte = session.createQuery("from Country").list();
-		//for (Country event : (List<Country>) resulte) {System.out.println(event.getName());}
+		Country country = getByCode(code);
+		session.delete(country);
 		
+		//Commit transaction and close session
 		session.getTransaction().commit();
 		session.close();
+	}
+	
+	@Override
+	public boolean exist(String code) {
+		int result;
+		//Get session and Begin transaction
+		Session session = getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		//Query
+		Query query = session.createQuery("from Country c where c.code = :code");
+		query.setParameter("code",code);
+		result = query.list().size();
+		
+		//Commit transaction and close session
+		session.getTransaction().commit();
+		session.close();
+		
+		return  result > 0;
 	}
 	
 	

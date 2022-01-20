@@ -24,48 +24,76 @@ public class App {
 	
 	public static void main(String[] args) throws HibernateException {
 		
-		int chose = 0;
-		String information;
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
+
+		
 		Scanner inputFromConsole = new Scanner(System.in);
 		
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
-		
-		//Help user
-		System.out.println("Pour Ajouter des informations sur un pays, clicker sur 1");
-		System.out.println("Pour Voir des informations sur un pays, clicker sur 2");
-		System.out.println("Pour supprimer un pays, clicker sur 3");
-		System.out.println("Pour sortir de l'application, clicker sur 0");
-		
-		System.out.println("Enter numero :");
-		chose = inputFromConsole.nextInt();
-		
-		switch(chose) {
-			case 0 :
-				System.exit(0);
-				break;
+		while(true) {
+			//Help user
+			System.out.println("Pour ajouter des informations sur un pays, clicker sur ---------> 1");
+			System.out.println("Pour afficher des informations sur un pays, clicker sur --------> 2");
+			System.out.println("Pour supprimer un pays, clicker sur ----------------------------> 3");
+			System.out.println("Pour afficher des informations sur un continent, clicker sur ---> 5");
+			System.out.println("Pour sortir de l'application, clicker sur ----------------------> 0");
+			//Input user
+			System.out.println("Enter numero :");
+			String chose = inputFromConsole.next();
+			
+			switch(chose) {
 				
-			case 1 : 
-				System.out.print("Entrer les informations sous forme : code,name,devise,greetings");
-				String informations = inputFromConsole.next();
-				serviceWorker.addCountry(informations);
-				break;
+				//Aspect fonctionnel 1	
+				case "1" :
+					Country country=new Country();
+					System.out.println("Entrer les informations sous forme : code,name,device,greeting,continent_name\n"
+							+ "Pour le nom du continent : Europe, Afrique, Asie, Amerique, Australie\n"
+							+ "Par exemple : ma,Maroc,MAD,Salam,Afrique\n");
+					String input = inputFromConsole.next();
+					
+					try{
+						String[] infos=input.split(",");
+						country.setCode(infos[0]);
+						country.setName(infos[1]);
+						country.setDevise(infos[2]);
+						country.setGreetings(infos[3]);
+						
+						serviceWorker.dealWithAddCountry(country,infos[4]);
+					}catch (Exception e) {
+						System.err.println("Entrer les informations sous forme : code,name,device,greeting,contnent_name !");
+					}
+					break;
 				
-			case 2 : 
-				System.out.print("Entrer le code : ");
-				String language = inputFromConsole.next();
-				serviceWorker.dealWithCountryByCode(language);
-				break;
+				//Aspect fonctionnel 2	
+				case "2" :
+					System.out.println("Entrer le code : ");
+					String language = inputFromConsole.next();
+					serviceWorker.dealWithCountryByCode(language);
+					break;
 				
-			case 3 :
-				System.out.print("Entrer le code : ");
-				String code = inputFromConsole.next();
-				serviceWorker.deleteCountry(code);
-				break;
+				//Aspect fonctionnel 3	
+				case "3" :
+					System.out.println("Entrer le code : ");
+					String code = inputFromConsole.next();
+					serviceWorker.dealWithDeleteCountry(code);
+					break;
 				
-			default :
-				break;
+				//Aspect fonctionnel 5	
+				case "5" : 
+					System.out.println("Enter Code of continent: ");
+					String input2=inputFromConsole.next();
+					serviceWorker.selectCountriesOfContinent(input2);
+					break;
+				
+				//Aspect fonctionnel 6
+				case "0" :
+					System.exit(0);
+					break;
+				
+				default :
+					System.err.println("Entrée invalide !");
+					break;
+			}
 		}
 	}
-	
 }

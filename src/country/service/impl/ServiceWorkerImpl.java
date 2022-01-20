@@ -1,9 +1,14 @@
 package country.service.impl;
 
+import country.dao.ContinentDAO;
 import country.dao.CountryDAO;
+import country.model.Continent;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -13,35 +18,73 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Autowired
 	private CountryDAO countryDAO;
 	@Autowired
+	private ContinentDAO continentDAO;
+	@Autowired
 	private ApplicationContext applicationContext;
 	
+	//Aspect fonctionnel 1
 	@Override
-	public void dealWithCountryByCode(String language) {
-		Country pays = countryDAO.getByCode(language);
-		// car c'est prototype
-		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-		
-		System.out.println("WELCOME : " + countryService.welcome());
-		System.out.println("Devise is :" + countryService.devise());
-	}
-
-
-	@Override
-	public void addCountry(String informations) {
-		Country country = new Country();
-		String [] infos = informations.split(",");
-		country.setCode(infos[0]);
-		country.setName(infos[1]);
-		country.setDevise(infos[2]);
-		country.setDevise(infos[3]);
-		countryDAO.addCountry(country);
-	}
-
-
-	@Override
-	public void deleteCountry(String code) {
-		countryDAO.deleteCountry(code);
+	public void dealWithAddCountry(Country country,String nomContinet) {
+		if(!countryDAO.exist(country.getCode()) 
+				&& country.getCode() != null && country.getCode() != ""
+						&& country.getName() != null && country.getName() != ""
+				&& continentDAO.exist(nomContinet)) {
+			countryDAO.addCountry(country,nomContinet);
+			System.out.println("Ajout avec succès");
+		}else {
+			System.err.println("Pays existant ou Continent introuvable ou Entrée invalide");
+		}
 	}
 	
-	//add Country
+	//Aspect fonctionnel 2
+		@Override
+		public void dealWithCountryByCode(String code) {
+			if(countryDAO.exist(code)) {
+				Country pays = countryDAO.getByCode(code);
+				
+				// car c'est prototype
+				ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
+				
+				System.out.println("Pays : " + countryService.name());
+				System.out.println("Salut : " + countryService.welcome());
+				System.out.println("Devise : " + countryService.devise());
+			}else {
+				System.err.println("Pays introuvable !");
+			}
+		}
+
+	//Aspect fonctionnel 3
+	@Override
+	public void dealWithDeleteCountry(String code) {
+		if(countryDAO.exist(code)) {
+			countryDAO.deleteCountry(code);
+			System.out.println("Suppression avec succée !");
+		}else {
+			System.err.println("Pays introuvable !");
+		}	
+	}
+	
+	//Aspect fonctionnel 5
+	@Override
+	public void selectCountriesOfContinent(String code) {
+		Continent continent = continentDAO.getContinentByCode(code);
+		if(continent != null) {
+			List<Country> countries = continentDAO.getCountriesByContinentCode(code);
+			if(countries.size() != 0) {
+				for(Country country : countries) {
+					System.out.println("Nom :"+country.getName());
+					System.out.println("Code :"+country.getCode());
+					System.out.println("Devise :"+country.getDevise());
+					System.out.println("Salut:"+country.getGreetings());
+					System.out.println("*********");
+				}
+			}else {
+				System.out.println("Aucun pays dans ce continent");
+			}
+		}else {
+			System.err.println("Continent introuvable !");
+		}
+		
+	}
+	
 }
