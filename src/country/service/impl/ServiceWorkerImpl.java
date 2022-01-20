@@ -100,8 +100,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void deleteCountryByCode(String code) {
 		if(countryDAO.exist(code)){
 			countryDAO.delete(code);
+			System.out.println("\npays supprimé avec succes.");
 		}else{
-			System.out.println("le code saisie ne correspand à aucun pays ");
+			System.out.println("\nle code saisie ne correspand à aucun pays ");
 		}
 	}
 
