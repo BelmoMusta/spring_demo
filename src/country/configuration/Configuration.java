@@ -3,6 +3,7 @@ package country.configuration;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.Properties;
@@ -21,6 +22,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @org.springframework.context.annotation.Configuration
 @EnableTransactionManagement
+@ComponentScan(basePackages =  "country")
 public class Configuration {
 	@Bean
     public LocalSessionFactoryBean sessionFactory() {
