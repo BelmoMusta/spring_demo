@@ -7,11 +7,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import country.model.Continent;
 import country.model.Country;
 
 @Repository
+@Transactional
 public class ContinentDAOImpl implements ContinentDAO{
 	
 	@Autowired

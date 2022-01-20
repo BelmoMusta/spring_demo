@@ -107,6 +107,11 @@ public class App {
 				//Aspect fonctionnel 5	
 				case "5" :{ 
 					System.out.println("Enter Code of continent: ");
+					System.out.println("Europe : eu\n"
+							+ "Afrique: af\n"
+							+ "Australie : aus\n"
+							+ "Amerique : ame\n"
+							+ "Asie : asie");
 					String input = inputFromConsole.next();
 					serviceWorker.dealwWithSelectCountriesOfContinent(input);
 					break;

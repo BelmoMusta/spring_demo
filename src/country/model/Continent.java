@@ -3,6 +3,7 @@ package country.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +24,6 @@ public class Continent {
 	
 	private String code;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
     private List<Country> countries;
 }
