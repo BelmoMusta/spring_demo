@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,12 +51,13 @@ public class ServiceWorkerImpl implements IServiceWorker {
 				Continent continent = continentDAO.getContientByName(countryParts[4]);
 				Country c = new Country();
 				c.setCode(code);
-				c.setDevise(device);
+				c.setDevise(device.toLowerCase());
 				c.setName(name);
-				c.setGreetings(greeting);
+				c.setGreetings(greeting.toLowerCase());
 				c.setContinent(continent);
 				try{
 					countryDAO.save(c);
+					System.out.println("Le pays avec le code '"+ code +"' a été ajouté avec succés.");
 				}catch (ConstraintViolationException e){
 					System.out.println("\nle pays existe deja dans la bd !! (code pays dupliqué)");
 				}
