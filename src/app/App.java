@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import app.controller.CountryController;
-import app.helper.OPERATION;
+import static app.helper.OPERATION.*;
 
 @SuppressWarnings("all")
 public class App {
@@ -30,26 +30,26 @@ public class App {
 				int inputNumber = inputFromConsole.nextInt();
 
 				switch (inputNumber) {
-				case OPERATION.EXIT: {
+				case EXIT: {
 					countryController.exitApp();
 				}
-				case OPERATION.ADD_COUNTRY: {
+				case ADD_COUNTRY: {
 					countryController.addCountry(inputFromConsole);
 					break;
 				}
-				case OPERATION.GET_COUNTRY: {
+				case GET_COUNTRY: {
 					countryController.getCountry(inputFromConsole);
 					break;
 				}
-				case OPERATION.DELETE_COUNTRY: {
+				case DELETE_COUNTRY: {
 					countryController.deleteCountry(inputFromConsole);
 					break;
 				}
-				case OPERATION.UPDATE_COUNTRY: {
+				case UPDATE_COUNTRY: {
 					countryController.updateCountry(inputFromConsole);
 					break;
 				}
-				case OPERATION.GET_ALL_COUNTRY: {
+				case GET_ALL_COUNTRY: {
 					countryController.getCountriesByContinent(inputFromConsole);
 					break;
 				}
@@ -63,7 +63,6 @@ public class App {
 			}
 			
 		} catch (Exception e) {
-			
 			System.exit(0);
 		} 
 	}
