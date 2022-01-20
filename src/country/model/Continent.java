@@ -1,10 +1,14 @@
 package country.model;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.io.Serializable;
 
-
+@Entity
 public class Continent implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String code;

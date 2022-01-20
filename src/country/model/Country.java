@@ -9,47 +9,27 @@ public class Country {
 	private String greetings;
 	private Continent continent;
 	
-	public Integer getId() {
-		return id;
-	}
+	public Integer getId() { return id; }
 	
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	public void setId(Integer id) { this.id = id; }
 	
-	public String getName() {
-		return name;
-	}
+	public String getName() { return name; }
 	
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(String name) { this.name = name; }
 	
-	public String getCode() {
-		return code;
-	}
+	public String getCode() { return code; }
 	
-	public void setCode(String code) {
-		this.code = code;
-	}
+	public void setCode(String code) { this.code = code; }
 	
-	public String getDevise() {
-		return devise;
-	}
+	public String getDevise() { return devise; }
 	
-	public void setDevise(String devise) {
-		this.devise = devise;
-	}
+	public void setDevise(String devise) { this.devise = devise; }
 	
-	public String getGreetings() {
-		return greetings;
-	}
+	public String getGreetings() { return greetings; }
 	
-	public void setGreetings(String greetings) {
-		this.greetings = greetings;
-	}
+	public void setGreetings(String greetings) { this.greetings = greetings; }
 
-	public void setContinent(Continent continent){this.continent = continent; }
+	public void setContinent(Continent continent){ this.continent = continent; }
 
 	public Continent getContinent(){ return continent; }
 

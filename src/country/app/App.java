@@ -18,11 +18,12 @@ public class App {
 
             System.out.println("Application Interactive");
             System.out.println("\n");
-            System.out.println("Entrez 1 pour ajouter un pays");
-            System.out.println("Entrez 2 pour lister toutes les informations d'un pays");
-            System.out.println("Entrez 0 pour sortir de l'application");
+            System.out.println("Entrez 1 pour ajouter un pays.");
+            System.out.println("Entrez 2 pour lister toutes les informations d'un pays.");
+            System.out.println("Entrez 3 pour supprimer un pays.");
+            System.out.println("Entrez 0 pour sortir de l'application.");
             System.out.println("\n");
-            System.out.println("Veuillez entrer un chiffre s'il vous plaît");
+            System.out.println("Veuillez entrer un chiffre s'il vous plaît : ");
 
             Scanner imputFromConsole = new Scanner((System.in));
             int codesaisi = Integer.parseInt(imputFromConsole.next());
@@ -32,7 +33,8 @@ public class App {
                 case 0: {System.exit(0);}
 
                 case 1: {
-                    System.out.print("Entrez le pays à ajouter sous le format : code,nom,devise,greeting,continent code");
+                    System.out.print("Entrez les informations du pays à ajouter sous le format : code,nom,devise,greeting,continent code.");
+                    System.out.println("\n");
                     Scanner inputFromConsole = new Scanner(System.in);
                     String pays = inputFromConsole.next();
                     serviceWorker.addCountry(pays);
@@ -40,10 +42,19 @@ public class App {
                 }
                 case 2: {
                 System.out.print("Entrez le code du pays dont vous voulez lister les informations : ");
+                    System.out.println("\n");
                 Scanner inputFromConsole = new Scanner(System.in);
                 String pays = inputFromConsole.next();
                 serviceWorker.getCountryInfos(pays);
                 break;
+                }
+                case 3: {
+                    System.out.println("Entrez le code du pays à supprimer : ");
+                    System.out.println("\n");
+                    Scanner inputFromConsole = new Scanner(System.in);
+                    String pays = inputFromConsole.next();
+                    serviceWorker.deleteCountry(pays);
+                    break;
                 }
                 default:{
                     System.out.print("Choisir une langue : ");
