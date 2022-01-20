@@ -1,12 +1,16 @@
 package country.service.impl;
 
 import country.dao.CountryDAO;
+
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {
@@ -65,5 +69,24 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		else if (rowsAff == -2) System.err.println("code déja existe");
 		
 		else System.err.println("not updated");
+	}
+	@Override
+	public void selectCountriesByContinent(String _inputcode) {
+		List<Country> countries = countryDAO.getCountrieByCode(_inputcode);
+		if (countries == null)
+			System.err.println("pas  continent avec ce code");
+		else if (countries.size() == 0)
+			System.err.println(" pas de contry dans ce continent");
+		else {
+			System.out.println("#############      AFFICHAGE DES CONTRY    ##############");
+			for (Country country : countries) {
+				System.out.println("Id :" + country.getId());
+				System.out.println("Name :" + country.getName());
+				System.out.println("Code :" + country.getCode());
+				System.out.println("Devise :" + country.getDevise());
+				System.out.println("Greeting :" + country.getGreetings());
+				System.out.println("##########################################");
+			}
+		}
 	}
 }

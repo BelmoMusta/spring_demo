@@ -82,6 +82,12 @@ public class App {
 				}
 				}
 			  break;
+			case "5": {
+				System.out.println("le  Code de continent: ");
+				String input=inputFromConsole.next();
+				serviceWorker.selectCountriesByContinent(input);
+			}
+			break;
 			default:
 				System.err.println("Unexpected value: " + query);
 			}

@@ -13,5 +13,7 @@ public interface IServiceWorker {
 
 	void ModifyCountry(Country country, String code, String string);
 
+	void selectCountriesByContinent(String _inputCode);
+
 	
 }

@@ -117,5 +117,21 @@ public class CountryDAOImpl implements CountryDAO {
 			return query.executeUpdate();
 		}
 	}
+	@Override
+	public List<Country> getCountrieByCode(String code) {
+		Continent continent = getContinentByCode(code);
+		if (continent == null)
+			return null;
+		Query query = getSession().createQuery("FROM Country C WHERE C.continent=:continent");
+		query.setParameter("continent", continent);
+		return query.getResultList();
+	}
+	@Override
+	public Continent getContinentByCode(String code) {
+		String hql = "from Continent C where C.code =:code";
+		Query query = getSession().createQuery(hql);
+		query.setParameter("code", code);
+		return (Continent) query.uniqueResult();
+	}
 
 }
