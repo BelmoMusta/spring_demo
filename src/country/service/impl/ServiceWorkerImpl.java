@@ -5,6 +5,10 @@ import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -43,9 +47,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 	
 	@Override
-	public void updateCountry(String code) {
-		System.out.print("Entrer les nouvelles informations du pays : ");	
-		countryDAO.updateElement(code);
+	public void updateCountry(String code, String[] countryNInfos) {
+		countryDAO.updateElement(code, countryNInfos);
 		System.out.println("Pays modifié avec succés!!"); 
 	}
 	
@@ -62,6 +65,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public boolean checkIfContinentExists(String Ccode) {
 		return countryDAO.checkContinentExistance(Ccode);
+	}
+	
+	@Override
+	public List<String> countryElements(String countryCode){
+		return countryDAO.countryElements(countryCode);
 	}
 	
 }

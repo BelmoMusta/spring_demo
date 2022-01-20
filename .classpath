@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="libs2/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="libs2/dom4j-1.6.jar"/>
 	<classpathentry kind="lib" path="libs2/commons-pool-1.6.jar"/>
+	<classpathentry kind="lib" path="libs2/lombok.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

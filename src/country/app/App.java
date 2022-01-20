@@ -9,9 +9,9 @@ import java.util.Scanner;
 @SuppressWarnings("all")
 public class App {
 	public static void main(String[] args) {
-		ApplicationContext applicationContext =
-				new ClassPathXmlApplicationContext("beans/*.xml");
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans/*.xml");
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
+		
 		while (true) {
 			System.out.println("\nInstructions : ");
 			System.out.println("****************");
@@ -51,7 +51,13 @@ public class App {
 				inputFromConsole = new Scanner(System.in);
 				String code = inputFromConsole.next();
 				if(!serviceWorker.checkIfCountryExists(code)) System.out.println("Pays n'existe pas!!");
-				else serviceWorker.updateCountry(code);
+				else {
+					System.out.print("Entrer les nouvelles informations du pays : ");
+					inputFromConsole = new Scanner(System.in);
+					String Ninfos = inputFromConsole.next();
+					String[] countryNInfos = Ninfos.split(",", 5);
+					serviceWorker.updateCountry(code, countryNInfos);
+				}
 			}
 			if(num == 5) {
 				System.out.print("Entrer le code du continent : ");

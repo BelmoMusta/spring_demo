@@ -95,11 +95,7 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 	
 	@Override 
-	public void updateElement(String code) {
-		Scanner inputFromConsole = new Scanner(System.in);
-		String Ninfos = inputFromConsole.next();
-		String[] countryNInfos = Ninfos.split(",", 5);
-		
+	public void updateElement(String code, String[] countryNInfos) {
 		try {
 			Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement("UPDATE country SET name = ?, code = ?, devise = ?, greetings = ?, ccode = ? WHERE code = ?;");
@@ -190,6 +186,19 @@ public class CountryDAOImpl implements CountryDAO {
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public List<String> countryElements(String countryCode){
+		Country c = getByCode(countryCode);
+		
+		List<String> l = new ArrayList<String>();
+		l.add(c.getName());
+		l.add(c.getCode());
+		l.add(c.getDevise());
+		l.add(c.getGreetings());
+		l.add(c.getContinentCode());
+		return l;
 	}
 	
 }
