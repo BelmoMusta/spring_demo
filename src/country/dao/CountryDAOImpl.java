@@ -62,5 +62,11 @@ public class CountryDAOImpl implements CountryDAO {
 		session.update(country);
 	}
 
+	@Override
+	public void update(Country country) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(country);
+	}
+
 
 }
