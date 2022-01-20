@@ -4,4 +4,5 @@ import country.model.Country;
 
 public interface ICountryDAO {
 	Country add(Country country);
+	Country getByCode(String code);
 }

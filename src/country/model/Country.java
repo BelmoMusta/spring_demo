@@ -53,4 +53,14 @@ public class Country {
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
 	}
+
+	@Override
+	public String toString() {
+		return "Pays {" +
+				" Nom = '" + name + '\'' +
+				", Code = '" + code + '\'' +
+				", Devise = '" + devise + '\'' +
+				", Salutation='" + greetings + '\'' +
+				'}';
+	}
 }

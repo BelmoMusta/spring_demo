@@ -6,6 +6,7 @@ import country.service.IServiceWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 @Service
@@ -17,6 +18,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void dealWithMenuChoice(String choix) {
 		switch (choix) {
 			case "1" : this.choiceAddCountry();
+				break;
+			case "2" : this.choiceShowCountry();
 				break;
 			default: break;
 		}
@@ -43,12 +46,25 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("** Veuillez saisir les quatres informations.");
 		} else {
 			Country country = new Country();
-			country.setCode(informations[0]);
+			country.setCode(informations[0].toUpperCase(Locale.ROOT));
 			country.setName(informations[1]);
 			country.setDevise(informations[2]);
 			country.setGreetings(informations[3]);
 
 			this.countryDAO.add(country);
+		}
+	}
+
+	private void choiceShowCountry() {
+		System.out.println("Veuillez saisir le code du pays recherché (ex :FR) :");
+		Scanner inputFromConsole = new Scanner(System.in);
+		String input = inputFromConsole.next();
+		Country returned = this.countryDAO.getByCode(input);
+		if(returned == null) {
+			System.out.println("Aucun pays trouvé");
+
+		} else {
+			System.out.println(returned);
 		}
 	}
 }
