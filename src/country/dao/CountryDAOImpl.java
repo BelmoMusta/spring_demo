@@ -53,8 +53,8 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public void addCountry(Country country,String nameOfContinet) {
-		country.setContinent(continentDAO.getContientByName(nameOfContinet));
+	public void addCountry(Country country,String nomContinet) {
+		country.setContinent(continentDAO.getContientByName(nomContinet));
 		
 		//Get session and Begin transaction
         Session session=getSessionFactory().openSession();
@@ -88,6 +88,29 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 	
 	@Override
+	public void updateCountry(String code, Country country, String nomContinet) {
+		country.setContinent(continentDAO.getContientByName(nomContinet));
+		
+		//Get session and Begin transaction
+        Session session=getSessionFactory().openSession();
+        session.beginTransaction();
+        
+    	Query query = session.createQuery("update Country c set c.name=:name,c.code=:code,c.devise=:devise,c.greetings=:greeting,c.continent=:continent where c.code=:codeUpdate");
+    	 query.setParameter("name",country.getName())
+    	      .setParameter("code",country.getCode())
+    	      .setParameter("devise",country.getDevise())
+    	      .setParameter("greeting",country.getGreetings())
+    	      .setParameter("continent",country.getContinent())
+    	      .setParameter("codeUpdate", code);
+    	query.executeUpdate();
+        
+		//Commit transaction and close session
+        session.getTransaction().commit();
+		session.close();
+		
+	}
+	
+	@Override
 	public boolean exist(String code) {
 		int result;
 		//Get session and Begin transaction
@@ -105,6 +128,7 @@ public class CountryDAOImpl implements CountryDAO {
 		
 		return  result > 0;
 	}
+	
 	
 	
 }

@@ -44,15 +44,15 @@ public class App {
 			switch(chose) {
 				
 				//Aspect fonctionnel 1	
-				case "1" :
+				case "1" :{
 					Country country=new Country();
 					System.out.println("Entrer les informations sous forme : code,name,device,greeting,continent_name\n"
 							+ "Pour le nom du continent : Europe, Afrique, Asie, Amerique, Australie\n"
 							+ "Par exemple : ma,Maroc,MAD,Salam,Afrique\n");
-					String input = inputFromConsole.next();
+					String informations = inputFromConsole.next();
 					
 					try{
-						String[] infos=input.split(",");
+						String[] infos = informations.split(",");
 						country.setCode(infos[0]);
 						country.setName(infos[1]);
 						country.setDevise(infos[2]);
@@ -63,14 +63,14 @@ public class App {
 						System.err.println("Entrer les informations sous forme : code,name,device,greeting,contnent_name !");
 					}
 					break;
-				
+				}
 				//Aspect fonctionnel 2	
-				case "2" :
+				case "2" :{
 					System.out.println("Entrer le code : ");
 					String language = inputFromConsole.next();
 					serviceWorker.dealWithCountryByCode(language);
 					break;
-				
+				}
 				//Aspect fonctionnel 3	
 				case "3" :
 					System.out.println("Entrer le code : ");
@@ -78,21 +78,50 @@ public class App {
 					serviceWorker.dealWithDeleteCountry(code);
 					break;
 				
-				//Aspect fonctionnel 5	
-				case "5" : 
-					System.out.println("Enter Code of continent: ");
-					String input2=inputFromConsole.next();
-					serviceWorker.selectCountriesOfContinent(input2);
+				//Aspect fonctionnel 4	
+				case "4" :{
+					System.out.println("Enter le code du pays que vous voulez modifié: ");
+					String codeInput = inputFromConsole.next();
+					
+					System.out.println("Entrer les informations sous forme : code,name,device,greeting,continent_name\n"
+							+ "Pour le nom du continent : Europe, Afrique, Asie, Amerique, Australie\n"
+							+ "Par exemple : ma,Maroc,MAD,Salam,Afrique\n");
+					String informations = inputFromConsole.next();
+					
+					try {
+						String[] infos = informations.split(",");
+						Country country = new Country();
+						country.setCode(infos[0]);
+						country.setName(infos[1]);
+						country.setDevise(infos[2]);
+						country.setGreetings(infos[3]);
+						serviceWorker.dealWithUpdateCountry(codeInput,country,infos[4]);
+					}catch (Exception e) {
+						System.err.println("Entrer les informations sous forme : code,name,device,greeting,contnent_name !");
+					}
+					
 					break;
+				}
+			
+				//Aspect fonctionnel 5	
+				case "5" :{ 
+					System.out.println("Enter Code of continent: ");
+					String input = inputFromConsole.next();
+					serviceWorker.dealwWithSelectCountriesOfContinent(input);
+					break;
+				}
 				
 				//Aspect fonctionnel 6
-				case "0" :
+				case "0" :{
+					
 					System.exit(0);
 					break;
+				}
 				
-				default :
+				default :{
 					System.err.println("Entrée invalide !");
 					break;
+				}
 			}
 		}
 	}

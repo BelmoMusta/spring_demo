@@ -27,7 +27,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void dealWithAddCountry(Country country,String nomContinet) {
 		if(!countryDAO.exist(country.getCode()) 
 				&& country.getCode() != null && country.getCode() != ""
-						&& country.getName() != null && country.getName() != ""
+				&& country.getName() != null && country.getName() != ""
 				&& continentDAO.exist(nomContinet)) {
 			countryDAO.addCountry(country,nomContinet);
 			System.out.println("Ajout avec succès");
@@ -64,18 +64,41 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		}	
 	}
 	
+	//Aspect fonctionnel 4
+	@Override
+	public void dealWithUpdateCountry(String code, Country country, String nomContinet) {
+		if(countryDAO.exist(code)) {
+			if(country.getCode() != null && country.getCode() != ""
+					&& country.getName() != null && country.getName() != ""
+					&& continentDAO.exist(nomContinet)) {
+				if(code != country.getCode() && countryDAO.exist(country.getCode())) {
+					System.err.println(country.getCode() + ": deja existant !");
+				}else {
+					countryDAO.updateCountry(code, country, nomContinet);
+					System.out.println("Modification avec succès");
+				}
+			}else {
+				System.err.println("Pays existant ou Continent introuvable ou Entrée invalide");
+			}
+			
+		}else {
+			System.err.println("code ne correspond a aucun pays");
+		}
+		
+	}
+	
 	//Aspect fonctionnel 5
 	@Override
-	public void selectCountriesOfContinent(String code) {
+	public void dealwWithSelectCountriesOfContinent(String code) {
 		Continent continent = continentDAO.getContinentByCode(code);
 		if(continent != null) {
 			List<Country> countries = continentDAO.getCountriesByContinentCode(code);
 			if(countries.size() != 0) {
 				for(Country country : countries) {
-					System.out.println("Nom :"+country.getName());
-					System.out.println("Code :"+country.getCode());
-					System.out.println("Devise :"+country.getDevise());
-					System.out.println("Salut:"+country.getGreetings());
+					System.out.println("Nom : "+country.getName());
+					System.out.println("Code : "+country.getCode());
+					System.out.println("Devise : "+country.getDevise());
+					System.out.println("Salut : "+country.getGreetings());
 					System.out.println("*********");
 				}
 			}else {
