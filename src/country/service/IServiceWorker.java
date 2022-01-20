@@ -9,4 +9,6 @@ public interface IServiceWorker {
 
 	void EditCountryByCode(String code, String ModifyInfos);
 
+	void CountriesOfSameContinent(String codeContinent);
+
 }

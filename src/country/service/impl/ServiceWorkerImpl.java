@@ -1,5 +1,7 @@
 package country.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -72,4 +74,19 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		return country;
 
 	}
+
+	@Override
+	public void CountriesOfSameContinent(String codeContinent) {
+
+		List<Country> ListOfCountries;
+		// Continent continent = countryDAO.GetContinent(CodeContinent);
+		ListOfCountries = countryDAO.CountriesOfContinent(codeContinent);
+		System.out.println("============================== " + codeContinent + " ===============================");
+		for (Country country : ListOfCountries) {
+			System.out.println("-->" + country.getName());
+		}
+		System.out.println("=================================================================");
+
+	}
+
 }

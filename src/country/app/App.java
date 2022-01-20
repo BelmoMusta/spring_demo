@@ -26,8 +26,7 @@ public class App {
 
 						+ "=================================================================================================================\n");
 		Scanner inputFromConsole;
-		String codePays = "", ModifierInfos = "";
-		Boolean keepWorking = true;
+		String codePays = "", ModifierInfos = "", CodeContinent = "";
 		while (true) {
 
 			System.out.print("entrer le numéro :");
@@ -35,7 +34,12 @@ public class App {
 			inputFromConsole = new Scanner(System.in);
 			String number_typed = inputFromConsole.next();
 			switch (Integer.parseInt(number_typed)) {
+			case 0:
 
+				System.out.println("exit...");
+				System.exit(0);
+
+				break;
 			case 1:
 				System.out.print(
 						"entrer les informations ,form de la saisie : code,Nom, devise, greetings,codeContinent:\n");
@@ -78,6 +82,13 @@ public class App {
 				codePays = "";
 				break;
 			default:
+				break;
+			case 5:
+				System.out.println("Entrer le code de la continent:");
+				inputFromConsole = new Scanner(System.in);
+				CodeContinent = inputFromConsole.next();
+				serviceWorker.CountriesOfSameContinent(CodeContinent);
+				CodeContinent = "";
 				break;
 
 			}

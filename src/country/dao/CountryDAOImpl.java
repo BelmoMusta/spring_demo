@@ -1,5 +1,6 @@
 package country.dao;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
@@ -73,4 +74,17 @@ public class CountryDAOImpl implements CountryDAO {
 		session4.close();
 		return query1;
 	}
+
+	@Override
+	public List<Country> CountriesOfContinent(String codeContinent) {
+		Session session = getSession();
+		Transaction tran = session.beginTransaction();
+		String str = "FROM Country where codeContinent=:codeContinent";
+		List<Country> countries = session.createQuery(str).setParameter("codeContinent", codeContinent).list();
+
+		tran.commit();
+		session.close();
+		return countries;
+	}
+
 }
