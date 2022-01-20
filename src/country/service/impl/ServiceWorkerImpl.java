@@ -14,13 +14,13 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void addCountry(String country) {
 		// TODO Auto-generated method stub
-		String[] l=country.split(",");
-		Country country2=new Country();
-		country2.setCode(l[0]);
-		country2.setDevise(l[2]);
-		country2.setGreetings(l[3]);
-		country2.setName(l[1]);
-		countryDAO.addCountry(country2);
+		String[] infoListe=country.split(",");
+		Country countryToAdd=new Country();
+		countryToAdd.setCode(infoListe[0]);
+		countryToAdd.setName(infoListe[1]);
+		countryToAdd.setDevise(infoListe[2]);
+		countryToAdd.setGreetings(infoListe[3]);
+		countryDAO.addCountry(countryToAdd);
 	}
 
 	@Override
@@ -28,6 +28,12 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		// TODO Auto-generated method stub
 		countryDAO.displayCountry();
 	}
+	
+	@Override
+	public void displayByCode(String code) {
+		countryDAO.displayByCode(code);
+	}
+	
 
 	
 }

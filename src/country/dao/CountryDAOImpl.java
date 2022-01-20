@@ -17,17 +17,17 @@ public  class CountryDAOImpl extends Dao implements CountryDAO {
 	public void addCountry(Country country) {
 		// TODO Auto-generated method stub
 		Session session=getSession();
-		   Transaction trans=session.beginTransaction();
+		   Transaction transaction=session.beginTransaction();
 		   session.save(country);
-		   trans.commit();
+		   transaction.commit();
 		   session.close();
 	}
 	@Override
 	public void displayCountry() {
 		// TODO Auto-generated method stub
 
-			Session session=getSession();
-		   trans = session.beginTransaction();
+		   Session session=getSession();
+		   Transaction transaction = session.beginTransaction();
 		   List<Country> listepayes = session.createQuery("FROM Country").list();
 		   for (Iterator iterator =listepayes.iterator(); iterator.hasNext();){
 			Country country = (Country) iterator.next();
@@ -35,9 +35,26 @@ public  class CountryDAOImpl extends Dao implements CountryDAO {
 			System.out.print(" Devise: " + country.getDevise()+"\n");
 			System.out.print(" Greetings: " + country.getGreetings()+"\n");
 			}
-		   trans.commit();
+		   transaction.commit();
 		   session.close();
 	}
+	@Override
+	public void displayByCode(String code) {
+
+		Session session = getSession();
+		Transaction transaction = session.beginTransaction();
+		String q1 = "FROM Country where code=:Code";
+		List <Country> listepayes = session.createQuery(q1).setParameter("Code", code).list();
+		for (Iterator iterator =listepayes.iterator(); iterator.hasNext();){
+        Country country = (Country) iterator.next();
+		System.out.print("> Name: " + country.getName()+"\n");
+		System.out.print("Devise: " + country.getDevise()+"\n");
+		System.out.print("Greetings: " + country.getGreetings()+"\n");
+		System.out.println("Code: " + country.getCode()+"\n");
+		}
+		transaction.commit();
+		session.close();}
+	
 	
 	
 

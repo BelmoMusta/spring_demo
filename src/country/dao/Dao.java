@@ -15,4 +15,5 @@ public abstract class Dao
 		return sessionFactory.getCurrentSession();
 	}
 	
+	
 }
