@@ -1,7 +1,7 @@
 package country.service.impl;
 
 import country.dao.CountryDAO;
-import country.model.Country;
+import country.model.*;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
 
@@ -64,8 +64,17 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void GetList() {
 		
-		countryDAO.getAllCountries();
+		List<Country> list=countryDAO.getCountries();
+		for(Country c : list) {
+			System.out.println(c.getCode());
+		}
 		
+	}
+	public void Getcontinent() {
+		List<Continent> list=countryDAO.getAllCountinents();
+		for(Continent c : list) {
+			System.out.println(c.getCode());
+		}
 	}
 
 	@SuppressWarnings("unused")
@@ -87,6 +96,20 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		 country.setDevise(arrOfStr[2]);
 		 country.setGreetings(arrOfStr[3]);
 		 countryDAO.updateCountry(Code, country);
+	}
+
+	@Override
+	public void GetCountriesByContinent() {
+		// TODO Auto-generated method stub
+		Country country = new Country();
+		System.out.println("Enter the code of the countinent (Ex:Europe) :");
+		@SuppressWarnings("resource")
+		Scanner inputFromConsole = new Scanner(System.in);
+		String Continent = inputFromConsole.next();
+		List<Country> list=countryDAO.getCountriesByContinent(Continent);
+		for(Country c : list) {
+			System.out.println(c.getCode());
+		}
 	}
 	
 	

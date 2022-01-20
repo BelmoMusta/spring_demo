@@ -20,7 +20,9 @@ public class App {
 			System.out.print("\n-2 Get a country details .");
 			System.out.print("\n-3 Delete a country .");
 			System.out.print("\n-4 Update a country .");
+			System.out.print("\n-5 Get a list of countries by continent  .");
 			System.out.print("\n-6 Get the list of the contries .");
+			System.out.print("\n-7 Get the list of continents .");
 			System.out.print("\n-0 to exit . ");
 			System.out.print("\nCode : ");
 			Scanner inputFromConsole = new Scanner(System.in);
@@ -49,10 +51,21 @@ public class App {
 			    {
 			    	serviceWorker.UpdateCountry();
 			    }
-			    break; 
+			    break;
+			    case "5": 
+			    {
+			    	serviceWorker.GetCountriesByContinent();
+			    }
+			    break;
 			    case "6": 
 			    {
 			    	serviceWorker.GetList();
+			    }
+				    break; 
+				    
+			    case "7": 
+			    {
+			    	serviceWorker.Getcontinent();
 			    }
 				    break; 
 			    case "0": {

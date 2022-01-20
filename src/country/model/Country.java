@@ -2,6 +2,7 @@ package country.model;
 
 public class Country {
 	private Integer id;
+	private String continent;
 	private String name;
 	private String code;
 	private String devise;
@@ -46,4 +47,13 @@ public class Country {
 	public void setGreetings(String greetings) {
 		this.greetings = greetings;
 	}
+
+	public String getContinent() {
+		return continent;
+	}
+
+	public void setContinent(String continent) {
+		this.continent = continent;
+	}
+	
 }

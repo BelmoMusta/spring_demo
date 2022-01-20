@@ -6,4 +6,6 @@ public interface IServiceWorker {
 	void DeleteCountry();
 	void GetList();
 	void UpdateCountry();
+	void Getcontinent();
+	void GetCountriesByContinent();
 }
