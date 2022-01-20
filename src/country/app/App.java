@@ -21,20 +21,39 @@ public class App {
 		Scanner inputFromConsole = new Scanner(System.in);
 		org.h2.tools.Server.createWebServer().start();
 		while (true) {
-			
-			/*
-			 * 
-			 * 1- Pour l'ajout d'un nouveau pays tapper 1, L'utilisateur sera amené à saisir les information du pays une par une
-    Bonus : si vous le souhaitez, vous pouvez faire l'ajout par une seule ligne avec un séparateur, exemple : FR,france,EURO,Bonjour!
-2- Pour lister les informations d'un pays, tapper 2, (le code pays sera saisi par l'utilisateur).
-3- Pour supprimer un pays, tapper 3, (le code pays sera saisi par l'utilisateur).
-4- Pour modifier des informations d'un pays, tapper 4, (le code pays sera saisi par l'utilisateur).
-5- Pour lister tous les pays d'un continent, tapper 5, (le code du continent sera saisi par l'utilisateur).
-6- Pour sortir de l'application tapper 0;
-			 * 
-			 */
-			System.out.println("configuration hibernate ");
+			System.out.println(" ############ Add a country => 1 #############");
+			System.out.println(" ############# lister les informations d'un pays => 2 #############");
+			System.out.println(" ############# supprimer un pays => 3 #############");
+			System.out.println(" ############# modifier des informations d'un pays => 4 ############# ");
+			System.out.println(" ############# lister tous les pays d'un continen => 5 ############# ");
+			System.out.println(" ############# sortir  => 0 #############");
 		    String query = inputFromConsole.next();
+
+		    switch (query) {
+			//
+			case "1": {
+				Country country=new Country();
+				System.out.println("add information of a country like: code,name,device,greeting,nameofcontinent:");
+				String input=inputFromConsole.next();
+				try{
+					String[] informationOfCountry=input.split(",");
+					country.setCode(informationOfCountry[0]);
+					country.setName(informationOfCountry[1]);
+					country.setDevise(informationOfCountry[2]);
+					country.setGreetings(informationOfCountry[3]);
+					serviceWorker.ajouterCountry(country,informationOfCountry[4]);
+				}
+				catch (ArrayIndexOutOfBoundsException e) {
+					System.err.println("Verify the form of your input");
+				}
+				
+				
+			}
+				      break;
+			
+			default:
+				System.err.println("Unexpected value: " + query);
+			}
 
 	}
 

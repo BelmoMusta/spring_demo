@@ -1,5 +1,4 @@
 INSERT INTO continent(name, code) VALUES ('Europe', 'eu');
-INSERT INTO continent(name, code) VALUES ('Europe', 'eu');
 INSERT INTO continent(name, code) VALUES ('America', 'am');
 INSERT INTO continent(name, code) VALUES ('Asia', 'as');
 INSERT INTO country(name, code, devise, greetings,continent_id) VALUES('France', 'fr', 'EURO','Bonjour',2);
