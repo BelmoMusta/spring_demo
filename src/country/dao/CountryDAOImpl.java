@@ -86,7 +86,7 @@ public class CountryDAOImpl implements CountryDAO{
 		
 	}
 	@Override
-	public void update(Country country) {
+	public Country update(Country country) {
 	
 	    if(country.getContinent()==null)
 	    	System.err.println("there is no continent with this name");
@@ -105,6 +105,7 @@ public class CountryDAOImpl implements CountryDAO{
 		txn.commit();
 		
 	    }
+		return country;
 	    }
 }
 		
