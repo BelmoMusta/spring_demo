@@ -27,6 +27,8 @@ public class App {
 			System.out.println(" ############# modifier des informations d'un pays => 4 ############# ");
 			System.out.println(" ############# lister tous les pays d'un continen => 5 ############# ");
 			System.out.println(" ############# sortir  => 0 #############");
+			System.out.println(" "
+					+ " Entrez votre choix :           ");
 		    String query = inputFromConsole.next();
 
 		    switch (query) {
@@ -48,6 +50,11 @@ public class App {
 				}
 				
 				
+			}
+			case "2": {
+				System.out.println("Enter Code of country: ");
+				String input=inputFromConsole.next();
+				serviceWorker.afficheCountry(input);
 			}
 				      break;
 			

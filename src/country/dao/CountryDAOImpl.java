@@ -45,32 +45,14 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 	@Override
 	public Country getByCode(String countryCode) {
-		Country country = null;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM country where code = ?;");
-			preparedStatement.setString(1, countryCode);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			if (resultSet.next()) {
-				country = new Country();
-				Integer id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				String code = resultSet.getString(3);
-				String devise = resultSet.getString(4);
-				String greetings = resultSet.getString(5);
-				
-				country.setId(id);
-				country.setName(name);
-				country.setCode(code);
-				country.setDevise(devise);
-				country.setGreetings(greetings);
-				
-			}
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return country;
+		
+		
+			String hql="from Country C where C.code =:code";
+			Query query=getSessionFactory().openSession().createQuery(hql);
+			query.setParameter("code", countryCode);
+			Country country=(Country) query.uniqueResult();
+	        return country;
+		
 	}
 	
 	@Override

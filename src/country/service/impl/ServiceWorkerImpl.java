@@ -30,4 +30,19 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.ajouter(_country,_nameContinent);
 		
 	}
+
+	@Override
+	public void afficheCountry(String code) {
+		Country country=countryDAO.getByCode(code);
+		if(country==null) System.err.println("n'existe pas country avec ce code");
+		else {  
+	    System.out.println("########### AFFICHAGE ###########");
+	    System.out.println("Id de country :"+country.getId());
+		System.out.println("Name de country :"+country.getName());
+		System.out.println("Greeting de country:"+country.getGreetings());
+		System.out.println("Code de country :"+country.getCode());
+		System.out.println("Devise de country :"+country.getDevise());
+		System.out.println("Continent de country :"+country.getContinent().getName());
+		}
+	}
 }
