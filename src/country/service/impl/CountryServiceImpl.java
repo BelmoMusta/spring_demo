@@ -17,4 +17,10 @@ public class CountryServiceImpl extends AbstractCountryService {
 	public Country getCountry() {
 		return country;
 	}
+	@Override
+    public String getContinentName(){ 
+		return getCountry().getContinent().getName();
+	}
+	
+	
 }
