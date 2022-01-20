@@ -57,7 +57,20 @@ public class GlobalService implements IGlobalService{
 				System.out.println("plese write the code or respect to form exception : !\\n\""+e);
 			}
 			break;
-		
+		case 5:
+			try {
+				System.out.println("choisir un continent en écrivant just le code:");
+				Scanner scan = new Scanner(System.in);
+				String codeContinent = scan.nextLine();
+				services.loadContinents(codeContinent);
+			}catch(Exception e) {
+				System.out.println("Ecrivez SVP un code de continent!\\n");
+			}
+			break;
+		case 0:					
+			System.exit(0);
+			System.out.println("exit the programme");
+			break;
 		default:
 			System.out.println("");
 	}

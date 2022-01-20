@@ -87,6 +87,13 @@ public class ServiceDeatails implements IServiceDetail {
 		}
 	}
 
-	
+	@Override
+	public void loadContinents(String continentCode) {
+		List<Country> listsCountrys = countryDao.continentCountries(continentCode);
+		for(Country country: listsCountrys) {
+			this.afficheCountry(country.getCode());
+		}
+		
+	}
 	
 }
