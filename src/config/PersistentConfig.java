@@ -21,17 +21,8 @@ public class PersistentConfig {
 
     @Bean
     public DataSource dataSource(){
-      /*  BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:mem:dataSource;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false");
-        dataSource.setUsername("sa");
-
-        return dataSource;*/
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2).build();
-
-                 /*       .addScript("classpath:database/db-schema.sql")
-                .addScript("classpath:database/populate-database.sql")*/
     }
 
     @Bean
