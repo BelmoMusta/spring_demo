@@ -7,12 +7,13 @@ import country.model.Country;
 public interface CountryDAO {
 
 
-	public void enregistrerCountry(Country country);
-	public void listCountry();
-	public void findByCode(String code);
-	public void supprimerByCode(String code);
-	public void modificationByCode(String code, Country contry);
+	public boolean enregistrerCountry(Country country);
+	public List<Country> listCountry();
+	public Country findByCode(String code);
+	public boolean  supprimerByCode(String code);
+	public boolean  modificationByCode(String code, Country contry);
 	public List<Country>findCountryByContinent(String codecontin) ;
+	
 	
 }
 

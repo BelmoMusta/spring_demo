@@ -1,5 +1,6 @@
 package country.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void listCountry()
 	{
 		countryDAO.listCountry();	
+		for (Iterator iterator =countryDAO.listCountry().iterator(); 
+				iterator.hasNext();){
+				Country country = (Country) iterator.next();
+				System.out.print(" Nom: " + country.getName());
+				System.out.print(" ,Devise: " + country.getDevise());
+				System.out.print(" ,Greetings: " + country.getGreetings());
+				System.out.println(",Code: " + country.getCode());
+		}
 		
 	}
 
@@ -41,8 +50,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 
 	@Override
-	public void findByCode(String code) {
-			countryDAO.findByCode(code);
+	public Country findByCode(String code) {
+			return countryDAO.findByCode(code);
 		
 		
 	}

@@ -17,54 +17,41 @@ import java.util.List;
 
 @Repository("countryDAO")
 public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO  {
-
+	
 	@Override
-	public void enregistrerCountry(Country country) 
-	{
+	public boolean enregistrerCountry(Country country) 
+	{ 
 		persist(country);
+		return true;
 		
 	}
 	
 	@Override
-	public void listCountry() 
+	public List<Country> listCountry() 
 	{
 		Session session1 = getSession();
 	    Transaction tran1 = session1.beginTransaction();
 		String str1="FROM Country";
 		List<Country> countryy1= session1.createQuery(str1).list();
-		for (Iterator iterator =countryy1.iterator(); 
-			iterator.hasNext();){
-			Country country = (Country) iterator.next();
-			System.out.print(" Nom: " + country.getName());
-			System.out.print(" ,Devise: " + country.getDevise());
-			System.out.print(" ,Greetings: " + country.getGreetings());
-			System.out.println(",Code: " + country.getCode());
-	}
+		
 		tran1.commit();
 		session1.close();
+		return countryy1;
 		}
 	
 	@Override
-	public void findByCode(String code) {
+	public Country findByCode(String code) {
 	
 		Session session2 = getSession();
 		Transaction trans2 = session2.beginTransaction();
 		String str2 = "FROM Country where code=:countrCode";
-		List <Country> country2= session2.createQuery(str2).setParameter("countrCode", code).list();
-		for (Iterator iterator =country2.iterator(); 
-		iterator.hasNext();
-				)
-		{
-        Country country = (Country) iterator.next();
-		System.out.print(" Nom: " + country.getName());
-		System.out.print(" ,Devise: " + country.getDevise());
-		System.out.print(" ,Greetings: " + country.getGreetings());
-		System.out.println(",Code: " + country.getCode());
-		}
+		Country country2= (Country) session2.createQuery(str2).setParameter("countrCode", code).uniqueResult();
 		trans2.commit();
-		session2.close();}
+		session2.close();
+		return country2;
+		}
 	@Override
-	public void supprimerByCode(String code)
+	public  boolean supprimerByCode(String code)
 	{
 		Session session3 = getSession();
 		Transaction trans3 = session3.beginTransaction();
@@ -72,10 +59,16 @@ public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO  {
 		int query3 = session3.createSQLQuery(str3).setParameter("codeID", code).executeUpdate();
 		trans3.commit();
 		session3.close();
+		if(query3 > 0)
+		{
+			return true ;	
+		}
+		else 
+			return false ;
 	}
  
 	@Override
-	public void modificationByCode(String code, Country contry) {
+	public boolean modificationByCode(String code, Country contry) {
 		
 		Session session4 = getSession();
 		Transaction trans4 = session4.beginTransaction();
@@ -83,6 +76,12 @@ public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO  {
 		int query4 = session4.createSQLQuery(str4).setParameter("codeID", code).setParameter("name", contry.getName()).setParameter("devise", contry.getDevise()).setParameter("greetings", contry.getGreetings()).executeUpdate();
 		trans4.commit();
 		session4.close();
+		if(query4 > 0)
+		{
+			return true ;	
+		}
+		else 
+			return false ;
 	}
 
 	@Override

@@ -37,16 +37,22 @@ public class App {
 
 				System.out.println("Ajouter un payé comme suite code,nom,devise,greeting : ");
 				Scanner inputFromConsole1 = new Scanner(System.in);
-				String country = inputFromConsole1.next();
-				iserviceWorker.AjouterCountry(country);
-				iserviceWorker.listCountry();
+				String country1 = inputFromConsole1.next();
+				iserviceWorker.AjouterCountry(country1);
+				iserviceWorker.listCountry();;
+				
 			}
 			else if(choise==2)
 			{
 				System.out.println("entrez votre code de country pour afiicher: ");
 				Scanner inputFromConsole2 = new Scanner(System.in);
 				String code = inputFromConsole2.next();
-				iserviceWorker.findByCode(code);
+				Country country= iserviceWorker.findByCode(code);
+						System.out.print(" Nom: " + country.getName());
+						System.out.print(" ,Devise: " + country.getDevise());
+						System.out.print(" ,Greetings: " + country.getGreetings());
+						System.out.println(",Code: " + country.getCode());
+						
 				
 			}
 			else if(choise==3)
@@ -94,7 +100,7 @@ public class App {
 			}
 			else
 			{
-				System.out.println("Ce nombre n'existe pas Merci");
+				System.out.println("Ce nombre n'existe pas Merci ");
 			}
 			
 			}}
