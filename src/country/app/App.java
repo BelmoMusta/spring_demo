@@ -15,14 +15,15 @@ public class App {
 		IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
 		boolean exit = false;
 		while (!exit) {
-			System.out.println("Menu:************");
+			System.out.println("----------------------------------Menu----------------------------------");
 			System.out.print("\n" +
-					"\t1- Pour l'ajout d'un nouveau pays tapper 1, exemple : FR,france,EURO,Bonjour!\n" +
+					"\t1- Pour l'ajout d'un nouveau pays tapper 1, exemple : FR,france,eu,EURO,Bonjour!\n" +
 					"\t2- Pour lister les informations d'un pays, tapper 2.\n" +
 					"\t3- Pour supprimer un pays, tapper 3.\n" +
 					"\t4- Pour modifier des informations d'un pays, tapper 4.\n" +
 					"\t5- Pour lister tous les pays d'un continent, tapper 5.\n" +
 					"\t6- Pour sortir de l'application tapper 0.\n");
+			System.out.println("------------------------------------------------------------------------");
 			System.out.print("Entrer un numero:");
 			Scanner inputFromConsole = new Scanner(System.in);
 			String number = inputFromConsole.next();

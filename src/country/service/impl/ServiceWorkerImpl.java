@@ -24,24 +24,25 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		// car c'est prototype
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
 
-		System.out.println("WELCOME : " + countryService.welcome());
-		System.out.println("Devise is :" + countryService.devise());
+		System.out.println("Nom : " + countryService.name());
+		System.out.println("Continent :" + countryService.continent());
+		System.out.println("Devise :" + countryService.devise());
+		System.out.println("greetings :" + countryService.welcome());
 	}
 
 	@Override
 	public void getAllCountries() {
-		// TODO Auto-generated method stub
 		countryDAO.getAllCountries();
 	}
 
 	public void addCountry(String countryData) {
-		// TODO Auto-generated method stub
 		countryDAO.addCountry(getContryFromData(countryData));
+		System.out.println("le pays a été ajouter avec success");
 	}
 
 	public void updateCountry(String coutryCode, String countryData) {
-		// TODO Auto-generated method stub
 		countryDAO.updateByCode(coutryCode, getContryFromData(countryData));
+		System.out.println("le pays a été modifier avec success");
 	}
 
 	public Country getContryFromData(String countryData) {
@@ -56,12 +57,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	public void removeCountry(String CountryCode) {
-		// TODO Auto-generated method stub
 		countryDAO.removeCountry(CountryCode);
+		System.out.println("le pays a été supprimer avec success");
 	}
 
 	public void getAllCountriesInContinent(String continentCode) {
-		// TODO Auto-generated method stub
 		List<Country> countries = countryDAO.getAllCountriesInContinent(continentCode);
 		String continentName = countryDAO.getContinentName(continentCode);
 		System.out.println("les pays que se trouvent dans le continent " + continentName + " sont:");

@@ -5,11 +5,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-// import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import country.configuration.ConfigurationHibernate;
 import country.dao.CountryDAO;
@@ -22,7 +20,6 @@ public class CountryDAOImplTest {
     IServiceWorker serviceWorker = applicationContext.getBean(IServiceWorker.class);
     List<Country> dataBase = new ArrayList<>();
 
-    // @Ignore
     @Test
     public void getByCode() {
         dataBase = countryDAO.getAllCountries();
@@ -34,7 +31,6 @@ public class CountryDAOImplTest {
         dataBase.clear();
     }
 
-    // @Ignore
     @Test
     public void addCoutry() {
         dataBase = countryDAO.getAllCountries();
@@ -52,11 +48,10 @@ public class CountryDAOImplTest {
         dataBase.clear();
     }
 
-    // @Ignore
     @Test
     public void updateCountry() {
         dataBase = countryDAO.getAllCountries();
-        Country country = serviceWorker.getContryFromData("fr,France,eu,EURO,Bonjour");
+        // "fr,France,eu,EURO,Bonjour"
         Country updatedCountry = serviceWorker.getContryFromData("fr,France,eu,DOLLAR,Salut");
         assertEquals("meme nom", countryDAO.getCountryByCode("fr").getName(), "France");
         assertEquals("meme devise", countryDAO.getCountryByCode("fr").getDevise(),
@@ -70,7 +65,6 @@ public class CountryDAOImplTest {
         dataBase.clear();
     }
 
-    // @Ignore
     @Test
     public void listAllCoutriesInContinent() {
         dataBase = countryDAO.getAllCountries();
