@@ -8,6 +8,7 @@ import country.service.IServiceWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -27,6 +28,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			case "2" : this.choiceShowCountry();
 				break;
 			case "3" : this.choiceDeleteCountry();
+				break;
+			case "5" : this.choiceShowCountriesByCountry();
 				break;
 			default: break;
 		}
@@ -92,5 +95,25 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		Country countryDeleted = this.countryDAO.deleteByCode(input.toUpperCase());
 		if(countryDeleted != null) System.out.println(countryDeleted.getName() + " a été supprimé");
 		else System.out.println("Pays avec le code " + input.toUpperCase() + " non trouvé");
+	}
+
+	private void choiceShowCountriesByCountry() {
+		System.out.println("Veuillez saisir le nom du continent (ex :Europe) :");
+		Scanner inputFromConsole = new Scanner(System.in);
+		String input = inputFromConsole.next();
+		Continent continent = continentDAO.getByName(input);
+
+		if(continent != null) {
+			List<Country> countries = countryDAO.getByContinent(continent);
+			for(Country country: countries) {
+				System.out.println(country);
+			}
+		} else {
+			System.out.println("** Le continent n'existe pas.");
+			System.out.println("** Liste des continents.");
+			for(Continent continent1: continentDAO.getAll()) {
+				System.out.println("* " + continent1.getName());
+			}
+		}
 	}
 }
