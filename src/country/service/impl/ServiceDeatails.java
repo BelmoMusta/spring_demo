@@ -28,5 +28,26 @@ public class ServiceDeatails implements IServiceDetail {
 		
 	}
 
+	@Override
+	public void createCountry(String informations) {
+		String[] elements = informations.split(",",5);
+		Country country=new Country();
+		country.setCode(elements[0]);
+		country.setName(elements[1]);
+		country.setDevise(elements[2]);
+		country.setGreet(elements[3]);
+		country.setContinent(elements[4]);
+		Country countrySaved=null;
+		if(countryDao.getByCode(elements[0])==null) {
+		countrySaved = countryDao.saveCountry(country);}
+		else {
+			System.out.println("these country exist deja  to modify click 4");
+			countrySaved = countryDao.getByCode(elements[0]);
+		}
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, countrySaved);
+		this.afficheCountry(countrySaved.getCode());
+	}
+
+	
 	
 }

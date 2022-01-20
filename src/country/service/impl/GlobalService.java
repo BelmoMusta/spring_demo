@@ -16,7 +16,16 @@ public class GlobalService implements IGlobalService{
 		try {
 		int index=Integer.parseInt(inputIndex);
 		switch(index) {
-		
+		case 1:
+			try {
+				System.out.println("entre country information :: \"code,name,devise,greeting,code-continent\" :");
+				Scanner Ss = new Scanner(System.in);
+				String infos = Ss.next();
+				services.createCountry(infos);
+			}catch(Exception e) {
+				System.out.println("please respect the forme:: \\\"code,name,cdevise,greeting,code-continent\\\"\n");						
+			}
+			break;
 		case 2:
 			try {
 				System.out.print("entre the code : ");
