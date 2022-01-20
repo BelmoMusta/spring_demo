@@ -11,7 +11,7 @@ public class Continent {
     private String name;
     private String code;
 
-    @OneToMany(mappedBy = "continent",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "continent",cascade = CascadeType.ALL)
     private Collection<Country> countries;
 
     public Integer getId() {

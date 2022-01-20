@@ -10,4 +10,5 @@ public interface CountryDAO {
 	List<Country> getALl();
 	boolean exist(String code);
 	void delete(Country country);
+	void update(Country country);
 }
