@@ -4,4 +4,5 @@ public interface IServiceDetail {
 	void afficheCountry(String language);
 	void createCountry(String infosContry);
 	void deleteCountry(String language);
+	void updateCountry(String newInformations);
 }

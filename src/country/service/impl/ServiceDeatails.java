@@ -60,6 +60,33 @@ public class ServiceDeatails implements IServiceDetail {
 		}
 	}
 
+	@Override
+	public void updateCountry(String newInformations) {
+		try {
+		String[] newElements = newInformations.split(",",5);
+		String code=newElements[0];
+		Country country=new Country();
+		country.setCode(newElements[0]);
+		country.setName(newElements[1]);
+		country.setDevise(newElements[2]);
+		country.setGreet(newElements[3]);
+		country.setContinent(newElements[4]);
+		Country newCountry=null;
+		if(countryDao.getByCode(code)!=null) {
+		newCountry = countryDao.updateCountry(country, code);
+		}
+		else {
+			System.out.println("because the code doesn't exist the system create by default the country");
+			newCountry = countryDao.saveCountry(country);
+		}
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, newCountry);
+		this.afficheCountry(newCountry.getCode());
+        }
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 }

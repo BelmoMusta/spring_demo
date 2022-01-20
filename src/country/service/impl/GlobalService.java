@@ -46,7 +46,18 @@ public class GlobalService implements IGlobalService{
 				System.out.println("plese write the code thre is an exception : !\n"+e);
 			}
 			break;
-
+		case 4:
+			try {
+				System.out.println("entre the code of country that you want to update : ");
+				Scanner scan = new Scanner(System.in);
+				System.out.println("entre country information :: \"code,name,devise,greetings,code-continent\" :");
+				String newInfos = scan.nextLine();
+				services.updateCountry(newInfos);
+			}catch(Exception e) {
+				System.out.println("plese write the code or respect to form exception : !\\n\""+e);
+			}
+			break;
+		
 		default:
 			System.out.println("");
 	}
