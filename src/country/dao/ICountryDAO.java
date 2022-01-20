@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ICountryDAO {
 	Country add(Country country);
+	Country update(Country country);
 	Country getByCode(String code);
 	Country deleteByCode(String code);
 	List<Country> getByContinent(Continent continent);

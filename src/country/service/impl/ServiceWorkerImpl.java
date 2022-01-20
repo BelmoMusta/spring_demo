@@ -29,6 +29,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 				break;
 			case "3" : this.choiceDeleteCountry();
 				break;
+			case "4" : this.choiceEditCountry();
+				break;
 			case "5" : this.choiceShowCountriesByCountry();
 				break;
 			default: break;
@@ -53,11 +55,19 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		String input = inputFromConsole.next();
 		String[] informations = input.split("[,]");
 		if(informations.length != 5) {
-			System.out.println("** Veuillez saisir les quatres informations.");
+			System.out.println("** Veuillez saisir les cinq informations.");
 		} else {
 			Continent continent = continentDAO.getByName(informations[4]);
 
 			if(continent != null) {
+				Country countryExist = countryDAO.getByCode(informations[0].toUpperCase(Locale.ROOT));
+				if(countryExist != null) {
+					System.out.println("** Un pays existe déja avec le code suivant : " + informations[0].toUpperCase(Locale.ROOT));
+					System.out.println("** les informations du pays :");
+					System.out.println(countryExist);
+					return;
+				}
+
 				Country country = new Country();
 				country.setCode(informations[0].toUpperCase(Locale.ROOT));
 				country.setName(informations[1].substring(0, 1).toUpperCase() + informations[1].substring(1));
@@ -114,6 +124,41 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			for(Continent continent1: continentDAO.getAll()) {
 				System.out.println("* " + continent1.getName());
 			}
+		}
+	}
+
+	private void choiceEditCountry() {
+		System.out.println("Veuillez saisir le code du pays à modifier (ex :FR) :");
+		Scanner inputFromConsole = new Scanner(System.in);
+		String input1 = inputFromConsole.next();
+		Country countryToEdit = this.countryDAO.getByCode(input1.toUpperCase());
+		if(countryToEdit != null) {
+			System.out.println("Veuillez saisir les nouveau informations du pays (ex :FR,france,EURO,Bonjour!,Europe) : ");
+			String input2 = inputFromConsole.next();
+			String[] informations = input2.split("[,]");
+			if(informations.length != 5) {
+				System.out.println("** Veuillez saisir les cinq informations.");
+			} else {
+				Continent continent = continentDAO.getByName(informations[4]);
+				if(continent != null) {
+					Country country = new Country();
+					country.setCode(informations[0].toUpperCase(Locale.ROOT));
+					country.setName(informations[1].substring(0, 1).toUpperCase() + informations[1].substring(1));
+					country.setDevise(informations[2]);
+					country.setGreetings(informations[3]);
+					country.setContinent(continent);
+					this.countryDAO.update1(country);
+				} else {
+					System.out.println("** Le continent n'existe pas.");
+					System.out.println("** Liste des continents.");
+					for(Continent continent1: continentDAO.getAll()) {
+						System.out.println("* " + continent1.getName());
+					}
+				}
+			}
+
+		} else {
+			System.out.println("Pays avec le code " + input1.toUpperCase() + " non trouvé");
 		}
 	}
 }

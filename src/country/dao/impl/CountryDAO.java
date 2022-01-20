@@ -37,6 +37,21 @@ public class CountryDAO implements ICountryDAO {
     }
 
     @Override
+    public Country update(Country country) {
+        if(country.getId() == null) {
+            return null;
+        }
+        System.out.println(country.getId());
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(country);
+        session.getTransaction().commit();
+        session.close();
+        return country;
+    }
+
+    @Override
     public Country getByCode(String code) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
