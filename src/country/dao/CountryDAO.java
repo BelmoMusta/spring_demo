@@ -13,7 +13,7 @@ public interface CountryDAO {
 
 	void updateCountry(Country country);
 
-	List<Country> getAllCountries();
+	List<Country> getAllCountries(String continentCode);
 
 
 }

@@ -11,12 +11,15 @@ import org.hibernate.Query;
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.logging.Logger;
+import java.sql.*;
+import java.util.*;
 
 @Repository
 @Transactional
 public class CountryDAOImpl implements CountryDAO {
 
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
+
 	@Autowired
 	private DataSource dataSource;
 	@Autowired
@@ -61,24 +64,26 @@ public class CountryDAOImpl implements CountryDAO {
 	@Override
 	public Country getByCode(String countrycode){
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("friom Country c where c.code = :code");
+		Query query = session.createQuery("from Country c where c.code = :code");
 		query.setString("code",countrycode);
 		return (Country) query.list().get(0);
 	}
 
 	@Override
 	public void saveCountry(Country country) {
-		sessionFactory.getCurrentSession().delete(country);
+		sessionFactory.getCurrentSession().save(country);
 	}
 
 	@Override
-	public void deleteCountry(Country country) { sessionFactory.getCurrentSession().delete(country);}
+	public void deleteCountry(Country country) { sessionFactory.getCurrentSession().delete(country); }
 
 	@Override
-	public void updateCountry(Country country) { sessionFactory.getCurrentSession().update(country);}
+	public void updateCountry(Country country) { sessionFactory.getCurrentSession().update(country); }
 
 	@Override
-	public List<Country> getAllCountries() {
-		return (List<Country>) sessionFactory.getCurrentSession().createQuery("from Country").list();
+	public List<Country> getAllCountries(String continentCode) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Country where continent.code= :code");
+		query.setParameter("code",continentCode);
+		return (List<Country>) query.list();
 	}
 }
