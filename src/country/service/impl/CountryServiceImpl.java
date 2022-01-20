@@ -1,6 +1,8 @@
 package country.service.impl;
 
 import country.model.Country;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -8,11 +10,14 @@ import org.springframework.stereotype.Service;
 							// i.e : à chaque appel, une nouvelle instance sera créée
 @Service
 public class CountryServiceImpl extends AbstractCountryService {
-	private final Country country;
+	
+	@Autowired
+	private Country country;
 	
 	public CountryServiceImpl(Country country){
 		this.country = country;
 	}
+	
 	@Override
 	public Country getCountry() {
 		return country;

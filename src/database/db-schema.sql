@@ -9,3 +9,12 @@ CREATE TABLE country
     devise VARCHAR(250) DEFAULT NULL,
     greetings VARCHAR(250) DEFAULT NULL
 );
+
+DROP TABLE IF EXISTS continent;
+
+CREATE TABLE `continents` (
+    idContinent     INT AUTO_INCREMENT PRIMARY KEY,
+	codeContinent VARCHAR(250) NOT NULL,
+	nameContinent VARCHAR(255),
+	countries int
+);

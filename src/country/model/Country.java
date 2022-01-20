@@ -1,12 +1,32 @@
 package country.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+
+@Entity
+@Table(name="country")
 public class Country {
+
+	@Id
+	@Column(name="id")
+	@GeneratedValue
 	private Integer id;
-	private String name;
-	private String code;
-	private String devise;
-	private String greetings;
 	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="code")
+	private String code;
+	
+	@Column(name="devise")
+	private String devise;
+	
+	@Column(name="greetings")
+	private String greetings;
+
 	public Integer getId() {
 		return id;
 	}
@@ -14,7 +34,7 @@ public class Country {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

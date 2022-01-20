@@ -1,7 +1,10 @@
 package country;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import country.service.impl.CountryServiceImpl;
 
 import java.util.Scanner;
 // I changed this for pull request purpose
@@ -10,11 +13,7 @@ import java.util.Scanner;
 public class App {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"/beans/*.xml",
-				"beans/france.xml",
-				"beans/england.xml",
-				"beans/spain.xml",
-				"beans/germany.xml");
+				"/beans/*.xml");
 		while (true) {
 			System.out.print("Choisir une langue : ");
 			Scanner inputFromConsole = new Scanner(System.in);
