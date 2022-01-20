@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import country.model.Continent;
 import country.model.Country;
 
 @Repository
@@ -85,6 +86,20 @@ public class CountryDAOImpl implements CountryDAO {
 		tran.commit();
 		session.close();
 		return countries;
+	}
+
+	public Continent GetContinent(String CodeContinent) {
+		Session session = getSession();
+		Transaction trans = session.beginTransaction();
+		String requet = "FROM Continent where code=:CodeContinent";
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery(requet).setParameter("CodeContinent", CodeContinent);
+		query.setMaxResults(1);
+		Continent continent = (Continent) query.uniqueResult();
+		trans.commit();
+		session.close();
+		return continent;
+
 	}
 
 }

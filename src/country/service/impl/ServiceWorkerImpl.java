@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import country.dao.CountryDAO;
+import country.model.Continent;
 import country.model.Country;
 import country.service.IServiceWorker;
 
@@ -79,13 +80,15 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void CountriesOfSameContinent(String codeContinent) {
 
 		List<Country> ListOfCountries;
-		// Continent continent = countryDAO.GetContinent(CodeContinent);
+		Continent continent = countryDAO.GetContinent(codeContinent);
 		ListOfCountries = countryDAO.CountriesOfContinent(codeContinent);
-		System.out.println("============================== " + codeContinent + " ===============================");
+		System.out.println("============================== les Pays de la continent :" + continent.getName()
+				+ " ===============================");
 		for (Country country : ListOfCountries) {
 			System.out.println("-->" + country.getName());
 		}
-		System.out.println("=================================================================");
+		System.out.println(
+				"================================================================================================");
 
 	}
 
