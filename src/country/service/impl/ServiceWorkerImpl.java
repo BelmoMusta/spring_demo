@@ -4,6 +4,9 @@ import country.dao.CountryDAO;
 import country.model.Country;
 import country.service.ICountryService;
 import country.service.IServiceWorker;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -39,14 +42,21 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	@Override
-	public void ModifCountryByCode(String code) {
-		countryDAO.modifCountry(code);
+	public void ModifCountryByCode(String code,String newInfos) {
+		countryDAO.modifCountry(code,newInfos);
 		System.out.println("Le pays modifié ");
 	}
 
 	@Override
-	public void continentCountriesByCode(String code) {
-		System.out.print(countryDAO.continentCountries(code));
+	public List<String> continentCountriesByCode(String code) {
+		return countryDAO.continentCountries(code);
+	}
+
+	@Override
+	public Country getCountryInformations(String code) {
+		Country country = countryDAO.getByCode(code);
+		System.out.println(country.toString());
+		return country;
 	}
 	
 }

@@ -20,7 +20,6 @@ public class CountryDAOImpl implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	@Autowired
 	private DataSource dataSource;
-
 	@Override
 	public Country getByCode(String countryCode) {
 		Country country = null;
@@ -86,11 +85,8 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public void modifCountry(String code) {
-		System.out.print("Entrer les informations du pays s'il vous plais : ");
-		Scanner inputFromConsole = new Scanner(System.in);
-		String informations = inputFromConsole.next();
-		String[] countryInfos = informations.split(",", 5);
+	public void modifCountry(String code,String newInfos) {
+		String[] countryInfos = newInfos.split(",", 5);
 		try {
 			Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(

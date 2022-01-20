@@ -43,16 +43,17 @@ public class App {
 				serviceWorker.deleteCountryByCode(code);
 			}
 			else if(choix == 4) {
-				System.out.print("Entrer le code du pays pour modifier ses informations : ");
+				System.out.print("Entrer le code et les nouveaux inforations du pays pour modifier ses informations s'il vous plais : ");
 				inputFromConsole = new Scanner(System.in);
 				String code = inputFromConsole.next();
-				serviceWorker.ModifCountryByCode(code);
+				String newInfo=inputFromConsole.next();
+				serviceWorker.ModifCountryByCode(code,newInfo);
 			}
 			else if(choix == 5) {
 				System.out.print("Entrer le code du continent pour lister tous ses pays : ");
 				inputFromConsole = new Scanner(System.in);
 				String continent = inputFromConsole.next();
-				serviceWorker.continentCountriesByCode(continent);
+				System.out.print(serviceWorker.continentCountriesByCode(continent));
 			}
 			else if(choix == 0) {
 				System.exit(choix);

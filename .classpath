@@ -25,5 +25,10 @@
 	<classpathentry kind="lib" path="C:/Users/pc/Desktop/Spring project/hibernate-search-5.8.0.Final/dist/lib/required/lucene-core-5.5.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pc/Desktop/Spring project/hibernate-search-5.8.0.Final/dist/lib/required/lucene-queryparser-5.5.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pc/Desktop/Spring project/hibernate-search-5.8.0.Final/dist/lib/required/xml-apis-1.3.03.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/Desktop/junit-4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/Desktop/spring-orm-4.3.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/Downloads/hibernate-commons-annotations-5.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/Downloads/hibernate-core-5.0.4.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/Downloads/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
