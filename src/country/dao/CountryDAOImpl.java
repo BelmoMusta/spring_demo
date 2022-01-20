@@ -27,6 +27,7 @@ import country.model.Continent;
 
 @Repository("hibernate")
 public class CountryDAOImpl implements CountryDAO {
+	
 	@Autowired
     SessionFactory  sessionFactory;
 	@Autowired
@@ -124,8 +125,6 @@ public class CountryDAOImpl implements CountryDAO {
 	return affectedRows;
 	}
 	
-	
-
 	@Override
 	public List<Country> listCountriesByContinent(String continentCode) {
 		Continent continent=getContinentByCode(continentCode);
