@@ -31,7 +31,8 @@
 	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/spring-expression-5.3.14.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/spring-jdbc-5.3.14.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/spring-orm-5.3.14.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/spring-test-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/spring-tx-5.3.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/spring-test-4.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hassan OUTHAMI/Desktop/GI5/Spring blmokhtary/tp/Nouveau dossier (2)/spring_demo/libs2/junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
