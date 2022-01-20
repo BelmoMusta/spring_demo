@@ -11,8 +11,8 @@ import static app.helper.OPERATION.*;
 @SuppressWarnings("all")
 public class App {
 	public static void main(String[] args) {
-		try {
-			ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/beans/database-config.xml");
+		try(ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("/beans/database-config.xml");) {
+			
 			CountryController countryController = applicationContext.getBean(CountryController.class);
 			System.out.println("-----------------------------------------------------------");
 			System.out.println("|   -Pour l'ajout d'un nouveau pays tapper            [1] |");
@@ -31,6 +31,7 @@ public class App {
 
 				switch (inputNumber) {
 				case EXIT: {
+					inputFromConsole.close();
 					countryController.exitApp();
 				}
 				case ADD_COUNTRY: {
@@ -63,7 +64,8 @@ public class App {
 			}
 			
 		} catch (Exception e) {
-			System.exit(0);
+			System.err.println(e.getMessage());
+			System.exit(-1);
 		} 
 	}
 

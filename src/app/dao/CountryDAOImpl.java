@@ -55,6 +55,7 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Override
 	public Country updateCountry(Country country) {
+		System.out.println(country.getId());
 		hibernateTemplate.update(country);	
 		return country;
 	}

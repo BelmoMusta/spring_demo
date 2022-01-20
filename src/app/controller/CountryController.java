@@ -31,9 +31,12 @@ public class CountryController {
 		while (true) {
 			if (inputFromConsole.hasNext()) {
 				String pays = inputFromConsole.next();
+				if (pays.equals("0")) {
+					return;
+				}
 				String[] _pays = pays.split(",");
 				if (_pays.length != 5) {
-					System.err.print("!! le format tappait est inccorect , essayer à nouveau : ");
+					System.err.print("!! le format tappait est inccorect , essayer à nouveau   (0 Menu): ");
 					continue;
 				} else {
 					Country country = serviceWorker.getCountry(_pays[0]);
@@ -51,7 +54,7 @@ public class CountryController {
 							return;
 						} else {
 							System.err.print(String.format(
-									"Le continent associes a ce code [%s] n'existe pas , essayer à nouveau : ",
+									"Le continent associes a ce code [%s] n'existe pas , essayer à nouveau (0 Menu): ",
 									_pays[4]));
 							continue;
 						}
@@ -72,9 +75,12 @@ public class CountryController {
 		while (true) {
 			if (inputFromConsole.hasNext()) {
 				String code = inputFromConsole.next();
+				if (code.equals("0")) {
+					return;
+				}
 				Country country = serviceWorker.getCountry(code);
 				if (country == null) {
-					System.err.print("Le pays n'existe pas , tappez un autre code correct : ");
+					System.err.print("Le pays n'existe pas , tappez un autre code correct (0 Menu) : ");
 				} else {
 					System.out.println(country.toString());
 					return;
@@ -89,9 +95,12 @@ public class CountryController {
 		while (true) {
 			if (inputFromConsole.hasNext()) {
 				String code = inputFromConsole.next();
+				if (code.equals("0")) {
+					return;
+				}
 				Country country = serviceWorker.getCountry(code);
 				if (country == null) {
-					System.err.print("Le pays n'existe pas , tappez un autre code correct : ");
+					System.err.print("Le pays n'existe pas , tappez un autre code correct (0 Menu) : ");
 				} else {
 					serviceWorker.deleteCountry(code);
 					System.out.println("Le pays est bien supprimer ");
@@ -108,31 +117,38 @@ public class CountryController {
 			if (inputFromConsole.hasNext()) {
 
 				String code = inputFromConsole.next();
+				if (code.equals("0")) {
+					return;
+				}
 				Country country = serviceWorker.getCountry(code);
 				if (country == null) {
-					System.err.print("Le pays n'existe pas , tappez un autre code correct :");
+					System.err.print("Le pays n'existe pas , tappez un autre code correct (0 Menu) :");
 					continue;
 				} else {
 					System.out.print(
-							String.format("Tappez les nouveaux informations de pays [%s] : ", country.getName()));
+							String.format("Tappez les nouveaux informations de pays [%s]  (code de pays,nom,devise,salutation,code de continent) : ", country.getName()));
 					while (inputFromConsole.hasNext()) {
 						String pays = inputFromConsole.next();
+						if (pays.equals("0")) {
+							break;
+						}
 						String[] _pays = pays.split(",");
 						if (_pays.length != 5) {
-							System.err.print("!! le format tappait est inccorect , essayer à nouveau : ");
+							System.err.println("!! le format tappait est inccorect , essayer à nouveau (0 Menu): ");
 						} else {
 							Continent continent = continentDAO.getByCode(_pays[4]);
 							if (continent != null) {
-								country = new Country();
-								country.setCode(_pays[0]);
-								country.setName(_pays[1]);
-								country.setDevise(_pays[2]);
-								country.setGreetings(_pays[3]);
-								country.setContinent(continent);
-								serviceWorker.updateCountry(country);
+								Country newCountry =  new Country() ;
+								newCountry.setId(country.getId());
+								newCountry.setCode(_pays[0]);
+								newCountry.setName(_pays[1]);
+								newCountry.setDevise(_pays[2]);
+								newCountry.setGreetings(_pays[3]);
+								newCountry.setContinent(continent);
+								serviceWorker.updateCountry(newCountry);
 								break;
 							} else {
-								System.err.print(String.format(
+								System.err.println(String.format(
 										"Le continent associes a ce code [%s] n'existe pas , essayer à nouveau : ",
 										_pays[4]));
 								continue;
@@ -155,9 +171,12 @@ public class CountryController {
 		while (true) {
 			if (inputFromConsole.hasNext()) {
 				String code = inputFromConsole.next();
+				if (code.equals("0")) {
+					return;
+				}
 				List<Country> countries = serviceWorker.getCountriesByContinent(code);
 				if (countries == null || countries.isEmpty()) {
-					System.err.print(String.format("Le continet n'existe pas , ou pas de pays enregistrer avec ce continent [%s] , tappez un autre code valide : ",code));
+					System.err.print(String.format("Le continet n'existe pas , ou pas de pays enregistrer avec ce continent [%s] , tappez un autre code valide (0 Menu) : ",code));
 					continue;
 				} else {
 					System.out.println(countries.get(0).getContinent().getName());
