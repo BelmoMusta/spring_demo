@@ -84,4 +84,14 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setContinent(continent);
 		countryDAO.updateCountry(country);
 	}
+
+	@Override
+	public void getCountries() {
+
+		for( Country country : countryDAO.getAllCountries()){
+			System.out.println(country.toString());
+			System.out.println("\n");
+		}
+
+	}
 }

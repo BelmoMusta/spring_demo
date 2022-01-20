@@ -69,6 +69,9 @@ public class App {
                     serviceWorker.updateCountry(pays,update);
                     break;
                 }
+                case 5:{
+                    serviceWorker.getCountries();
+                }
                 default:{
                     System.out.print("Choisir une langue : ");
                     Scanner inputFromConsole = new Scanner(System.in);

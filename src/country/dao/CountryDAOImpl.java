@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Query;
 
 import javax.sql.DataSource;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Repository
@@ -75,4 +76,9 @@ public class CountryDAOImpl implements CountryDAO {
 
 	@Override
 	public void updateCountry(Country country) { sessionFactory.getCurrentSession().update(country);}
+
+	@Override
+	public List<Country> getAllCountries() {
+		return (List<Country>) sessionFactory.getCurrentSession().createQuery("from Country").list();
+	}
 }
