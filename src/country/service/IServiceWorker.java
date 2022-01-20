@@ -3,8 +3,6 @@ package country.service;
 import country.model.Country;
 
 public interface IServiceWorker {
-	Country get = null;
-
 	void getCountryByCode(String language);
 
 	Country getContryFromData(String countryData);

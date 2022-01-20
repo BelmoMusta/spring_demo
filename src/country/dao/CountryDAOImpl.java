@@ -3,185 +3,111 @@ package country.dao;
 import country.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import java.util.Iterator;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+// import java.sql.Statement;
+// import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class CountryDAOImpl implements CountryDAO {
+public class CountryDAOImpl extends AbstractCountryDAO implements CountryDAO {
 	private static final Logger LOGGER = Logger.getLogger(CountryDAOImpl.class.getName());
 	@Autowired
 	private DataSource dataSource;
 
 	@Override
-	public Country getByCode(String countryCode) {
-		Country country = null;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM country where code = ?;");
-			preparedStatement.setString(1, countryCode);
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			if (resultSet.next()) {
-				country = new Country();
-				Integer id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				String code = resultSet.getString(3);
-				String continent = resultSet.getString(4);
-				String devise = resultSet.getString(5);
-				String greetings = resultSet.getString(6);
-
-				country.setId(id);
-				country.setName(name);
-				country.setCode(code);
-				country.setContinent(continent);
-				country.setDevise(devise);
-				country.setGreetings(greetings);
-
-			}
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+	public Country getCountryByCode(String countryCode) {
+		Session session2 = getSession();
+		Transaction trans = session2.beginTransaction();
+		String str1 = "FROM Country where code=:countryCode";
+		List<Country> countries = session2.createQuery(str1).setParameter("countryCode", countryCode).list();
+		for (Iterator iterator = countries.iterator(); iterator.hasNext();) {
+			Country country = (Country) iterator.next();
+			System.out.print(" Nom: " + country.getName());
+			System.out.print(" ,Devise: " + country.getDevise());
+			System.out.print(" ,Greetings: " + country.getGreetings());
+			System.out.println(",Code: " + country.getCode());
 		}
-		return country;
+		trans.commit();
+		session2.close();
+
+		return countries.get(0);
 	}
 
 	@Override
 	public List<Country> getAllCountries() {
-		List<Country> countries = new ArrayList<>();
-		Country country = null;
-		// TODO Auto-generated method stub
-		try {
-			Connection connection = dataSource.getConnection();
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM country;");
-			while (rs.next()) {
-				// Display values
-				System.out.print(rs.getInt("id"));
-				System.out.print(", " + rs.getString("name"));
-				System.out.print(", " + rs.getString("code"));
-				System.out.print(", " + rs.getString("devise"));
-				System.out.println(", " + rs.getString("greetings"));
-
-				country = new Country();
-				Integer id = rs.getInt(1);
-				String name = rs.getString(2);
-				String code = rs.getString(3);
-				String continent = rs.getString(4);
-				String devise = rs.getString(5);
-				String greetings = rs.getString(6);
-
-				country.setId(id);
-				country.setName(name);
-				country.setCode(code);
-				country.setContinent(continent);
-				country.setDevise(devise);
-				country.setGreetings(greetings);
-				countries.add(country);
-			}
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		Session session1 = getSession();
+		Transaction tran = session1.beginTransaction();
+		String str = "FROM Country";
+		List<Country> countries = session1.createQuery(str).list();
+		for (Iterator iterator = countries.iterator(); iterator.hasNext();) {
+			Country country = (Country) iterator.next();
+			System.out.print(" Nom: " + country.getName());
+			System.out.print(" ,Devise: " + country.getDevise());
+			System.out.print(" ,Greetings: " + country.getGreetings());
+			System.out.println(",Code: " + country.getCode());
 		}
+		tran.commit();
+		session1.close();
 		return countries;
 	}
 
 	public int addCountry(Country country) {
 		// TODO Auto-generated method stub
-		int rslt = 0;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(
-							"INSERT INTO country(name, code, continent, devise, greetings) VALUES(?, ?, ?, ?,?);");
-			preparedStatement.setString(1, country.getName());
-			preparedStatement.setString(2, country.getCode());
-			preparedStatement.setString(3, country.getContinent());
-			preparedStatement.setString(4, country.getDevise());
-			preparedStatement.setString(5, country.getGreetings());
-			int resultSet = preparedStatement.executeUpdate();
-			return resultSet;
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return rslt;
+		persist(country);
+
+		return 0;
 	}
 
 	public int removeCountry(String countryCode) {
 		// TODO Auto-generated method stub
-		int rslt = 0;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("DELETE FROM country WHERE code = ?;");
-			preparedStatement.setString(1, countryCode);
-			int resultSet = preparedStatement.executeUpdate();
-			return resultSet;
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return rslt;
+		Session session3 = getSession();
+		Transaction trans2 = session3.beginTransaction();
+		String str2 = "delete from Country where code = :codeID";
+		int query = session3.createSQLQuery(str2).setParameter("codeID", countryCode).executeUpdate();
+		trans2.commit();
+		session3.close();
+		return 0;
 	}
 
 	public int updateByCode(String countryCode, Country country) {
 		// TODO Auto-generated method stub
-		int rslt = 0;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(
-							"UPDATE country SET code=?, name=?,continent=?, devise=?,greetings=? where code = ?;");
-			preparedStatement.setString(1, country.getCode());
-			preparedStatement.setString(2, country.getName());
-			preparedStatement.setString(3, country.getContinent());
-			preparedStatement.setString(4, country.getDevise());
-			preparedStatement.setString(5, country.getGreetings());
-			preparedStatement.setString(6, countryCode);
-			int resultSet = preparedStatement.executeUpdate();
-			return resultSet;
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
-		}
-		return rslt;
+		Session session4 = getSession();
+		Transaction trans3 = session4.beginTransaction();
+		String str3 = "UPDATE Country SET code = :code ,name = :name ,continent = :continent ,devise =:devise ,greetings=:greetings  WHERE code = :codeID";
+		int query = session4.createSQLQuery(str3).setParameter("codeID", countryCode)
+				.setParameter("code", country.getCode()).setParameter("name", country.getName())
+				.setParameter("continent", country.getContinent())
+				.setParameter("devise", country.getDevise()).setParameter("greetings", country.getGreetings())
+				.executeUpdate();
+		trans3.commit();
+		session4.close();
+		return 0;
 	}
 
 	public List<Country> getAllCountriesInContinent(String continentCode) {
 		// TODO Auto-generated method stub
-		List<Country> countryList = new ArrayList<>();
-		Country country;
-		try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT * FROM country where continent = ?;");
-			preparedStatement.setString(1, continentCode);
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				country = new Country();
-				Integer id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				String code = resultSet.getString(3);
-				String continent = resultSet.getString(4);
-				String devise = resultSet.getString(5);
-				String greetings = resultSet.getString(6);
-				country.setId(id);
-				country.setName(name);
-				country.setCode(code);
-				country.setContinent(continent);
-				country.setDevise(devise);
-				country.setGreetings(greetings);
-				countryList.add(country);
-
-			}
-		} catch (SQLException exception) {
-			LOGGER.log(Level.SEVERE, "Exception while accessing the database", exception);
+		Session session2 = getSession();
+		Transaction trans = session2.beginTransaction();
+		String str1 = "FROM Country where continent=:continentCode";
+		List<Country> countryList = session2.createQuery(str1).setParameter("continentCode", continentCode).list();
+		for (Iterator iterator = countryList.iterator(); iterator.hasNext();) {
+			Country country = (Country) iterator.next();
+			System.out.println("Code: " + country.getCode());
+			System.out.print(" ,Nom: " + country.getName());
+			System.out.println(",continent: " + country.getContinent());
+			System.out.print(" ,Devise: " + country.getDevise());
+			System.out.print(" ,Greetings: " + country.getGreetings());
 		}
+		trans.commit();
 		return countryList;
 	}
 
