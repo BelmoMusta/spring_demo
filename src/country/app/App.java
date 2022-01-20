@@ -95,14 +95,13 @@ public class App {
 						System.out.println(",Code: " + country.getCode());
 				}
 				
-			}
-			
-			
+			}	
 			else
 			{
 				System.out.println("Ce nombre n'existe pas Merci ");
 			}
 			
-			}}
+			}
+			}
 			
 }
