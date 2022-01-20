@@ -35,17 +35,27 @@ public class App {
 					break;
 				}
 				case 2: {
-					System.out.print("Saisir le code du pays : ");
+					System.out.print("Saisir le code du pays :");
 					Scanner scanner1 = new Scanner(System.in);
 					String code = scanner1.next();
 					serviceWorker.getCountryInfos(code);
 					break;
 				}
 				case 3: {
-					System.out.print("Saisir le code du pays à supprimer: ");
+					System.out.print("Saisir le code du pays à supprimer:");
 					Scanner scanner1 = new Scanner(System.in);
 					String code = scanner1.next();
 					serviceWorker.deleteCountry(code);
+					break;
+				}
+				case 4: {
+					System.out.print("Saisir le code du pays à modifier :");
+					Scanner scannerCode = new Scanner(System.in);
+					String code = scannerCode.next();
+					System.out.print("Saisir les nouvelles informations de pays (code,name,devise,greetings,continent) :");
+					Scanner scannerinfo = new Scanner(System.in);
+					String info = scannerinfo.next();
+					serviceWorker.updateCountry(code,info);
 					break;
 				}
 				default: {

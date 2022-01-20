@@ -8,4 +8,6 @@ public interface IServiceWorker {
 	Country getCountry(String code);
 	Country getCountryInfos(String code);
 	void deleteCountry(String code);
+	void updateCountry(String code, String infos);
+
 }

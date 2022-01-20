@@ -30,10 +30,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	}
 
 	@Override
-	public void addCountry(String information) {
+	public void addCountry(String infos) {
 		Country country = new Country();
 		Continent continent = new Continent();
-		String[] countryInformation=information.split(",");
+		String[] countryInformation=infos.split(",");
 		country.setCode(countryInformation[0]);
 		country.setName(countryInformation[1]);
 		country.setDevise(countryInformation[2]);
@@ -62,5 +62,17 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void deleteCountry(String code) {
 		Country country = countryDAO.getByCode(code);
 		countryDAO.deleteCountry(country);
+	}
+	@Override
+	public void updateCountry(String code, String infos) {
+		Continent continent = new Continent();
+		String[] countryInformation=infos.split(",");
+		Country country = countryDAO.getByCode(code);
+		country.setCode(countryInformation[0]);
+		country.setName(countryInformation[1]);
+		country.setDevise(countryInformation[2]);
+		country.setGreetings(countryInformation[3]);
+		country.setContinent(continentDAO.getContient(countryInformation[4]));
+		countryDAO.updateCountry(country);
 	}
 }

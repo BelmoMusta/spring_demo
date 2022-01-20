@@ -9,11 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.fest.assertions.api.Assertions.assertThat;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-
 import java.sql.SQLException;
-
-import static org.junit.Assert.assertEquals;
 
 
 public class ClassTest {
@@ -50,5 +46,17 @@ public class ClassTest {
         serviceWorker.deleteCountry("fr");
         country = serviceWorker.getCountry("fr");
         assertThat(country).isEqualTo(null);
+    }
+    @Test
+    public void UpdateCountry() {
+        Country result;
+        serviceWorker.updateCountry("fr", "fr,france,EURO,Bonjour!,ame");
+        result = serviceWorker.getCountry("fr");
+        assertEquals("fr",result.getCode());
+        assertEquals("france",result.getName());
+        assertEquals("EURO",result.getDevise());
+        assertEquals("Bonjour!",result.getGreetings());
+        assertEquals("ame",result.getContinent().getCode());
+        assertEquals("America",result.getContinent().getName());
     }
 }
