@@ -31,7 +31,6 @@ public class App {
 
 			switch (code){
 				case "0":
-					serviceWorker.getAllCountries();
 					break;
 				case "1":
 					//ajout d'un nouveau pays
