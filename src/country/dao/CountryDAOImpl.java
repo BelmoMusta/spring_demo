@@ -51,12 +51,9 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	@Override
-	public void delete(String code) {
-		if(exist(code)){
-			Country country = getByCode(code);
+	public void delete(Country country) {
 			Session session = sessionFactory.getCurrentSession();
 			session.delete(country);
-		}
 	}
 
 

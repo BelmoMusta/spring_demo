@@ -65,7 +65,8 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void deleteCountryByCode(String code) {
 		if(countryDAO.exist(code)){
-			countryDAO.delete(code);
+			Country country = countryDAO.getByCode(code);
+			countryDAO.delete(country);
 			System.out.println("\npays supprimé avec succes.");
 		}else{
 			System.out.println("\nle code saisie ne correspand à aucun pays ");
