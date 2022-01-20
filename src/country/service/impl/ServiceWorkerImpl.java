@@ -1,12 +1,12 @@
 package country.service.impl;
 
-import country.dao.CountryDAO;
-import country.model.Country;
-import country.service.ICountryService;
-import country.service.IServiceWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import country.dao.CountryDAO;
+import country.model.Country;
+import country.service.IServiceWorker;
 
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {
@@ -14,14 +14,17 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private CountryDAO countryDAO;
 	@Autowired
 	private ApplicationContext applicationContext;
-	
+
 	@Override
-	public void dealWithCountryByCode(String language) {
-		Country pays = countryDAO.getByCode(language);
+	public void dealWithCountryByCode(String code) {
+		Country pays = countryDAO.getByCode(code);
 		// car c'est prototype
-		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
-		
-		System.out.println("WELCOME : " + countryService.welcome());
-		System.out.println("Devise is :" + countryService.devise());
+		System.out.print("*********************DEBUT : Pays informations********************\n");
+		System.out.print(" -Nom: " + pays.getName() + "\r\n");
+		System.out.print(" -Devise: " + pays.getDevise() + "\r\n");
+		System.out.print(" -Greetings: " + pays.getGreetings() + "\r\n");
+		System.out.print(" -Code: " + pays.getCode() + "\r\n");
+		System.out.print("*********************FIN   : Pays informations********************\n");
+
 	}
 }

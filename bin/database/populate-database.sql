@@ -1,7 +1,8 @@
-INSERT INTO country(name, code, devise, greetings) VALUES('France', 'fr', 'EURO','Bonjour');
-INSERT INTO country(name, code, devise, greetings) VALUES('Spain', 'es', 'EURO','Hola');
-INSERT INTO country(name, code, devise, greetings) VALUES('England', 'en', 'GBP','Hello');
-INSERT INTO country(name, code, devise, greetings) VALUES('Germany', 'de', 'EURO','Halo');
+INSERT INTO country(name, code, devise, greetings,codeContinent) VALUES('France', 'fr', 'EURO','Bonjour','eu');
+INSERT INTO country(name, code, devise, greetings,codeContinent) VALUES('Spain', 'es', 'EURO','Hola','eu');
+INSERT INTO country(name, code, devise, greetings,codeContinent) VALUES('England', 'en', 'GBP','Hello','eu');
+INSERT INTO country(name, code, devise, greetings,codeContinent) VALUES('Maroc', 'mr', 'MAD','salam','af');
+
 
 INSERT INTO continent(name, code) VALUES('Africa', 'af');
 INSERT INTO continent(name, code) VALUES('Antarctica', 'an');
