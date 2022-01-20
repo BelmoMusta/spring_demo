@@ -32,7 +32,10 @@ public class App {
 		    String query = inputFromConsole.next();
 
 		    switch (query) {
-			//
+		    case "0": 
+				System.exit(0);
+				break;
+				
 			case "1": {
 				Country country=new Country();
 				System.out.println("add information of a country like: code,name,device,greeting,nameofcontinent:");
