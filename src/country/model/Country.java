@@ -13,7 +13,11 @@ public class Country {
 	private String code;
 	private String devise;
 	private String greetings;
-	
+
+	@ManyToOne
+	@JoinColumn(name="continent_id", nullable=true)
+	private Continent continent;
+
 	public Integer getId() {
 		return id;
 	}
@@ -54,6 +58,14 @@ public class Country {
 		this.greetings = greetings;
 	}
 
+	public Continent getContinent() {
+		return continent;
+	}
+
+	public void setContinent(Continent continent) {
+		this.continent = continent;
+	}
+
 	@Override
 	public String toString() {
 		return "Pays {" +
@@ -61,6 +73,7 @@ public class Country {
 				", Code = '" + code + '\'' +
 				", Devise = '" + devise + '\'' +
 				", Salutation='" + greetings + '\'' +
+				", Continent='" + continent.getName() + '\'' +
 				'}';
 	}
 }

@@ -15,6 +15,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <mapping class="country.model.Country" />
+        <mapping class="country.model.Continent" />
 
     </session-factory>
 </hibernate-configuration>
