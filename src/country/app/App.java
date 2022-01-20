@@ -76,14 +76,13 @@ public class App {
 			
 			else if(choise==5)
 			{
-				List<Country> country1=null;
+				
 				System.out.println("entrer le code de contienent   : ");
 				Scanner inputFromConsole5 = new Scanner(System.in);
 				String codecontinent = inputFromConsole5.next();
-				country1=iserviceWorker.findCountryByContinent(codecontinent);
-				for (Iterator iterator =country1.iterator(); 
-						iterator.hasNext();){
-						Country country = (Country) iterator.next();
+		       for (Iterator itr=iserviceWorker.findCountryByContinent(codecontinent).iterator(); 
+						itr.hasNext();){
+						Country country = (Country) itr.next();
 						System.out.print(" Nom: " + country.getName());
 						System.out.print(" ,Devise: " + country.getDevise());
 						System.out.print(" ,Greetings: " + country.getGreetings());

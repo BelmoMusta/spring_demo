@@ -25,12 +25,13 @@ public class CountryDAOImplTest {
 	CountryDAOImpl countrydao ;
 	
 	static boolean isInitialized = false;
-	private List <Country> countrylist = new ArrayList<>();
+	 
 	
 	@Before
 	public void setup() {
 		if(!isInitialized)
 		{
+			List <Country> countrylist = new ArrayList<>();
 			countrylist=countrydao.listCountry();
 			isInitialized = true;
 		}
@@ -50,9 +51,9 @@ public class CountryDAOImplTest {
         @Test
         public void findByCodeTest() 
         {
-        	assertEquals("",countrydao.findByCode("fr").getName(),"France");
-        	assertEquals("",countrydao.findByCode("fr").getGreetings(),"Bonjour");
-        	assertEquals("",countrydao.findByCode("fr").getDevise(),"EURO");
+        	assertEquals("le méme nom ",countrydao.findByCode("fr").getName(),"France");
+        	assertEquals("le méme greeting",countrydao.findByCode("fr").getGreetings(),"Bonjour");
+        	assertEquals("le méme devise",countrydao.findByCode("fr").getDevise(),"EURO");
         	
          }
         
