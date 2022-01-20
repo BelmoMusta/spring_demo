@@ -9,6 +9,6 @@ public interface CountryDAO {
 	void save(Country country);
 	List<Country> getALl();
 	boolean exist(String code);
-	void delete(String code);
+	void delete(Country country);
 	void update(Country country);
 }
