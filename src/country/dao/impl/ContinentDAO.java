@@ -2,7 +2,6 @@ package country.dao.impl;
 
 import country.dao.IContinentDAO;
 import country.model.Continent;
-import country.model.Country;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
