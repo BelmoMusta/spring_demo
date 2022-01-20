@@ -36,7 +36,17 @@ public class GlobalService implements IGlobalService{
 				System.out.println("plese write the code exception : !\n"+e);
 			}
 			break;
-		
+		case 3:
+			try {
+				System.out.println("entre the code of country that you want to delete : ");
+				Scanner scan = new Scanner(System.in);
+				String code = scan.next();
+				services.deleteCountry(code);
+			}catch(Exception e) {
+				System.out.println("plese write the code thre is an exception : !\n"+e);
+			}
+			break;
+
 		default:
 			System.out.println("");
 	}

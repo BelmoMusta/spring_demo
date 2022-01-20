@@ -48,6 +48,18 @@ public class ServiceDeatails implements IServiceDetail {
 		this.afficheCountry(countrySaved.getCode());
 	}
 
+	@Override
+	public void deleteCountry(String code) {
+		
+		Country country=countryDao.getByCode(code);
+		if(country!=null) {
+		countryDao.deleteCountry(country);	
+		System.out.println(country.getCode()+" is deleted! succefully");}
+		else {
+			System.out.println(" error code doesn't exist");
+		}
+	}
+
 	
 	
 }
