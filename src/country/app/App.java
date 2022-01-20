@@ -41,11 +41,19 @@ public class App {
 			}
 			else if(choix==2)
 			{
-				System.out.println("entrez le code du pays : ");
+				System.out.println("entrez le code du pays à afficher : ");
 				Scanner input1 = new Scanner(System.in);
 				String codeContry = input1.next();
 				sw.displayByCode(codeContry);
 
+			}
+			else if (choix==3) {
+				System.out.println("entrez le code du pays à Supprimmer : ");
+				Scanner input1 = new Scanner(System.in);
+				String codeContry = input1.next();
+				sw.deletByCode(codeContry);
+				sw.displayCountry();
+				
 			}
 			
 		}

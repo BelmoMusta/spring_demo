@@ -53,7 +53,18 @@ public  class CountryDAOImpl extends Dao implements CountryDAO {
 		System.out.println("Code: " + country.getCode()+"\n");
 		}
 		transaction.commit();
-		session.close();}
+		session.close();
+		}
+	@Override
+	public void deletByCode(String code)
+	{
+		Session session = getSession();
+		Transaction transaction = session.beginTransaction();
+		String q2 = "delete from Country where code = :Code";
+		int query = session.createSQLQuery(q2).setParameter("Code", code).executeUpdate();
+		transaction.commit();
+		session.close();
+	}
 	
 	
 	

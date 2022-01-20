@@ -33,6 +33,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void displayByCode(String code) {
 		countryDAO.displayByCode(code);
 	}
+	@Override
+	public void deletByCode(String code) {
+		countryDAO.deletByCode(code);
+	}
 	
 
 	
