@@ -32,4 +32,14 @@ public class ClassTest {
         assertEquals("afr",result.getContinent().getCode());
         assertEquals("Africa",result.getContinent().getName());
     }
+    @Test
+    public void getCountry() {
+        Country result = serviceWorker.getCountry("fr");
+        assertEquals("fr",result.getCode());
+        assertEquals("France",result.getName());
+        assertEquals("EURO",result.getDevise());
+        assertEquals("Bonjour",result.getGreetings());
+        assertEquals("eup",result.getContinent().getCode());
+        assertEquals("Europe",result.getContinent().getName());
+    }
 }

@@ -6,4 +6,5 @@ public interface IServiceWorker {
 	void dealWithCountryByCode(String language);
 	void addCountry(String information);
 	Country getCountry(String code);
+	Country getCountryInfos(String code);
 }

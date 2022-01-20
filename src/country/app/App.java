@@ -28,10 +28,17 @@ public class App {
 					System.exit(0);
 				}
 				case 1: {
-					System.out.print("Saisir le pays à ajouter :");
+					System.out.print("Saisir le pays à ajouter (code,name,device,greeting,continent) :");
 					Scanner input = new Scanner(System.in);
 					String information = input.next();
 					serviceWorker.addCountry(information);
+					break;
+				}
+				case 2: {
+					System.out.print("Saisir le code du pays : ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					serviceWorker.getCountryInfos(code);
 					break;
 				}
 				default: {
