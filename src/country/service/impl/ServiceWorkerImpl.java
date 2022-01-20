@@ -41,4 +41,10 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		countryDAO.AddNewCountry(countrry);
 
 	}
+
+	@Override
+	public void DeleteCountryByCode(String Code) {
+
+		countryDAO.DeleteCountry(Code);
+	}
 }

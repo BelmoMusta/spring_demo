@@ -52,6 +52,13 @@ public class App {
 				serviceWorker.dealWithCountryByCode(codePays);
 				codePays = "";
 				break;
+			case 3:
+				System.out.println("Entrer le code du pays à supprimer:");
+				inputFromConsole = new Scanner(System.in);
+				codePays = inputFromConsole.next();
+				serviceWorker.DeleteCountryByCode(codePays);
+				codePays = "";
+				break;
 			default:
 
 				break;

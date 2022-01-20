@@ -30,8 +30,9 @@ public class CountryDAOImpl implements CountryDAO {
 	public Country getByCode(String countryCode) {
 		Session session = getSession();
 		Transaction trans = session.beginTransaction();
-		String str1 = "FROM Country where code=:countrCode";
-		Query query = session.createQuery(str1).setParameter("countrCode", countryCode);
+		String requet = "FROM Country where code=:paysCode";
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery(requet).setParameter("paysCode", countryCode);
 		query.setMaxResults(1);
 		Country countrie = (Country) query.uniqueResult();
 		trans.commit();
@@ -47,5 +48,16 @@ public class CountryDAOImpl implements CountryDAO {
 		trans.commit();
 		return NumId;
 
+	}
+
+	@Override
+	public Integer DeleteCountry(String code) {
+		Session session = getSession();
+		Transaction trans = session.beginTransaction();
+		String requet = "delete from Country where code = :paysCode";
+		int query = session.createSQLQuery(requet).setParameter("paysCode", code).executeUpdate();
+		trans.commit();
+		session.close();
+		return query;
 	}
 }
