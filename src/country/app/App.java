@@ -36,6 +36,14 @@ public class App {
 			String number_typed = inputFromConsole.next();
 			switch (Integer.parseInt(number_typed)) {
 
+			case 1:
+				System.out.print(
+						"entrer les informations ,form de la saisie : code,Nom, devise, greetings,codeContinent:\n");
+				inputFromConsole = new Scanner(System.in);
+				String countryInfos = inputFromConsole.next();
+				serviceWorker.addNewCountry(countryInfos);
+				break;
+
 			case 2:
 				System.out.print("entrer le code du pays:");
 				inputFromConsole = new Scanner(System.in);

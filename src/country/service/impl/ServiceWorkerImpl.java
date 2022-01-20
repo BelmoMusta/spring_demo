@@ -27,4 +27,18 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		System.out.print("*********************FIN   : Pays informations********************\n");
 
 	}
+
+	@Override
+	public void addNewCountry(String country) {
+		String[] list = country.split(",");
+		Country countrry = new Country();
+		countrry.setCode(list[0]);
+		countrry.setName(list[1]);
+		countrry.setDevise(list[2]);
+		countrry.setGreetings(list[3]);
+		countrry.setCodeContinent(list[4]);
+
+		countryDAO.AddNewCountry(countrry);
+
+	}
 }

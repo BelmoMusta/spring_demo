@@ -38,4 +38,14 @@ public class CountryDAOImpl implements CountryDAO {
 		session.close();
 		return countrie;
 	}
+
+	@Override
+	public Integer AddNewCountry(Country country) {
+		Session session = getSession();
+		Transaction trans = session.beginTransaction();
+		Integer NumId = (Integer) session.save(country);
+		trans.commit();
+		return NumId;
+
+	}
 }
