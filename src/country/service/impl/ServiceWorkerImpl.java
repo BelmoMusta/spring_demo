@@ -35,9 +35,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 
 	public void addCountry(String country){
-		String regex = "/(([A-Za-z])\\w+,){4}([A-Za-z])\\w+/g";
+		String regex = "(([A-Za-z]+),){4}([A-Za-z]+){1}";
 		Pattern pattern = Pattern.compile(regex) ;
-		Matcher matcher = pattern.matcher(country) ;
+		Matcher matcher = pattern.matcher(country);
 		if(matcher.matches()){
 			String[] countryParts = country.split(",");
 			String code = countryParts[0];
