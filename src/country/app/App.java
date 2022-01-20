@@ -32,7 +32,13 @@ public class App {
 			Scanner inputFromConsole = new Scanner(System.in);
 			choise= inputFromConsole.nextInt();
 			
-			if(choise==1)
+			 if(choise==0)
+			{
+
+				System.out.println("Merci pour votre utilisation vous étes Sortis de l'application");
+				System.exit(0);
+			}
+			 else if(choise==1)
 			{
 
 				System.out.println("Ajouter un payé comme suite code,nom,devise,greeting : ");
@@ -91,12 +97,7 @@ public class App {
 				
 			}
 			
-			else if(choise==0)
-			{
-
-				System.out.println("Merci pour votre utilisation vous étes Sortis de l'application");
-				System.exit(0);
-			}
+			
 			else
 			{
 				System.out.println("Ce nombre n'existe pas Merci ");
