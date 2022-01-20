@@ -11,4 +11,6 @@ public interface CountryDAO {
 	Continent getByName(String name);
 	
 	int SuppByCode(String code);
+
+	int updateByCode(Country country, String code, String nameOfContinet);
 }

@@ -63,7 +63,25 @@ public class App {
 				serviceWorker.SuppCountry(input);
 			}
 			break;
-			
+			case "4": {
+				System.out.println("Enter Code of country: ");
+				String inputCode=inputFromConsole.next();
+				serviceWorker.afficheCountry(inputCode);
+				System.out.println("Update un pays, entez les nouveaux informations: code,name,device,greeting,nameofcontinent:");
+				String input=inputFromConsole.next();
+				try {
+				String[] informationOfCountry=input.split(",");
+				Country country=new Country();
+				country.setCode(informationOfCountry[0]);
+				country.setName(informationOfCountry[1]);
+				country.setDevise(informationOfCountry[2]);
+				country.setGreetings(informationOfCountry[3]);
+				serviceWorker.ModifyCountry(country,inputCode,informationOfCountry[4]);
+				}catch (ArrayIndexOutOfBoundsException e) {
+					System.err.println("Verify the form of your input");
+				}
+				}
+			  break;
 			default:
 				System.err.println("Unexpected value: " + query);
 			}

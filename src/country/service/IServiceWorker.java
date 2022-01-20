@@ -11,5 +11,7 @@ public interface IServiceWorker {
 
 	void SuppCountry(String input);
 
+	void ModifyCountry(Country country, String code, String string);
+
 	
 }

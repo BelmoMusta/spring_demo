@@ -55,4 +55,15 @@ public class ServiceWorkerImpl implements IServiceWorker {
 			System.out.println("Supprimer " + rowsAffected + " ligne.");
 		} else System.err.println("not deleted");
 	}
+	@Override
+	public void ModifyCountry(Country country, String _inputCode, String _nameContinet) {
+		int rowsAff = countryDAO.updateByCode(country, _inputCode, _nameContinet);
+		if (rowsAff > 0) System.out.println("Updates " + rowsAff + " rows.");
+		
+		else if (rowsAff == -1)System.err.println("there is no continent with this name ");
+		
+		else if (rowsAff == -2) System.err.println("code déja existe");
+		
+		else System.err.println("not updated");
+	}
 }

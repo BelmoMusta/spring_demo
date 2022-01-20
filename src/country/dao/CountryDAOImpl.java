@@ -101,5 +101,21 @@ public class CountryDAOImpl implements CountryDAO {
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
+	@Override
+	public int updateByCode(Country country, String _inputCode, String _nameContinet) {
+		country.setContinent(getByName(_nameContinet));
+		if (country.getContinent() == null)
+			return -1;
+		else if (getByCode(country.getCode()) != null)
+			return -2;
+		else {
+			Query query = getSession().createQuery(
+					"update Country c set c.name=:name,c.code=:code,c.devise=:devise,c.greetings=:greeting,c.continent=:continent where c.code=:codeToUpdate");
+			query.setParameter("name", country.getName()).setParameter("code", country.getCode())
+					.setParameter("devise", country.getDevise()).setParameter("greeting", country.getGreetings())
+					.setParameter("continent", country.getContinent()).setParameter("codeToUpdate", _inputCode);
+			return query.executeUpdate();
+		}
+	}
 
 }
