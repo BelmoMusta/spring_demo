@@ -1,7 +1,6 @@
 package country.dao;
 
 import country.model.Country;
-import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
