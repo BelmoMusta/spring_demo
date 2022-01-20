@@ -1,0 +1,89 @@
+package country.service.impl;
+
+import country.dao.CountryDAO;
+import country.model.Country;
+import country.service.ICountryService;
+import country.service.IServiceWorker;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ServiceWorkerImpl implements IServiceWorker {
+	@Autowired
+	private CountryDAO countryDAO;
+	@Autowired
+	private ApplicationContext applicationContext;
+	
+	@Override
+	public void dealWithCountryByCode(String language) {
+		Country pays = countryDAO.getByCode(language);
+		// car c'est prototype
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
+		
+		
+		System.out.println("WELCOME : " + countryService.welcome());
+		System.out.println("Devise is :" + countryService.devise());
+	}
+	
+	@Override
+	public void InsertNewCountry(Country country,String nameOfContinet) {
+		countryDAO.insert(country,nameOfContinet);
+	}
+	
+	@Override
+	public void deleteCountryByCode(String code) {
+		countryDAO.deleteCountryByCode(code);
+		
+	}
+
+	@Override
+	public void updateCountry(String code, Country country, String nameOfContinet) {
+		countryDAO.updateCountry(code, country,nameOfContinet);
+		
+	}
+	
+	@Override
+	public void ListCountryData(String code) {
+		Country country=countryDAO.getByCode(code);
+		if(country==null) {
+			System.out.println("** Il n'y aucun pays avec ce code **");
+		}else{
+		System.out.println("          Informations sur le pays   ");
+		System.out.println("Nom :"+country.getName());
+		System.out.println("Code :"+country.getCode());
+		System.out.println("Devise :"+country.getDevise());
+		System.out.println("Salutation :"+country.getGreetings());
+		System.out.println("Continent :"+country.getContinent().getName());
+		}
+	}
+	
+	@Override
+	public void listCountriesByContinent(String continentCode) {
+		
+
+		List<Country> countries=countryDAO.listCountriesByContinent(continentCode);
+		
+		if(countries.size()!=0) 
+			for(Country country:countries) { 
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			
+			System.out.println("Nom :"+country.getName());
+			System.out.println("Code :"+country.getCode());
+			System.out.println("Devise :"+country.getDevise());
+			System.out.println("Salutation :"+country.getGreetings());
+			
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");			
+		}
+		else {
+			System.out.println("Aucun pays de ce continent n'est présent dans notre liste ou code non valide");
+		}
+		
+		}	
+
+	
+
+}
