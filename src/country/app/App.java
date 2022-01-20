@@ -19,7 +19,7 @@ public class App {
 		while (true) {
 			serviceWorker.showMenu();
 			Scanner inputFromConsole = new Scanner(System.in);
-			String choix = inputFromConsole.next();
+			String choix = inputFromConsole.nextLine();
 			serviceWorker.dealWithMenuChoice(choix);
 		}
 	}

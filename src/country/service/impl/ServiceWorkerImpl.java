@@ -52,15 +52,18 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private void choiceAddCountry() {
 		System.out.println("Veuillez saisir les informations du pays (ex :FR,france,EURO,Bonjour!,Europe) : ");
 		Scanner inputFromConsole = new Scanner(System.in);
-		String input = inputFromConsole.next();
+		String input = inputFromConsole.nextLine();
+		input.replaceAll("\\s+","-");
+		System.out.println(input);
 		String[] informations = input.split("[,]");
 		if(informations.length != 5) {
 			System.out.println("** Veuillez saisir les cinq informations.");
 		} else {
-			Continent continent = continentDAO.getByName(informations[4]);
+			Continent continent = continentDAO.getByName(informations[4].replace("-","\\s+"));
 
 			if(continent != null) {
 				Country countryExist = countryDAO.getByCode(informations[0].toUpperCase(Locale.ROOT));
+
 				if(countryExist != null) {
 					System.out.println("** Un pays existe déja avec le code suivant : " + informations[0].toUpperCase(Locale.ROOT));
 					System.out.println("** les informations du pays :");
@@ -70,9 +73,9 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 				Country country = new Country();
 				country.setCode(informations[0].toUpperCase(Locale.ROOT));
-				country.setName(informations[1].substring(0, 1).toUpperCase() + informations[1].substring(1));
-				country.setDevise(informations[2]);
-				country.setGreetings(informations[3]);
+				country.setName(informations[1].replace("-","\\s+").substring(0, 1).toUpperCase() + informations[1].substring(1));
+				country.setDevise(informations[2].replace("-","\\s+"));
+				country.setGreetings(informations[3].replace("-","\\s+"));
 				country.setContinent(continent);
 				this.countryDAO.add(country);
 			} else {
@@ -88,7 +91,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private void choiceShowCountry() {
 		System.out.println("Veuillez saisir le code du pays recherché (ex :FR) :");
 		Scanner inputFromConsole = new Scanner(System.in);
-		String input = inputFromConsole.next();
+		String input = inputFromConsole.nextLine();
 		Country returned = this.countryDAO.getByCode(input.toUpperCase());
 		if(returned == null) {
 			System.out.println("Aucun pays trouvé");
@@ -101,7 +104,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private void choiceDeleteCountry() {
 		System.out.println("Veuillez saisir le code du pays à supprimer (ex :FR) :");
 		Scanner inputFromConsole = new Scanner(System.in);
-		String input = inputFromConsole.next();
+		String input = inputFromConsole.nextLine();
 		Country countryDeleted = this.countryDAO.deleteByCode(input.toUpperCase());
 		if(countryDeleted != null) System.out.println(countryDeleted.getName() + " a été supprimé");
 		else System.out.println("Pays avec le code " + input.toUpperCase() + " non trouvé");
@@ -110,7 +113,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private void choiceShowCountriesByCountry() {
 		System.out.println("Veuillez saisir le nom du continent (ex :Europe) :");
 		Scanner inputFromConsole = new Scanner(System.in);
-		String input = inputFromConsole.next();
+		String input = inputFromConsole.nextLine();
 		Continent continent = continentDAO.getByName(input);
 
 		if(continent != null) {
@@ -130,11 +133,11 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	private void choiceEditCountry() {
 		System.out.println("Veuillez saisir le code du pays à modifier (ex :FR) :");
 		Scanner inputFromConsole = new Scanner(System.in);
-		String input1 = inputFromConsole.next();
+		String input1 = inputFromConsole.nextLine();
 		Country countryToEdit = this.countryDAO.getByCode(input1.toUpperCase());
 		if(countryToEdit != null) {
 			System.out.println("Veuillez saisir les nouveau informations du pays (ex :FR,france,EURO,Bonjour!,Europe) : ");
-			String input2 = inputFromConsole.next();
+			String input2 = inputFromConsole.nextLine();
 			String[] informations = input2.split("[,]");
 			if(informations.length != 5) {
 				System.out.println("** Veuillez saisir les cinq informations.");
@@ -147,7 +150,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 					country.setDevise(informations[2]);
 					country.setGreetings(informations[3]);
 					country.setContinent(continent);
-					this.countryDAO.update1(country);
+					this.countryDAO.update(country);
 				} else {
 					System.out.println("** Le continent n'existe pas.");
 					System.out.println("** Liste des continents.");
