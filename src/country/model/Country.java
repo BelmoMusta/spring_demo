@@ -52,4 +52,9 @@ public class Country {
 	public void setContinent(Continent continent){this.continent = continent; }
 
 	public Continent getContinent(){ return continent; }
+
+	@Override
+	public String toString(){
+		return "(" + "id=  " + id + ", name = " + name + ", code = " + code + ", devise = " + devise + ", greetings = " + greetings + ", continent = " + continent.getName() + ")";
+	}
 }

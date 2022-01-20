@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServiceWorkerImpl implements IServiceWorker {
+
 	@Autowired
 	private CountryDAO countryDAO;
-
 	@Autowired
 	private ContinentDAO continentDAO;
 	@Autowired
@@ -22,6 +22,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	
 	@Override
 	public void dealWithCountryByCode(String language) {
+
 		Country pays = countryDAO.getByCode(language);
 		// car c'est prototype
 		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
@@ -32,6 +33,7 @@ public class ServiceWorkerImpl implements IServiceWorker {
 
 	@Override
 	public void addCountry(String countryinfos){
+
 		Country country = new Country();
 		Continent continent = new Continent();
 
@@ -45,6 +47,19 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		country.setGreetings(countryinfos.split(",")[4]);
 		country.setContinent(continent);
 		countryDAO.saveCountry(country);
+
+	}
+
+	@Override
+	public void getCountryInfos(String countryCode) {
+
+		Country pays = countryDAO.getByCode(countryCode);
+		ICountryService countryService = applicationContext.getBean(ICountryService.class, pays);
+
+		System.out.println("Country's name is : " + countryService.name());
+		System.out.println("Country's welcome is : " + countryService.welcome());
+		System.out.println("Country's devise is : " + countryService.devise());
+		System.out.println("Country's Continent is : " + countryService.continentName());
 
 	}
 }
