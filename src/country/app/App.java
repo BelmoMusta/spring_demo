@@ -33,6 +33,10 @@ public class App {
 			String choice = dataFromConsole.next();
 			
 			switch (choice) {
+			case "0": 
+				System.exit(0);
+				break;
+								
 			case "1": {
 				Country country=new Country();
 				
@@ -105,6 +109,9 @@ public class App {
 				
 				serviceWorker.listCountriesByContinent(continentCode);
 			}break;
+			
+			default:
+				System.out.println("Les choix possibles sont de 0 à 5: " + choice);
 			
 		}
 	}
