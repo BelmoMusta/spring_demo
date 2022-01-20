@@ -9,4 +9,7 @@ public interface CountryDAO {
 	public Integer AddNewCountry(Country country);
 
 	public Integer DeleteCountry(String Code);
+
+	public Integer EditInfos(String code, Country country);
+
 }

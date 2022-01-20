@@ -18,25 +18,18 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	@Override
 	public void dealWithCountryByCode(String code) {
 		Country pays = countryDAO.getByCode(code);
-		// car c'est prototype
-		System.out.print("*********************DEBUT : Pays informations********************\n");
+
 		System.out.print(" -Nom: " + pays.getName() + "\r\n");
 		System.out.print(" -Devise: " + pays.getDevise() + "\r\n");
-		System.out.print(" -Greetings: " + pays.getGreetings() + "\r\n");
-		System.out.print(" -Code: " + pays.getCode() + "\r\n");
-		System.out.print("*********************FIN   : Pays informations********************\n");
+		System.out.println(" -Greetings: " + pays.getGreetings());
+		// System.out.print(" -Code: " + pays.getCode() + "\r\n");
 
 	}
 
 	@Override
-	public void addNewCountry(String country) {
-		String[] list = country.split(",");
-		Country countrry = new Country();
-		countrry.setCode(list[0]);
-		countrry.setName(list[1]);
-		countrry.setDevise(list[2]);
-		countrry.setGreetings(list[3]);
-		countrry.setCodeContinent(list[4]);
+	public void addNewCountry(String informations) {
+
+		Country countrry = setCountry(informations);
 
 		countryDAO.AddNewCountry(countrry);
 
@@ -46,5 +39,37 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void DeleteCountryByCode(String Code) {
 
 		countryDAO.DeleteCountry(Code);
+	}
+
+	@Override
+	public void EditCountryByCode(String code, String ModifyInfos) {
+
+		Country country = setCountry(ModifyInfos);
+
+		countryDAO.EditInfos(code, country);
+
+	}
+
+	public Country setCountry(String informations) {
+		String[] list = informations.split(",");
+
+		Country country = new Country();
+		if (list.length == 3) {
+			country.setName(list[0]);
+			country.setDevise(list[1]);
+			country.setGreetings(list[2]);
+
+		}
+		if (list.length == 5) {
+			country.setCode(list[0]);
+			country.setName(list[1]);
+			country.setDevise(list[2]);
+			country.setGreetings(list[3]);
+			country.setCodeContinent(list[4]);
+
+		}
+
+		return country;
+
 	}
 }

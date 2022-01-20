@@ -26,7 +26,7 @@ public class App {
 
 						+ "=================================================================================================================\n");
 		Scanner inputFromConsole;
-		String codePays = "";
+		String codePays = "", ModifierInfos = "";
 		Boolean keepWorking = true;
 		while (true) {
 
@@ -49,7 +49,9 @@ public class App {
 				inputFromConsole = new Scanner(System.in);
 				codePays = inputFromConsole.next();
 				// serviceWorker.dealWithCountryByCode(codePays);
+				System.out.print("*********************DEBUT : Pays informations********************\n");
 				serviceWorker.dealWithCountryByCode(codePays);
+				System.out.print("*********************FIN   : Pays informations********************\n");
 				codePays = "";
 				break;
 			case 3:
@@ -59,8 +61,23 @@ public class App {
 				serviceWorker.DeleteCountryByCode(codePays);
 				codePays = "";
 				break;
-			default:
+			case 4:
+				System.out.println("Entrer le code du pays à modifier:");
+				inputFromConsole = new Scanner(System.in);
+				codePays = inputFromConsole.next();
+				System.out.println(" ");
+				System.out.println("*********************les informations à modifier:********************");
+				serviceWorker.dealWithCountryByCode(codePays);
+				System.out.println("*********************************************************************");
+				System.out.println(
+						"Entrer les informatioms nécessaires pour la modification sous la forme \" Nom, devise, greetings\":");
 
+				inputFromConsole = new Scanner(System.in);
+				ModifierInfos = inputFromConsole.next();
+				serviceWorker.EditCountryByCode(codePays, ModifierInfos);
+				codePays = "";
+				break;
+			default:
 				break;
 
 			}
