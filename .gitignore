@@ -2,3 +2,5 @@
 .idea 
 target 
 out
+/bin/
+country.mv.db

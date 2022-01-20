@@ -1,6 +1,13 @@
 package country.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Country {
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private Integer id;
 	private String name;
 	private String code;
