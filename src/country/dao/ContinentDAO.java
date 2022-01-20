@@ -4,4 +4,5 @@ import country.model.Continent;
 
 public interface ContinentDAO {
     Continent getContientByName(String name);
-}
+    boolean existsByName(String name);
+    }

@@ -36,15 +36,22 @@ public class ServiceWorkerImpl implements IServiceWorker {
 		String name = countryParts[1];
 		String device = countryParts[2];
 		String greeting = countryParts[3];
-		Continent continent = continentDAO.getContientByName(countryParts[4]);
+		String continentName = countryParts[4];
 
-		Country c = new Country();
-		c.setCode(code);
-		c.setDevise(device);
-		c.setName(name);
-		c.setGreetings(greeting);
-		c.setContinent(continent);
-		countryDAO.save(c);
+		if(continentDAO.existsByName(continentName)){
+			Continent continent = continentDAO.getContientByName(countryParts[4]);
+			Country c = new Country();
+			c.setCode(code);
+			c.setDevise(device);
+			c.setName(name);
+			c.setGreetings(greeting);
+			c.setContinent(continent);
+			countryDAO.save(c);
+		}else{
+			System.out.println("\nLe nom du continent saisie est invalide!!");
+		}
+
+
 	}
 
 	public void getAllCountries(){

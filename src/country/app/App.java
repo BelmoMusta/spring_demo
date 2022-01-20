@@ -35,15 +35,13 @@ public class App {
 					break;
 				case "1":
 					//ajout d'un nouveau pays
-					System.out.print("Entrer le pays à ajouter sous le format suivant: ");
+					System.out.print("Entrer le pays à ajouter sous le format suivant (code,nom,devise,greetings,nom du continent): ");
 					String country = inputFromConsole.next();
 					serviceWorker.addCountry(country);
 					break;
 				case "2":
-					serviceWorker.getAllCountries();
 					break;
 				case "3":
-					serviceWorker.getContientByName("Europe");
 					break;
 				case "4":
 					break;

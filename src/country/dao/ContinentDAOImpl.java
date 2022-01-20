@@ -22,4 +22,12 @@ public class ContinentDAOImpl implements ContinentDAO{
         query.setString("name",name);
         return (Continent) query.list().get(0);
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Continent c where c.name = :name");
+        query.setString("name",name);
+        return query.list().size() > 0;
+    }
 }
