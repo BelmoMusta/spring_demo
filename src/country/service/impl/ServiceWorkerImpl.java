@@ -37,6 +37,19 @@ public class ServiceWorkerImpl implements IServiceWorker {
 	public void deletByCode(String code) {
 		countryDAO.deletByCode(code);
 	}
+	@Override
+	public void updateByCode(String code ,String nvCountry) {
+		// TODO Auto-generated method stub
+		String[] infoListe=nvCountry.split(",");
+		Country countryToAdd=new Country();
+		countryToAdd.setCode(infoListe[0]);
+		countryToAdd.setName(infoListe[1]);
+		countryToAdd.setDevise(infoListe[2]);
+		countryToAdd.setGreetings(infoListe[3]);
+		
+		countryDAO.updateByCode(code,countryToAdd);
+		}
+	
 	
 
 	

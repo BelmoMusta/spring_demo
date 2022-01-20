@@ -66,6 +66,16 @@ public  class CountryDAOImpl extends Dao implements CountryDAO {
 		session.close();
 	}
 	
+	@Override
+	public void updateByCode(String code ,Country nvCountry) {
+		Session session = getSession();
+		Transaction transaction = session.beginTransaction();
+		String q1 ="UPDATE Country SET name = :nvNom ,devise =:nvDevise ,greetings=:nvGreetings  WHERE code = :Code";
+		int res = session.createSQLQuery(q1).setParameter("Code", code).setParameter("nvNom", nvCountry.getName()).setParameter("nvDevise", nvCountry.getDevise()).setParameter("nvGreetings", nvCountry.getGreetings()).executeUpdate();
+		transaction.commit();
+		session.close();
+	}
+	
 	
 	
 

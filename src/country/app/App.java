@@ -55,6 +55,16 @@ public class App {
 				sw.displayCountry();
 				
 			}
+			else if(choix ==4) {
+				System.out.println("entrez le code du pays à Modifier : ");
+				Scanner input1 = new Scanner(System.in);
+				String codeContry = input1.next();
+				System.out.println("Suivez le schema suivant (FR,france,EURO,Bonjour!) pour ajouter les nouveaux informations  ");
+				Scanner input2 = new Scanner(System.in);
+				String paye = input2.next();
+				sw.updateByCode(codeContry, paye);
+				sw.displayCountry();
+			}
 			
 		}
 	}

@@ -6,5 +6,6 @@ public interface IServiceWorker {
 	void addCountry(String country);
 	public void displayByCode(String code);
 	public void deletByCode(String code);
+	void updateByCode(String code, String nvCountry);
 	
 }
