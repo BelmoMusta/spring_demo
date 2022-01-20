@@ -5,6 +5,8 @@ import country.model.Country;
 import country.service.IServiceWorker;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -41,5 +43,12 @@ public class ClassTest {
         assertEquals("Bonjour",result.getGreetings());
         assertEquals("eup",result.getContinent().getCode());
         assertEquals("Europe",result.getContinent().getName());
+    }
+    @Test
+    public void deleteCountry() {
+        Country country;
+        serviceWorker.deleteCountry("fr");
+        country = serviceWorker.getCountry("fr");
+        assertThat(country).isEqualTo(null);
     }
 }

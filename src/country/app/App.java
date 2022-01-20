@@ -41,6 +41,13 @@ public class App {
 					serviceWorker.getCountryInfos(code);
 					break;
 				}
+				case 3: {
+					System.out.print("Saisir le code du pays à supprimer: ");
+					Scanner scanner1 = new Scanner(System.in);
+					String code = scanner1.next();
+					serviceWorker.deleteCountry(code);
+					break;
+				}
 				default: {
 					break;
 				}

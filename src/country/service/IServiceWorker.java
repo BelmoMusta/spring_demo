@@ -7,4 +7,5 @@ public interface IServiceWorker {
 	void addCountry(String information);
 	Country getCountry(String code);
 	Country getCountryInfos(String code);
+	void deleteCountry(String code);
 }
